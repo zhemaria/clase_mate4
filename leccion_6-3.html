@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 6.3 · Método gráfico, aplicaciones y modelado con sistemas</title>
+    <style>
+      :root {
+        --tema: #4e342e;
+        --tema-d: #3e2723;
+        --tema-bg: #efebe9;
+        --tema-bg2: #d7ccc8;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #3e2723 0%, #4e342e 55%, #6d4c41 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(62, 39, 35, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 24px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffebee; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #546e7a; }
+      .btn.sec:hover { background: #37474f; }
+
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #ffebee; color: #b71c1c; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #2e2320; color: #efebe9; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 6 · Sistemas de ecuaciones lineales</div>
+        <h1>Lección 6.3 · Método gráfico, aplicaciones y modelado con sistemas</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Resolver sistemas graficando las dos rectas y leyendo el punto de intersección.</li>
+          <li>Conectar la solución gráfica con la solución algebraica.</li>
+          <li>Traducir problemas verbales a sistemas de dos ecuaciones.</li>
+          <li>Modelar situaciones reales, como el punto de equilibrio de una empresa.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con la lección anterior.</strong> En las Lecciones 6.1 y 6.2 se resolvieron sistemas con álgebra (sustitución y eliminación). Ahora se añade una tercera mirada: el <strong>método gráfico</strong>. Ver las dos rectas en el plano ayuda a entender por qué un sistema tiene una, ninguna o infinitas soluciones, y a conectar todo con las aplicaciones reales.</p>
+      </div>
+
+      <h2 class="seccion">1. El método gráfico</h2>
+      <div class="bloque">
+        <p>Para resolver un sistema gráficamente se grafican las dos rectas en el mismo plano. El <strong>punto donde se cruzan</strong> es la solución del sistema: su par (x, y) cumple las dos ecuaciones.</p>
+
+        <div class="diagrama-wrap">
+          <svg width="340" height="320" viewBox="0 0 340 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plano cartesiano con dos rectas. La recta y igual a x más uno y la recta y igual a menos x más cinco se cruzan en el punto dos coma tres, que es la solución del sistema.">
+            <!-- cuadrícula -->
+            <g stroke="#e0e0e0" stroke-width="1">
+              <line x1="50" y1="40" x2="50" y2="270"/><line x1="85" y1="40" x2="85" y2="270"/>
+              <line x1="120" y1="40" x2="120" y2="270"/><line x1="155" y1="40" x2="155" y2="270"/>
+              <line x1="190" y1="40" x2="190" y2="270"/><line x1="225" y1="40" x2="225" y2="270"/>
+              <line x1="260" y1="40" x2="260" y2="270"/>
+              <line x1="50" y1="40" x2="260" y2="40"/><line x1="50" y1="75" x2="260" y2="75"/>
+              <line x1="50" y1="110" x2="260" y2="110"/><line x1="50" y1="145" x2="260" y2="145"/>
+              <line x1="50" y1="180" x2="260" y2="180"/><line x1="50" y1="215" x2="260" y2="215"/>
+              <line x1="50" y1="250" x2="260" y2="250"/>
+            </g>
+            <!-- ejes -->
+            <line x1="50" y1="270" x2="270" y2="270" stroke="#3e2723" stroke-width="2"/>
+            <line x1="50" y1="30" x2="50" y2="270" stroke="#3e2723" stroke-width="2"/>
+            <text x="265" y="288" font-family="Segoe UI, sans-serif" font-size="13" fill="#3e2723">x</text>
+            <text x="34" y="40" font-family="Segoe UI, sans-serif" font-size="13" fill="#3e2723">y</text>
+            <!-- recta y = x + 1: (0,1)->(50,215) ; (5,6)->(225,40) -->
+            <line x1="50" y1="215" x2="225" y2="40" stroke="#1565c0" stroke-width="3"/>
+            <text x="232" y="48" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1565c0">y = x + 1</text>
+            <!-- recta y = -x + 5: (0,5)->(50,75) ; (5,0)->(225,250) -->
+            <line x1="50" y1="75" x2="225" y2="250" stroke="#6a1b9a" stroke-width="3"/>
+            <text x="150" y="245" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#6a1b9a">y = −x + 5</text>
+            <!-- intersección (2,3) -> (120,145) -->
+            <circle cx="120" cy="145" r="6" fill="#bf360c"/>
+            <text x="128" y="138" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#bf360c">(2, 3)</text>
+          </svg>
+        </div>
+
+        <p>En la gráfica, las rectas y = x + 1 e y = −x + 5 se cruzan en (2, 3). Ese es justamente el resultado que daría resolver el sistema por sustitución o eliminación.</p>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo del método gráfico -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo del método gráfico de sistemas en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Grafica las dos rectas, encuentra el punto de intersección y compáralo con la solución algebraica en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · Leer la gráfica</h3>
+        <p>Interpreta cada situación gráfica.</p>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">1. Dos rectas se cruzan en (3, 2). ¿Cuál es la solución del sistema?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(2, 3)</div>
+            <div class="opcion" data-op="b">(3, 2)</div>
+            <div class="opcion" data-op="c">(0, 0)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. Si las dos rectas son paralelas, el sistema tiene:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">una solución</div>
+            <div class="opcion" data-op="b">ninguna solución</div>
+            <div class="opcion" data-op="c">infinitas soluciones</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="c">
+          <div class="enun">3. Si las dos ecuaciones grafican la misma recta, hay:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">ninguna solución</div>
+            <div class="opcion" data-op="b">una solución</div>
+            <div class="opcion" data-op="c">infinitas soluciones</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">2. Conectar lo gráfico con lo algebraico</h2>
+      <div class="bloque">
+        <p>La gráfica y el álgebra cuentan la misma historia. Los tres tipos de sistema del tema se ven así en el plano:</p>
+        <table class="reglas">
+          <caption class="sr-only">Correspondencia entre el aspecto gráfico y el tipo de sistema.</caption>
+          <thead>
+            <tr>
+              <th scope="col">En la gráfica</th>
+              <th scope="col">Tipo de sistema</th>
+              <th scope="col">Soluciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Las rectas se cruzan en un punto</td><td>Independiente</td><td>Una</td></tr>
+            <tr><td>Las rectas son paralelas</td><td>Inconsistente</td><td>Ninguna</td></tr>
+            <tr><td>Las rectas coinciden</td><td>Dependiente</td><td>Infinitas</td></tr>
+          </tbody>
+        </table>
+        <div class="caja-tip">
+          <strong>Graficar para visualizar, resolver para precisar:</strong> la gráfica muestra de un vistazo cuántas soluciones hay; el álgebra da el valor exacto del punto, sobre todo cuando no es un par de enteros.
+        </div>
+      </div>
+
+      <h2 class="seccion">3. Traducir un problema verbal a un sistema</h2>
+      <div class="bloque">
+        <p>El paso más importante en un problema verbal es <strong>definir las variables</strong> y escribir <strong>dos ecuaciones</strong> a partir del texto.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1</span>
+          <p>Un boleto de adulto cuesta $3 más que uno de niño. Dos adultos y tres niños pagan $26. ¿Cuánto cuesta cada boleto?</p>
+          <div class="paso"><span class="n">1</span> Sea a el precio del adulto y n el del niño: a = n + 3 y 2a + 3n = 26.</div>
+          <div class="paso"><span class="n">2</span> Se sustituye: 2(n + 3) + 3n = 26.</div>
+          <div class="paso"><span class="n">3</span> Se resuelve: 5n + 6 = 26, n = 4. Entonces a = 7.</div>
+          <p><strong>Respuesta:</strong> el boleto de niño cuesta $4 y el de adulto, $7.</p>
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Plantear el sistema</h3>
+        <p>Elige el planteamiento correcto.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. "x más y es igual a 10; x menos y es igual a 2." El sistema es:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x + y = 10 ; x − y = 2</div>
+            <div class="opcion" data-op="b">x + y = 2 ; x − y = 10</div>
+            <div class="opcion" data-op="c">x · y = 10 ; x − y = 2</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. "El boleto de adulto (a) cuesta $2 más que el de niño (n)." La ecuación es:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">a = n + 2</div>
+            <div class="opcion" data-op="b">n = a + 2</div>
+            <div class="opcion" data-op="c">a + n = 2</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. "Dos cafés (c) y un té (t) cuestan $8." La ecuación es:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">2c + t = 8</div>
+            <div class="opcion" data-op="b">c + 2t = 8</div>
+            <div class="opcion" data-op="c">2c + 2t = 8</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">4. Modelado: el punto de equilibrio</h2>
+      <div class="bloque">
+        <p>Una empresa tiene <strong>costos</strong> (fijos más variables) e <strong>ingresos</strong> (por las ventas). El <strong>punto de equilibrio</strong> (break-even) es donde costos e ingresos se igualan: ni gana ni pierde. Es la solución del sistema formado por la recta de costos y la de ingresos.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2</span>
+          <p>Los costos son C = 100 + 5x e ingresos I = 10x (x = unidades vendidas). ¿Cuál es el punto de equilibrio?</p>
+          <div class="paso"><span class="n">1</span> Se igualan costos e ingresos: 100 + 5x = 10x.</div>
+          <div class="paso"><span class="n">2</span> Se resuelve: 100 = 5x, x = 20.</div>
+          <p><strong>Respuesta:</strong> el punto de equilibrio es 20 unidades. Por debajo de 20 hay pérdida; por encima, ganancia.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>Interpreta el punto de equilibrio:</strong> a la izquierda del punto, los costos superan a los ingresos (pérdida); a la derecha, los ingresos superan a los costos (ganancia).
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 3 · Punto de equilibrio</h3>
+        <p>Resuelve e interpreta.</p>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">1. Costos C = 50 + 2x ; ingresos I = 7x. ¿Punto de equilibrio (unidades)?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">5</div>
+            <div class="opcion" data-op="b">10</div>
+            <div class="opcion" data-op="c">50</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. En el punto de equilibrio, los ingresos son:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">mayores que los costos</div>
+            <div class="opcion" data-op="b">iguales a los costos</div>
+            <div class="opcion" data-op="c">cero</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. Si vende MÁS que el punto de equilibrio, la empresa:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">pierde dinero</div>
+            <div class="opcion" data-op="b">gana dinero</div>
+            <div class="opcion" data-op="c">queda igual</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">5. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas, con calculadora. Cada una se presenta en doble modalidad.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · El punto de equilibrio</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Dada una función de costos y una de ingresos, los estudiantes grafican ambas rectas, encuentran el punto de equilibrio e interpretan cuántas unidades deben venderse para ganar dinero.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada grupo grafica costos e ingresos en una herramienta compartida, marca el punto de equilibrio y comenta la zona de ganancia y la de pérdida.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · Del texto al sistema</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes traducen dos problemas verbales a sistemas de ecuaciones, los resuelven por el método que prefieran e interpretan la solución en el contexto.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo define las variables, escribe las dos ecuaciones de cada problema y resuelve, explicando el significado de la respuesta.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · Tres miradas, una solución</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Para un mismo sistema, los estudiantes lo resuelven de las tres formas —gráfica, sustitución y eliminación— y comprueban que las tres dan el mismo punto.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada grupo resuelve el mismo sistema por los tres métodos en un documento compartido y comenta cuál le resultó más rápido y por qué.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 6.3</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas. Se permite calculadora.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de método gráfico y modelado:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 6 sistemas asignados (incluyendo 2 con gráfica) en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Graficar y leer la intersección</td>
+              <td>No grafica correctamente las rectas.</td>
+              <td>Grafica, pero lee mal el punto de intersección.</td>
+              <td>Grafica las dos rectas y lee el punto de intersección.</td>
+              <td>Grafica con precisión y lee la solución incluso en casos cercanos.</td>
+            </tr>
+            <tr>
+              <td>Conectar lo gráfico y lo algebraico</td>
+              <td>No relaciona la gráfica con el álgebra.</td>
+              <td>Reconoce la relación, pero con confusión.</td>
+              <td>Conecta la solución gráfica con la algebraica.</td>
+              <td>Explica con claridad por qué ambos métodos coinciden.</td>
+            </tr>
+            <tr>
+              <td>Traducir el problema verbal</td>
+              <td>No plantea el sistema.</td>
+              <td>Plantea una ecuación o con errores.</td>
+              <td>Traduce el problema a un sistema de dos ecuaciones.</td>
+              <td>Traduce con fluidez problemas verbales complejos.</td>
+            </tr>
+            <tr>
+              <td>Interpretar la solución</td>
+              <td>No interpreta el resultado.</td>
+              <td>Interpreta parcialmente o sin contexto.</td>
+              <td>Interpreta la solución en el contexto del problema.</td>
+              <td>Interpreta con precisión, incluyendo zonas de ganancia y pérdida.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre del Tema 6 y enlace con el próximo tema</h2>
+        <p>Con esta lección se cierra el <strong>Tema 6 · Sistemas de ecuaciones lineales</strong>. Se dominan ahora los tres métodos —sustitución, eliminación y <strong>gráfico</strong>—, la clasificación de sistemas y el <strong>modelado</strong> de situaciones reales como el punto de equilibrio.</p>
+        <p>El <strong>Tema 7 · Sistemas de desigualdades y funciones</strong> comienza con la <strong>Lección 7.1 · Sistemas de desigualdades lineales: graficar la región solución</strong>. Se pasará de las rectas a las <strong>regiones</strong> del plano: en lugar de un punto solución, habrá toda un área de soluciones posibles. ¡Vas muy bien!</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 6.3 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        var preguntasQuiz = [
+          {enun: '1. Dos rectas se cruzan en el punto (4, 1). La solución del sistema es:', ops: ['(1, 4)', '(4, 1)', '(0, 0)', 'no hay solución'], correcta: 1},
+          {enun: '2. Dos rectas paralelas. ¿Cuántas soluciones tiene el sistema?', ops: ['una', 'infinitas', 'ninguna', 'dos'], correcta: 2},
+          {enun: '3. Las dos ecuaciones grafican la misma recta. ¿Cuántas soluciones?', ops: ['infinitas', 'una', 'ninguna', 'dos'], correcta: 0},
+          {enun: '4. "La suma de dos números es 12 y su diferencia es 4." El sistema es:', ops: ['x + y = 4 ; x − y = 12', 'x · y = 12 ; x − y = 4', 'x + y = 12 ; x − y = 4', 'x + y = 12 ; x · y = 4'], correcta: 2},
+          {enun: '5. "Un boleto de adulto (a) cuesta el doble que uno de niño (n)." La ecuación es:', ops: ['n = 2a', 'a = 2n', 'a + n = 2', '2a = n'], correcta: 1},
+          {enun: '6. "Tres lápices (l) y dos plumas (p) cuestan $7." La ecuación es:', ops: ['2l + 3p = 7', '3l + 2p = 0', '3l + 2p = 7', 'l + p = 7'], correcta: 2},
+          {enun: '7. Resuelve: y = 2x ; x + y = 12.', ops: ['(4, 8)', '(8, 4)', '(4, 4)', '(6, 6)'], correcta: 0},
+          {enun: '8. Costos C = 80 + 4x ; ingresos I = 12x. ¿Punto de equilibrio?', ops: ['8 unidades', '80 unidades', '20 unidades', '10 unidades'], correcta: 3},
+          {enun: '9. En el punto de equilibrio, ¿qué se cumple?', ops: ['ingresos mayores que costos', 'ingresos iguales a los costos', 'costos iguales a cero', 'ingresos iguales a cero'], correcta: 1},
+          {enun: '10. Dos adultos y tres niños pagan $26; un adulto cuesta $3 más que un niño. ¿Cuánto cuesta el boleto de niño?', ops: ['$7', '$3', '$4', '$5'], correcta: 2}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 7) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Has completado el Tema 6; puedes continuar al Tema 7.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. Repasa la lección e intenta de nuevo (se requieren 7).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>

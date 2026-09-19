@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 5.3 · Resolver ecuaciones con expresiones racionales y modelado</title>
+    <style>
+      :root {
+        --tema: #37474f;
+        --tema-d: #263238;
+        --tema-bg: #eceff1;
+        --tema-bg2: #cfd8dc;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #263238 0%, #37474f 55%, #546e7a 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(38, 50, 56, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 24px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffebee; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #78909c; }
+      .btn.sec:hover { background: #546e7a; }
+
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #ffebee; color: #b71c1c; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #1a2327; color: #eceff1; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 5 · Expresiones racionales complejas</div>
+        <h1>Lección 5.3 · Resolver ecuaciones con expresiones racionales y modelado</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Resolver ecuaciones con fracciones algebraicas multiplicando por el MCM para eliminar los denominadores.</li>
+          <li>Verificar que las soluciones no sean valores excluidos (soluciones extrañas).</li>
+          <li>Modelar y resolver problemas de trabajo conjunto.</li>
+          <li>Reconocer el planteamiento de problemas de distancia, velocidad y tiempo con variantes.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con la lección anterior.</strong> En la Lección 5.2 se sumaron, restaron, multiplicaron y dividieron fracciones algebraicas. Ahora aparecen dentro de <strong>ecuaciones</strong>. La estrategia es directa: multiplicar por el MCM de todos los denominadores para "limpiarlos" y transformar la ecuación racional en una lineal o cuadrática ya conocida.</p>
+      </div>
+
+      <h2 class="seccion">1. Limpiar los denominadores con el MCM</h2>
+      <div class="bloque">
+        <p>Al multiplicar ambos lados de la ecuación por el MCM de todos los denominadores, las fracciones desaparecen y queda una ecuación que ya se sabe resolver.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1</span>
+          <p>Resolver 6/x + 1 = 4.</p>
+          <div class="paso"><span class="n">1</span> MCM de los denominadores: x.</div>
+          <div class="paso"><span class="n">2</span> Se multiplica todo por x: 6 + x = 4x.</div>
+          <div class="paso"><span class="n">3</span> Se resuelve: 6 = 3x, así que x = 2.</div>
+          <div class="paso"><span class="n">4</span> x = 2 no anula el denominador. Es válida.</div>
+          <p><strong>Solución:</strong> x = 2.</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2</span>
+          <p>Resolver 1/(x − 2) = 3/x.</p>
+          <div class="paso"><span class="n">1</span> MCM: x(x − 2). Al multiplicar: x = 3(x − 2).</div>
+          <div class="paso"><span class="n">2</span> Se resuelve: x = 3x − 6, entonces −2x = −6, x = 3.</div>
+          <div class="paso"><span class="n">3</span> x = 3 no anula ningún denominador. Es válida.</div>
+          <p><strong>Solución:</strong> x = 3.</p>
+        </div>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de ecuaciones racionales -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo de ecuaciones racionales en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Multiplica por el MCM, resuelve la ecuación resultante y verifica las soluciones extrañas paso a paso en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · Resolver</h3>
+        <p>Selecciona la solución correcta.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. 3/x = 6</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x = 1/2</div>
+            <div class="opcion" data-op="b">x = 2</div>
+            <div class="opcion" data-op="c">x = 3</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. 4/x + 2 = 6</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x = 1</div>
+            <div class="opcion" data-op="b">x = 2</div>
+            <div class="opcion" data-op="c">x = 4</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. 1/(x − 2) = 3/x</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x = 3</div>
+            <div class="opcion" data-op="b">x = 2</div>
+            <div class="opcion" data-op="c">x = −3</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">2. Soluciones extrañas</h2>
+      <div class="bloque">
+        <p>Al multiplicar por el MCM puede aparecer una "solución" que en realidad <strong>anula un denominador</strong> de la ecuación original. Esa solución es <strong>extraña</strong> y debe descartarse. Por eso es obligatorio verificar cada solución contra los valores excluidos.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 3</span>
+          <p>Resolver x/(x − 3) = 3/(x − 3) + 2.</p>
+          <div class="paso"><span class="n">1</span> MCM: (x − 3). Al multiplicar: x = 3 + 2(x − 3).</div>
+          <div class="paso"><span class="n">2</span> Se resuelve: x = 3 + 2x − 6, entonces x = 2x − 3, x = 3.</div>
+          <div class="paso"><span class="n">3</span> Pero x = 3 anula el denominador (x − 3). Es una solución extraña.</div>
+          <p><strong>Resultado:</strong> la ecuación no tiene solución.</p>
+        </div>
+
+        <div class="caja-atencion">
+          <strong>Verifica siempre:</strong> una solución obtenida algebraicamente que coincide con un valor excluido <em>no</em> es válida. Siempre se comparan las soluciones con los valores que anulan los denominadores antes de darlas por buenas.
+        </div>
+      </div>
+
+      <h2 class="seccion">3. Aplicación: problemas de trabajo conjunto</h2>
+      <div class="bloque">
+        <p>Si una persona tarda <em>a</em> horas en hacer un trabajo y otra tarda <em>b</em> horas, trabajando juntas tardan <em>t</em> horas, donde:</p>
+        <p class="formula">1/a + 1/b = 1/t</p>
+        <p>Cada fracción representa la parte del trabajo que cada quien hace en una hora.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 4</span>
+          <p>Ana pinta una sala en 3 horas; Luis, en 6 horas. ¿Cuánto tardan juntos?</p>
+          <div class="paso"><span class="n">1</span> Se plantea: 1/3 + 1/6 = 1/t.</div>
+          <div class="paso"><span class="n">2</span> Se suma: 2/6 + 1/6 = 3/6 = 1/2.</div>
+          <div class="paso"><span class="n">3</span> Entonces 1/2 = 1/t, así que t = 2.</div>
+          <p><strong>Respuesta:</strong> juntos tardan 2 horas.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>El resultado tiene sentido:</strong> juntos siempre tardan <em>menos</em> que el más rápido de los dos por separado. Si tu respuesta es mayor que el tiempo individual más corto, hay un error en el planteamiento.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Trabajo conjunto</h3>
+        <p>Selecciona la respuesta correcta.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. A tarda 2 h y B tarda 2 h. ¿Cuánto tardan juntos?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">1 h</div>
+            <div class="opcion" data-op="b">2 h</div>
+            <div class="opcion" data-op="c">4 h</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. A tarda 6 h y B tarda 3 h. ¿Cuánto tardan juntos?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">2 h</div>
+            <div class="opcion" data-op="b">3 h</div>
+            <div class="opcion" data-op="c">9 h</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. ¿Qué fórmula modela el trabajo conjunto?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">1/a + 1/b = 1/t</div>
+            <div class="opcion" data-op="b">a + b = t</div>
+            <div class="opcion" data-op="c">a · b = t</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">4. Otras aplicaciones: distancia, velocidad y tiempo</h2>
+      <div class="bloque">
+        <p>Muchos problemas del GED usan la relación tiempo = distancia / velocidad, que produce ecuaciones racionales. Un caso típico es el de un bote o un avión afectado por una corriente o el viento:</p>
+        <table class="reglas">
+          <caption class="sr-only">Velocidad efectiva de un bote según la dirección respecto a la corriente.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Situación</th>
+              <th scope="col">Velocidad efectiva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>A favor de la corriente</td><td>v + c (la corriente ayuda)</td></tr>
+            <tr><td>En contra de la corriente</td><td>v − c (la corriente frena)</td></tr>
+          </tbody>
+        </table>
+        <p>Donde v es la velocidad en agua quieta y c, la velocidad de la corriente. Al expresar los tiempos como distancia/velocidad, se obtiene una ecuación racional que se resuelve con el método del MCM.</p>
+      </div>
+
+      <h2 class="seccion">5. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas, con calculadora. Cada una se presenta en doble modalidad.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · ¿Trabajamos juntos?</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              En parejas, los estudiantes resuelven cuatro problemas de trabajo conjunto con la fórmula 1/a + 1/b = 1/t y comprueban que el tiempo combinado sea menor que el de cada persona por separado.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada grupo resuelve los problemas de trabajo conjunto en un documento compartido y publica en el chat la verificación de que el resultado tiene sentido.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · A favor y en contra</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes resuelven cuatro problemas de distancia y velocidad con variantes (corriente a favor y en contra), planteando los tiempos como distancia/velocidad y resolviendo la ecuación racional resultante.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo modela un problema de bote o avión con corriente, plantea la ecuación racional y la resuelve, identificando la velocidad efectiva en cada tramo.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · Caza de soluciones extrañas</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              El docente plantea ecuaciones donde alguna solución resulta ser extraña. Los estudiantes resuelven, verifican contra los valores excluidos y descartan la solución que anule un denominador.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante resuelve tres ecuaciones, marca en una hoja compartida cuáles soluciones son válidas y cuáles extrañas, y explica por qué se descartan.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 5.3</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas. Se permite calculadora.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de ecuaciones racionales:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 8 problemas asignados (resolver ecuaciones racionales y aplicaciones) en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Multiplicar por el MCM</td>
+              <td>No identifica el MCM o no lo aplica a todos los términos.</td>
+              <td>Multiplica, pero olvida algún término.</td>
+              <td>Multiplica por el MCM y elimina los denominadores correctamente.</td>
+              <td>Limpia los denominadores con fluidez en cualquier ecuación.</td>
+            </tr>
+            <tr>
+              <td>Resolver la ecuación resultante</td>
+              <td>No resuelve la ecuación lineal o cuadrática.</td>
+              <td>La resuelve con errores de cálculo.</td>
+              <td>Resuelve correctamente la ecuación resultante.</td>
+              <td>Resuelve con seguridad, sea lineal o cuadrática.</td>
+            </tr>
+            <tr>
+              <td>Verificar soluciones extrañas</td>
+              <td>No verifica las soluciones.</td>
+              <td>Verifica, pero no descarta la solución extraña.</td>
+              <td>Verifica y descarta las soluciones que anulan denominadores.</td>
+              <td>Verifica de forma sistemática y justifica el descarte.</td>
+            </tr>
+            <tr>
+              <td>Modelar una aplicación</td>
+              <td>No plantea la ecuación del problema.</td>
+              <td>Plantea la ecuación, pero no la resuelve o interpreta mal.</td>
+              <td>Modela y resuelve el problema con una ecuación racional.</td>
+              <td>Modela, resuelve e interpreta el resultado en el contexto real.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre del Tema 5 y enlace con el próximo tema</h2>
+        <p>Con esta lección se cierra el <strong>Tema 5 · Expresiones racionales complejas</strong>. Se aprendió a resolver ecuaciones racionales multiplicando por el <strong>MCM</strong>, a descartar <strong>soluciones extrañas</strong> y a modelar problemas reales de trabajo conjunto y de distancia, velocidad y tiempo.</p>
+        <p>El <strong>Tema 6 · Sistemas de ecuaciones lineales</strong> comienza con la <strong>Lección 6.1 · Resolver sistemas de ecuaciones por sustitución</strong>. Se pasará de una sola ecuación a <strong>dos ecuaciones con dos variables</strong>, despejando una variable y sustituyéndola en la otra para hallar la solución del sistema. ¡Excelente avance!</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 5.3 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        var preguntasQuiz = [
+          {enun: '1. Resuelve 5/x = 10.', ops: ['x = 2', 'x = 1/2', 'x = 5', 'x = 50'], correcta: 1},
+          {enun: '2. Resuelve 6/x + 1 = 4.', ops: ['x = 2', 'x = 3', 'x = 6', 'x = 1/2'], correcta: 0},
+          {enun: '3. Resuelve 2/x = 8/(x + 3).', ops: ['x = 3', 'x = 1', 'x = −3', 'x = 2'], correcta: 1},
+          {enun: '4. Resuelve (x + 1)/2 = x/3.', ops: ['x = 3', 'x = 1', 'x = −3', 'x = −1'], correcta: 2},
+          {enun: '5. Al resolver x/(x − 4) = 4/(x − 4) se obtiene x = 4. ¿Es válida?', ops: ['Sí, x = 4', 'No, x = 4 es un valor excluido', 'Sí, siempre', 'No, debe ser x = 0'], correcta: 1},
+          {enun: '6. ¿Por qué se verifican las soluciones en ecuaciones racionales?', ops: ['Por costumbre', 'No es necesario', 'Para sumar fracciones', 'Para descartar valores excluidos (soluciones extrañas)'], correcta: 3},
+          {enun: '7. Ana pinta una sala en 3 h y Luis en 6 h. ¿Cuánto tardan juntos?', ops: ['4.5 h', '2 h', '9 h', '3 h'], correcta: 1},
+          {enun: '8. Dos grifos llenan un tanque: uno en 4 h y otro en 4 h. ¿Cuánto tardan juntos?', ops: ['8 h', '4 h', '2 h', '1 h'], correcta: 2},
+          {enun: '9. ¿Qué ecuación modela el trabajo conjunto (A tarda a horas, B tarda b horas)?', ops: ['1/a + 1/b = 1/t', 'a + b = t', '1/a − 1/b = 1/t', 'a · b = t'], correcta: 0},
+          {enun: '10. Un bote tiene velocidad v en agua quieta. Con la corriente c a favor, su velocidad efectiva es:', ops: ['v − c', 'v + c', 'v · c', 'v / c'], correcta: 1}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 7) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Has completado el Tema 5; puedes continuar al Tema 6.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. Repasa la lección e intenta de nuevo (se requieren 7).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>

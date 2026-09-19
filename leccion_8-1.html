@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 8.1 · Funciones cuadráticas: la parábola, el vértice y las intercepts</title>
+    <style>
+      :root {
+        --tema: #b71c1c;
+        --tema-d: #7f0000;
+        --tema-bg: #ffebee;
+        --tema-bg2: #ffcdd2;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #7f0000 0%, #b71c1c 55%, #d32f2f 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(127, 0, 0, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 23px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffcdd2; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #546e7a; }
+      .btn.sec:hover { background: #37474f; }
+
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #fff8e1; color: #5c3900; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #3a0a0a; color: #ffebee; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 8 · Modelado de funciones y simulacro GED</div>
+        <h1>Lección 8.1 · Funciones cuadráticas: la parábola, el vértice y las intercepts</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Reconocer que f(x) = ax² + bx + c se grafica como una parábola que abre hacia arriba (a &gt; 0) o hacia abajo (a &lt; 0).</li>
+          <li>Calcular el vértice (x = −b/2a) y el eje de simetría de una parábola.</li>
+          <li>Encontrar las intercepts con los ejes (x con la fórmula cuadrática; y con x = 0).</li>
+          <li>Usar el vértice para resolver problemas de máximo y mínimo.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con el tema anterior.</strong> En el Tema 7 se clasificaron las funciones cuadráticas por su patrón. Ahora se estudian a fondo: su gráfica (la <strong>parábola</strong>), su punto más importante (el <strong>vértice</strong>) y cómo modelan situaciones de máximo o mínimo, como la altura de un proyectil o el beneficio de un negocio.</p>
+      </div>
+
+      <h2 class="seccion">1. La parábola y su forma</h2>
+      <div class="bloque">
+        <p>La gráfica de una función cuadrática es una <strong>parábola</strong>. El signo de <strong>a</strong> decide hacia dónde abre:</p>
+        <table class="reglas">
+          <caption class="sr-only">Dirección de apertura de la parábola según el signo de a.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Si…</th>
+              <th scope="col">La parábola…</th>
+              <th scope="col">El vértice es…</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>a &gt; 0</td><td>abre hacia arriba</td><td>un mínimo</td></tr>
+            <tr><td>a &lt; 0</td><td>abre hacia abajo</td><td>un máximo</td></tr>
+          </tbody>
+        </table>
+
+        <div class="diagrama-wrap">
+          <svg width="320" height="280" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Parábola de la función f de x igual a x al cuadrado menos cuatro x más tres. Abre hacia arriba, con vértice en dos coma menos uno, eje de simetría en x igual a dos, intercepto en y en cero coma tres e interceptos en x en uno coma cero y tres coma cero.">
+            <!-- cuadrícula -->
+            <g stroke="#eeeeee" stroke-width="1">
+              <line x1="40" y1="40" x2="280" y2="40"/><line x1="40" y1="70" x2="280" y2="70"/>
+              <line x1="40" y1="100" x2="280" y2="100"/><line x1="40" y1="130" x2="280" y2="130"/>
+              <line x1="40" y1="160" x2="280" y2="160"/><line x1="40" y1="190" x2="280" y2="190"/>
+              <line x1="40" y1="220" x2="280" y2="220"/>
+              <line x1="80" y1="40" x2="80" y2="220"/><line x1="120" y1="40" x2="120" y2="220"/>
+              <line x1="160" y1="40" x2="160" y2="220"/><line x1="200" y1="40" x2="200" y2="220"/>
+              <line x1="240" y1="40" x2="240" y2="220"/>
+            </g>
+            <!-- eje de simetría x=2 (punteado) -->
+            <line x1="160" y1="45" x2="160" y2="205" stroke="#555555" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <text x="164" y="54" font-family="Segoe UI, sans-serif" font-size="11" fill="#555555">eje x = 2</text>
+            <!-- ejes -->
+            <line x1="40" y1="160" x2="295" y2="160" stroke="#7f0000" stroke-width="2"/>
+            <line x1="80" y1="32" x2="80" y2="225" stroke="#7f0000" stroke-width="2"/>
+            <text x="288" y="178" font-family="Segoe UI, sans-serif" font-size="13" fill="#7f0000">x</text>
+            <text x="64" y="40" font-family="Segoe UI, sans-serif" font-size="13" fill="#7f0000">y</text>
+            <!-- parábola f(x)=x^2-4x+3 : (0,3)->(80,70) vértice(2,-1)->(160,190) (4,3)->(240,70) -->
+            <path d="M 80,70 Q 160,310 240,70" fill="none" stroke="#b71c1c" stroke-width="3"/>
+            <!-- vértice (2,-1) -->
+            <circle cx="160" cy="190" r="5" fill="#b71c1c"/>
+            <text x="168" y="200" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#b71c1c">vértice (2, −1)</text>
+            <!-- y-intercept (0,3) -->
+            <circle cx="80" cy="70" r="5" fill="#0d47a1"/>
+            <text x="22" y="68" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#0d47a1">(0, 3)</text>
+            <!-- x-intercepts (1,0) y (3,0) -->
+            <circle cx="120" cy="160" r="5" fill="#0d47a1"/>
+            <text x="98" y="152" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#0d47a1">(1, 0)</text>
+            <circle cx="200" cy="160" r="5" fill="#0d47a1"/>
+            <text x="206" y="152" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#0d47a1">(3, 0)</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de parábolas -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo de funciones cuadráticas y parábolas en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Mueve los coeficientes a, b y c, observa cómo cambia la parábola y localiza el vértice, el eje de simetría y las intercepts en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · ¿Hacia dónde abre?</h3>
+        <p>Decide la dirección de apertura y el tipo de vértice.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. f(x) = 2x² − 5x + 1 abre hacia:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">arriba</div>
+            <div class="opcion" data-op="b">abajo</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. f(x) = −x² + 3x abre hacia:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">arriba</div>
+            <div class="opcion" data-op="b">abajo</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. Una parábola que abre hacia arriba tiene:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">un mínimo</div>
+            <div class="opcion" data-op="b">un máximo</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">2. El vértice y el eje de simetría</h2>
+      <div class="bloque">
+        <p>El <strong>vértice</strong> es el punto más alto o más bajo de la parábola. Su coordenada x se halla con la fórmula, y la y se obtiene evaluando la función. El <strong>eje de simetría</strong> es la recta vertical que pasa por el vértice.</p>
+        <p class="formula">x del vértice = −b / (2a) &nbsp;·&nbsp; eje de simetría: x = −b / (2a)</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1</span>
+          <p>Hallar el vértice y el eje de f(x) = x² − 4x + 3.</p>
+          <div class="paso"><span class="n">1</span> Aquí a = 1, b = −4. La x del vértice: −(−4) / (2·1) = 4/2 = 2.</div>
+          <div class="paso"><span class="n">2</span> La y del vértice: f(2) = (2)² − 4(2) + 3 = 4 − 8 + 3 = −1.</div>
+          <div class="paso"><span class="n">3</span> Vértice (2, −1); eje de simetría x = 2; como a &gt; 0, es un mínimo.</div>
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Vértice y eje</h3>
+        <p>Calcula con x = −b/(2a).</p>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">1. f(x) = x² − 6x + 5. ¿x del vértice?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">−3</div>
+            <div class="opcion" data-op="b">3</div>
+            <div class="opcion" data-op="c">6</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. f(x) = x² − 4x + 3. El vértice completo es:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(2, −1)</div>
+            <div class="opcion" data-op="b">(−2, −1)</div>
+            <div class="opcion" data-op="c">(2, 1)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. El eje de simetría de f(x) = x² − 6x + 5 es:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">y = 3</div>
+            <div class="opcion" data-op="b">x = 3</div>
+            <div class="opcion" data-op="c">x = −3</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">3. Las intercepts con los ejes</h2>
+      <div class="bloque">
+        <p>Las <strong>intercepts</strong> son donde la parábola cruza los ejes:</p>
+        <table class="reglas">
+          <caption class="sr-only">Cómo encontrar las intercepts de una parábola.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Intercept</th>
+              <th scope="col">Cómo se halla</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Con el eje y</td><td>Evaluar f(0) = c. Da el punto (0, c).</td></tr>
+            <tr><td>Con el eje x</td><td>Resolver ax² + bx + c = 0 (factorizar o fórmula cuadrática del Tema 4).</td></tr>
+          </tbody>
+        </table>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2</span>
+          <p>Intercepts de f(x) = x² − 4x + 3.</p>
+          <div class="paso"><span class="n">1</span> Con y: f(0) = 3, así que (0, 3).</div>
+          <div class="paso"><span class="n">2</span> Con x: x² − 4x + 3 = 0 → (x − 1)(x − 3) = 0 → x = 1 y x = 3, así que (1, 0) y (3, 0).</div>
+        </div>
+
+        <div class="caja-tip">
+          <strong>Conexión con el Tema 4:</strong> hallar las x-intercepts de una parábola es exactamente resolver una ecuación cuadrática. Puedes factorizar o usar la fórmula cuadrática.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 3 · Intercepts</h3>
+        <p>Encuentra las intercepts.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. La y-intercept de f(x) = x² − 4x + 3 es:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(0, 3)</div>
+            <div class="opcion" data-op="b">(3, 0)</div>
+            <div class="opcion" data-op="c">(0, −3)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. Las x-intercepts de f(x) = (x − 1)(x − 3) son:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x = −1 y x = −3</div>
+            <div class="opcion" data-op="b">x = 1 y x = 3</div>
+            <div class="opcion" data-op="c">x = 0 y x = 3</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. La y-intercept se halla evaluando:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">f(0)</div>
+            <div class="opcion" data-op="b">f(1)</div>
+            <div class="opcion" data-op="c">x = y</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">4. Máximo y mínimo en contexto</h2>
+      <div class="bloque">
+        <p>El vértice resuelve problemas reales: la <strong>altura máxima</strong> de un proyectil, el <strong>beneficio máximo</strong> de un negocio, el <strong>área máxima</strong> de un terreno. Si la parábola abre hacia abajo, el vértice es el máximo.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 3 · El proyectil</span>
+          <p>La altura es h(t) = −16t² + 64t + 5 (t en segundos). ¿Cuándo alcanza la altura máxima y cuál es?</p>
+          <div class="paso"><span class="n">1</span> Como a = −16 &lt; 0, abre hacia abajo: el vértice es un máximo.</div>
+          <div class="paso"><span class="n">2</span> t del vértice: −64 / (2·−16) = −64 / −32 = 2 segundos.</div>
+          <div class="paso"><span class="n">3</span> Altura máxima: h(2) = −16(4) + 64(2) + 5 = −64 + 128 + 5 = 69 pies.</div>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 4 · El beneficio</span>
+          <p>El beneficio es B(x) = −2x² + 120x − 800. ¿Cuántas unidades lo maximizan?</p>
+          <div class="paso"><span class="n">1</span> x del vértice: −120 / (2·−2) = −120 / −4 = 30 unidades.</div>
+          <div class="paso"><span class="n">2</span> Beneficio máximo: B(30) = −2(900) + 120(30) − 800 = −1800 + 3600 − 800 = 1000.</div>
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 4 · Máximo y mínimo</h3>
+        <p>Aplica el vértice al contexto.</p>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">1. En h(t) = −16t² + 64t + 5, el vértice es un:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">mínimo</div>
+            <div class="opcion" data-op="b">máximo</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. La altura máxima de h(t) = −16t² + 64t + 5 ocurre en t =</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">2 s</div>
+            <div class="opcion" data-op="b">4 s</div>
+            <div class="opcion" data-op="c">64 s</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. B(x) = −2x² + 120x − 800 se maximiza en x =</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">60</div>
+            <div class="opcion" data-op="b">30</div>
+            <div class="opcion" data-op="c">120</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">5. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas, con calculadora TI-30XS y la hoja de fórmulas del GED. Cada una se presenta en doble modalidad.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · El proyectil y el beneficio</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes grafican h(t) = −16t² + 64t + 5, encuentran la altura máxima (vértice) y cuándo toca el suelo (x-intercepts); luego maximizan B(x) = −2x² + 120x − 800.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada grupo resuelve ambos modelos en un documento compartido, mostrando el cálculo del vértice y la interpretación del máximo en el contexto.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · Las cuatro características</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Para varias funciones, los estudiantes identifican las cuatro características clave: dirección de apertura, vértice, eje de simetría e intercepts.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo completa una tabla compartida con las cuatro características de cada parábola asignada.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · Del vértice a la respuesta</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes resuelven un problema de área máxima planteando la función cuadrática, hallando el vértice e interpretando el resultado en el contexto.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante modela un problema de máximo o mínimo, calcula el vértice y explica en el chat qué representa la respuesta.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 8.1</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas. Se permite calculadora.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de parábolas y vértice:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza las 8 funciones cuadráticas asignadas (graficar e identificar características) en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Calcular el vértice</td>
+              <td>No aplica x = −b/(2a).</td>
+              <td>Halla la x del vértice, pero no la y.</td>
+              <td>Calcula el vértice completo (x y y).</td>
+              <td>Calcula el vértice con fluidez y verifica con simetría.</td>
+            </tr>
+            <tr>
+              <td>Dirección de apertura</td>
+              <td>No relaciona el signo de a con la apertura.</td>
+              <td>Confunde a veces arriba con abajo.</td>
+              <td>Identifica la apertura según el signo de a.</td>
+              <td>Conecta la apertura con la existencia de máximo o mínimo.</td>
+            </tr>
+            <tr>
+              <td>Encontrar las intercepts</td>
+              <td>No halla intercepts.</td>
+              <td>Halla solo una de las intercepts.</td>
+              <td>Encuentra las x-intercepts y la y-intercept.</td>
+              <td>Halla todas las intercepts y conecta con la fórmula cuadrática.</td>
+            </tr>
+            <tr>
+              <td>Interpretar máx/mín en contexto</td>
+              <td>No interpreta el vértice.</td>
+              <td>Interpreta parcialmente o sin contexto.</td>
+              <td>Interpreta el vértice como máximo o mínimo del problema.</td>
+              <td>Interpreta con precisión y unidades el significado del vértice.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre y enlace con la próxima lección</h2>
+        <p>En esta lección se estudiaron las <strong>funciones cuadráticas</strong>: la parábola, su dirección de apertura, el <strong>vértice</strong> y el eje de simetría, las <strong>intercepts</strong> y el uso del vértice para hallar máximos y mínimos en contexto.</p>
+        <p>En la <strong>Lección 8.2 · Funciones exponenciales, crecimiento/decaimiento e introducción a logaritmos</strong> se estudia el otro gran modelo del GED: las funciones <strong>exponenciales</strong>, con aplicaciones como el interés compuesto y la vida media, y una primera mirada al <strong>logaritmo</strong>.</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 8.1 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        var preguntasQuiz = [
+          {enun: '1. f(x) = x² − 6x + 5. ¿Cuál es la x del vértice?', ops: ['6', '3', '−3', '5'], correcta: 1},
+          {enun: '2. f(x) = x² − 6x + 5. ¿Cuál es el vértice completo?', ops: ['(3, −4)', '(−3, −4)', '(3, 4)', '(6, 5)'], correcta: 0},
+          {enun: '3. El eje de simetría de f(x) = 2x² − 8x + 1 es:', ops: ['y = 2', 'x = −2', 'x = 2', 'x = 4'], correcta: 2},
+          {enun: '4. f(x) = −3x² + x − 2 abre hacia:', ops: ['arriba', 'abajo', 'la derecha', 'la izquierda'], correcta: 1},
+          {enun: '5. Una parábola con a > 0 tiene un:', ops: ['máximo', 'mínimo', 'ni máximo ni mínimo', 'dos vértices'], correcta: 1},
+          {enun: '6. La y-intercept de f(x) = x² + 2x − 6 es:', ops: ['(0, −6)', '(−6, 0)', '(0, 6)', '(2, −6)'], correcta: 0},
+          {enun: '7. Proyectil h(t) = −16t² + 96t. ¿En qué tiempo alcanza la altura máxima?', ops: ['6 s', '3 s', '96 s', '16 s'], correcta: 1},
+          {enun: '8. Con h(t) = −16t² + 96t, la altura máxima es:', ops: ['288 ft', '96 ft', '144 ft', '48 ft'], correcta: 2},
+          {enun: '9. Beneficio B(x) = −x² + 40x − 100. ¿Qué x lo maximiza?', ops: ['40', '10', '20', '100'], correcta: 2},
+          {enun: '10. El área A(x) = −x² + 20x se maximiza en x =', ops: ['20', '10', '5', '100'], correcta: 1}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 7) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Puedes continuar a la Lección 8.2.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. Repasa la lección e intenta de nuevo (se requieren 7).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>

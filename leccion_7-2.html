@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 7.2 · Relaciones vs. funciones, notación f(x) y dominio/rango</title>
+    <style>
+      :root {
+        --tema: #006064;
+        --tema-d: #00363a;
+        --tema-bg: #e0f7fa;
+        --tema-bg2: #b2ebf2;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #00363a 0%, #006064 55%, #00838f 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(0, 54, 58, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 23px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffebee; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #546e7a; }
+      .btn.sec:hover { background: #37474f; }
+
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #ffebee; color: #b71c1c; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #04282b; color: #e0f7fa; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 7 · Sistemas de desigualdades y funciones</div>
+        <h1>Lección 7.2 · Relaciones vs. funciones, notación f(x) y dominio/rango</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Distinguir una relación de una función (una salida por cada entrada).</li>
+          <li>Usar la prueba de la línea vertical para reconocer funciones en una gráfica.</li>
+          <li>Evaluar funciones con la notación f(x).</li>
+          <li>Identificar el dominio y el rango desde una tabla, gráfica o ecuación.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con la lección anterior.</strong> En la Lección 7.1 se trabajó con regiones del plano. Ahora se introduce uno de los conceptos centrales del GED: la <strong>función</strong>. Una función es una regla que toma una entrada y devuelve <strong>exactamente una</strong> salida. Es la base de todo el Tema 8.</p>
+      </div>
+
+      <h2 class="seccion">1. ¿Qué es una función? La máquina de funciones</h2>
+      <div class="bloque">
+        <p>Conviene imaginar una función como una <strong>máquina</strong>: entra un número (la entrada x), la máquina aplica una regla y sale un resultado (la salida f(x)). La condición clave: cada entrada produce <strong>una sola</strong> salida.</p>
+
+        <div class="diagrama-wrap">
+          <svg width="460" height="170" viewBox="0 0 460 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de una máquina de funciones. Entra el valor x por la izquierda, pasa por una caja con la regla f, y sale el valor f de x por la derecha.">
+            <!-- entrada -->
+            <text x="20" y="80" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#00363a">entrada</text>
+            <text x="48" y="102" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#00363a">x</text>
+            <line x1="80" y1="85" x2="150" y2="85" stroke="#00363a" stroke-width="3"/>
+            <polygon points="150,85 138,79 138,91" fill="#00363a"/>
+            <!-- caja regla -->
+            <rect x="155" y="45" width="150" height="80" rx="12" fill="#006064"/>
+            <text x="230" y="82" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#ffffff">REGLA</text>
+            <text x="230" y="106" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="#ffffff">f</text>
+            <!-- salida -->
+            <line x1="305" y1="85" x2="375" y2="85" stroke="#00363a" stroke-width="3"/>
+            <polygon points="375,85 363,79 363,91" fill="#00363a"/>
+            <text x="385" y="80" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#00363a">salida</text>
+            <text x="388" y="102" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="#00363a">f(x)</text>
+          </svg>
+        </div>
+
+        <div class="caja-tip">
+          <strong>La prueba de la entrada:</strong> si una misma entrada (un mismo valor de x) tuviera dos salidas distintas, la relación <em>no</em> sería función. Una máquina que diera dos resultados distintos para el mismo número estaría descompuesta.
+        </div>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de funciones -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo de funciones, notación f de x y dominio y rango en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Distingue funciones, aplica la prueba de la línea vertical, evalúa f(x) e identifica dominio y rango en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <h2 class="seccion">2. La prueba de la línea vertical</h2>
+      <div class="bloque">
+        <p>En una gráfica, una relación es función si <strong>ninguna línea vertical</strong> la corta en más de un punto. Si alguna vertical toca la gráfica dos o más veces, esa entrada tendría varias salidas y no sería función.</p>
+
+        <div class="diagrama-wrap">
+          <svg width="300" height="240" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfica de una parábola que abre hacia arriba con una línea vertical punteada que la corta en un solo punto, marcado con un círculo. Como cada línea vertical toca la curva una sola vez, la gráfica es una función.">
+            <g stroke="#e0e0e0" stroke-width="1">
+              <line x1="60" y1="30" x2="60" y2="200"/><line x1="100" y1="30" x2="100" y2="200"/>
+              <line x1="140" y1="30" x2="140" y2="200"/><line x1="180" y1="30" x2="180" y2="200"/>
+              <line x1="220" y1="30" x2="220" y2="200"/>
+              <line x1="40" y1="60" x2="240" y2="60"/><line x1="40" y1="100" x2="240" y2="100"/>
+              <line x1="40" y1="140" x2="240" y2="140"/><line x1="40" y1="180" x2="240" y2="180"/>
+            </g>
+            <line x1="40" y1="200" x2="250" y2="200" stroke="#00363a" stroke-width="2"/>
+            <line x1="140" y1="20" x2="140" y2="200" stroke="#00363a" stroke-width="2"/>
+            <!-- parábola (función) -->
+            <path d="M 70 60 Q 140 230 210 60" fill="none" stroke="#006064" stroke-width="3"/>
+            <!-- línea vertical de prueba -->
+            <line x1="180" y1="20" x2="180" y2="210" stroke="#bf360c" stroke-width="2" stroke-dasharray="6 5"/>
+            <circle cx="180" cy="103" r="5" fill="#bf360c"/>
+            <text x="150" y="228" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#bf360c">toca una sola vez</text>
+          </svg>
+        </div>
+        <p>La parábola es una función: cualquier línea vertical la corta una sola vez. En cambio, una circunferencia o una parábola "acostada" fallarían la prueba.</p>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · ¿Función o no?</h3>
+        <p>Decide si cada relación es una función.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. {(1, 2), (2, 3), (3, 4)}</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">Sí, es función</div>
+            <div class="opcion" data-op="b">No</div>
+            <div class="opcion" data-op="c">No se puede saber</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. {(1, 2), (1, 5), (2, 3)}</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">Sí, es función</div>
+            <div class="opcion" data-op="b">No, la entrada 1 tiene dos salidas</div>
+            <div class="opcion" data-op="c">Sí, siempre</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. Una recta vertical (x = 3), ¿es función?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">Sí</div>
+            <div class="opcion" data-op="b">No, falla la prueba de la línea vertical</div>
+            <div class="opcion" data-op="c">A veces</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">3. La notación f(x): evaluar funciones</h2>
+      <div class="bloque">
+        <p>La notación f(x) se lee "f de x" e indica la salida de la función para una entrada x. Para <strong>evaluar</strong> se sustituye el valor de x y se simplifica respetando el orden de operaciones (PEMDAS).</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1</span>
+          <p>Si f(x) = 2x − 3, calcular f(4).</p>
+          <div class="paso"><span class="n">1</span> Se sustituye x = 4: f(4) = 2(4) − 3.</div>
+          <div class="paso"><span class="n">2</span> Se simplifica: 8 − 3 = 5.</div>
+          <p><strong>Respuesta:</strong> f(4) = 5.</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2 · Cuadrática</span>
+          <p>Si f(x) = x² + 1, calcular f(−2).</p>
+          <div class="paso"><span class="n">1</span> Se sustituye: f(−2) = (−2)² + 1.</div>
+          <div class="paso"><span class="n">2</span> Se simplifica: 4 + 1 = 5.</div>
+          <p><strong>Respuesta:</strong> f(−2) = 5.</p>
+        </div>
+
+        <div class="caja-atencion">
+          <strong>Cuidado con los signos:</strong> al evaluar en un número negativo, conviene usar paréntesis. Por ejemplo, (−2)² = 4, no −4. El paréntesis evita el error de signo más común.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Evaluar f(x)</h3>
+        <p>Calcula el valor pedido.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. f(x) = 4x ; f(3)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">12</div>
+            <div class="opcion" data-op="b">7</div>
+            <div class="opcion" data-op="c">43</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. f(x) = x + 5 ; f(−2)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">3</div>
+            <div class="opcion" data-op="b">7</div>
+            <div class="opcion" data-op="c">−3</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. f(x) = x² ; f(4)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">8</div>
+            <div class="opcion" data-op="b">16</div>
+            <div class="opcion" data-op="c">4</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">4. Dominio y rango</h2>
+      <div class="bloque">
+        <p>El <strong>dominio</strong> son todos los valores de <strong>entrada</strong> (x). El <strong>rango</strong> son todos los valores de <strong>salida</strong> (y). En un conjunto de puntos, basta listar las primeras coordenadas (dominio) y las segundas (rango).</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 3</span>
+          <p>Para los puntos {(1, 2), (3, 4), (5, 6)}:</p>
+          <div class="paso"><span class="n">1</span> Dominio (entradas): {1, 3, 5}.</div>
+          <div class="paso"><span class="n">2</span> Rango (salidas): {2, 4, 6}.</div>
+        </div>
+
+        <h3>Clasificar funciones por su forma</h3>
+        <table class="reglas">
+          <caption class="sr-only">Tipos de función según su forma algebraica.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Tipo</th>
+              <th scope="col">Forma</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Lineal</td><td>f(x) = mx + b</td></tr>
+            <tr><td>Cuadrática</td><td>f(x) = ax² + bx + c</td></tr>
+            <tr><td>Exponencial</td><td>f(x) = a · bˣ</td></tr>
+            <tr><td>Racional</td><td>f(x) = fracción con variable en el denominador</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 3 · Dominio y rango</h3>
+        <p>Para los puntos {(0, 1), (2, 3), (4, 5)}, responde.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. ¿Cuál es el dominio?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">{0, 2, 4}</div>
+            <div class="opcion" data-op="b">{1, 3, 5}</div>
+            <div class="opcion" data-op="c">{0, 1}</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. ¿Cuál es el rango?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">{0, 2, 4}</div>
+            <div class="opcion" data-op="b">{1, 3, 5}</div>
+            <div class="opcion" data-op="c">{1, 5}</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. El rango está formado por los valores de:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">salida (y)</div>
+            <div class="opcion" data-op="b">entrada (x)</div>
+            <div class="opcion" data-op="c">la pendiente</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">5. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas. Cada una se presenta en doble modalidad.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · ¿Función o no?</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes clasifican diez relaciones (tablas, gráficas y mapas de correspondencia) en función o no función, justificando con la prueba de la entrada o de la línea vertical.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada grupo clasifica las diez relaciones en un documento compartido y publica un ejemplo de no-función explicando qué entrada tiene dos salidas.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · Evaluar la máquina</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Con f(x) = 2x² − 3x + 1, los estudiantes evalúan f(0), f(1), f(−2) y f(1/2), usando paréntesis para evitar errores de signo, y comparan resultados.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante evalúa la misma función en una hoja compartida y comenta cómo el paréntesis cambia el resultado al sustituir un valor negativo.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · Dominio y rango</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes identifican el dominio y el rango de cuatro funciones presentadas como tabla, gráfica y ecuación, y las clasifican por su forma.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo anota el dominio y el rango de las cuatro funciones y etiqueta cada una como lineal, cuadrática, exponencial o racional.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 7.2</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de funciones, f(x) y dominio/rango:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 10 ejercicios asignados (función/no función, evaluar y dominio/rango) en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Tres criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con tres criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Aplicar la definición de función</td>
+              <td>No distingue función de no función.</td>
+              <td>Distingue a veces, con la prueba aplicada de forma parcial.</td>
+              <td>Aplica la prueba de la línea vertical y de la tabla correctamente.</td>
+              <td>Justifica con claridad por qué una relación es o no es función.</td>
+            </tr>
+            <tr>
+              <td>Evaluar f(x)</td>
+              <td>No sustituye correctamente.</td>
+              <td>Sustituye, pero comete errores de signo o de orden.</td>
+              <td>Evalúa f(x) sustituyendo y simplificando con PEMDAS.</td>
+              <td>Evalúa con fluidez, incluso en valores negativos y fraccionarios.</td>
+            </tr>
+            <tr>
+              <td>Identificar dominio y rango</td>
+              <td>No identifica dominio ni rango.</td>
+              <td>Identifica uno de los dos o los confunde.</td>
+              <td>Identifica dominio y rango desde tabla, gráfica o ecuación.</td>
+              <td>Identifica ambos y clasifica la función por su forma.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre y enlace con la próxima lección</h2>
+        <p>En esta lección se definió una <strong>función</strong> (una salida por cada entrada), se aplicó la <strong>prueba de la línea vertical</strong>, se evaluó <strong>f(x)</strong> y se identificaron el <strong>dominio y el rango</strong>.</p>
+        <p>En la <strong>Lección 7.3 · Tasa de cambio promedio e identificar tipos de funciones</strong> se medirá <strong>cuánto cambia</strong> una función en un intervalo con la fórmula (f(b) − f(a)) / (b − a), y se distinguirán las funciones lineales, cuadráticas y exponenciales por su patrón de cambio.</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 7.2 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        var preguntasQuiz = [
+          {enun: '1. Una función asigna a cada entrada:', ops: ['varias salidas', 'exactamente una salida', 'ninguna salida', 'dos entradas'], correcta: 1},
+          {enun: '2. La prueba de la línea vertical sirve para:', ops: ['saber si una gráfica es función', 'medir la pendiente', 'hallar el vértice', 'sumar funciones'], correcta: 0},
+          {enun: '3. En la tabla x: 1, 2, 2 con y: 3, 4, 5 (la entrada 2 da dos salidas). ¿Es función?', ops: ['Sí', 'Sí, siempre', 'No, la entrada 2 tiene dos salidas', 'No se puede saber'], correcta: 2},
+          {enun: '4. Si f(x) = 3x + 2, ¿cuánto es f(4)?', ops: ['12', '9', '14', '20'], correcta: 2},
+          {enun: '5. Si f(x) = x² − 1, ¿cuánto es f(3)?', ops: ['5', '8', '9', '6'], correcta: 1},
+          {enun: '6. Si f(x) = 2x − 5, ¿cuánto es f(0)?', ops: ['5', '0', '−3', '−5'], correcta: 3},
+          {enun: '7. Si f(x) = x² + 2x, ¿cuánto es f(−2)?', ops: ['8', '0', '−8', '4'], correcta: 1},
+          {enun: '8. Para los puntos {(1, 2), (3, 4), (5, 6)}, el dominio es:', ops: ['{2, 4, 6}', '{1, 2, 3}', '{1, 3, 5}', 'todos los reales'], correcta: 2},
+          {enun: '9. Para los mismos puntos, el rango es:', ops: ['{2, 4, 6}', '{1, 3, 5}', '{2, 4}', 'todos los reales'], correcta: 0},
+          {enun: '10. El dominio de una función son los valores de:', ops: ['salida (y)', 'entrada (x)', 'la pendiente', 'el vértice'], correcta: 1}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 7) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Puedes continuar a la Lección 7.3.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. Repasa la lección e intenta de nuevo (se requieren 7).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 6.1 · Resolver sistemas de ecuaciones por sustitución</title>
+    <style>
+      :root {
+        --tema: #4e342e;
+        --tema-d: #3e2723;
+        --tema-bg: #efebe9;
+        --tema-bg2: #d7ccc8;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #3e2723 0%, #4e342e 55%, #6d4c41 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(62, 39, 35, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 24px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffebee; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #546e7a; }
+      .btn.sec:hover { background: #37474f; }
+
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #ffebee; color: #b71c1c; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #2e2320; color: #efebe9; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 6 · Sistemas de ecuaciones lineales</div>
+        <h1>Lección 6.1 · Resolver sistemas de ecuaciones por sustitución</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Comprender qué es un sistema de dos ecuaciones lineales y qué significa su solución.</li>
+          <li>Resolver sistemas por el método de sustitución con un procedimiento de cinco pasos.</li>
+          <li>Verificar si un par ordenado es solución de un sistema.</li>
+          <li>Plantear y resolver problemas de contexto con dos incógnitas.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con el tema anterior.</strong> Hasta ahora se resolvía <strong>una</strong> ecuación con una incógnita. En el Tema 6 se trabaja con <strong>dos ecuaciones a la vez</strong>, cada una con dos variables (x e y). Resolver el sistema es encontrar el par (x, y) que cumple <strong>las dos ecuaciones</strong> al mismo tiempo. Gráficamente, es el punto donde se cruzan las dos rectas.</p>
+      </div>
+
+      <h2 class="seccion">1. ¿Qué es un sistema y qué es su solución?</h2>
+      <div class="bloque">
+        <p>Un sistema de ecuaciones lineales es un conjunto de dos ecuaciones con las mismas dos variables. La <strong>solución</strong> es el par ordenado (x, y) que hace verdaderas ambas ecuaciones.</p>
+
+        <div class="ejemplo">
+          <span class="et">Idea clave</span>
+          <p>Para el sistema x + y = 5 y x − y = 1, el par (3, 2) es la solución porque cumple las dos: 3 + 2 = 5 y 3 − 2 = 1. Ningún otro par cumple ambas a la vez.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>Una solución debe cumplir las dos ecuaciones:</strong> no basta con que un par satisfaga una de ellas. Por eso, al final, siempre se verifica en ambas.
+        </div>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de sistemas por sustitución -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo de sistemas de ecuaciones por sustitución en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Resuelve sistemas por sustitución paso a paso y verifica la solución en ambas ecuaciones en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <h2 class="seccion">2. Los cinco pasos de la sustitución</h2>
+      <div class="bloque">
+        <table class="reglas">
+          <caption class="sr-only">Los cinco pasos para resolver un sistema por sustitución.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Paso</th>
+              <th scope="col">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Despejar una variable en una de las ecuaciones.</td></tr>
+            <tr><td>2</td><td>Sustituir esa expresión en la otra ecuación.</td></tr>
+            <tr><td>3</td><td>Resolver la ecuación resultante (queda una sola variable).</td></tr>
+            <tr><td>4</td><td>Sustituir ese valor para hallar la otra variable.</td></tr>
+            <tr><td>5</td><td>Verificar la solución en las dos ecuaciones originales.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1</span>
+          <p>Resolver el sistema: y = 2x + 1 y 3x + y = 11.</p>
+          <div class="paso"><span class="n">1</span> La primera ecuación ya tiene y despejada: y = 2x + 1.</div>
+          <div class="paso"><span class="n">2</span> Se sustituye en la otra: 3x + (2x + 1) = 11.</div>
+          <div class="paso"><span class="n">3</span> Se resuelve: 5x + 1 = 11, así que x = 2.</div>
+          <div class="paso"><span class="n">4</span> Se halla y: y = 2(2) + 1 = 5.</div>
+          <div class="paso"><span class="n">5</span> Verificación: 3(2) + 5 = 11. Correcto.</div>
+          <p><strong>Solución:</strong> (2, 5).</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2 · Despejar primero</span>
+          <p>Resolver el sistema: x + y = 7 y 2x − y = 2.</p>
+          <div class="paso"><span class="n">1</span> Se despeja y en la primera: y = 7 − x.</div>
+          <div class="paso"><span class="n">2</span> Se sustituye: 2x − (7 − x) = 2.</div>
+          <div class="paso"><span class="n">3</span> Se resuelve: 3x − 7 = 2, así que x = 3.</div>
+          <div class="paso"><span class="n">4</span> Se halla y: y = 7 − 3 = 4.</div>
+          <p><strong>Solución:</strong> (3, 4).</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>Elige la variable más fácil de despejar:</strong> conviene despejar la variable cuyo coeficiente es 1 o −1, para evitar fracciones.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · Resolver por sustitución</h3>
+        <p>Selecciona la solución (x, y).</p>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">1. y = x + 2 ; 2x + y = 8</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(4, 2)</div>
+            <div class="opcion" data-op="b">(2, 4)</div>
+            <div class="opcion" data-op="c">(2, 2)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. x = y + 1 ; x + 2y = 10</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(4, 3)</div>
+            <div class="opcion" data-op="b">(3, 4)</div>
+            <div class="opcion" data-op="c">(1, 3)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="c">
+          <div class="enun">3. y = 3x ; x + y = 8</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(6, 2)</div>
+            <div class="opcion" data-op="b">(2, 2)</div>
+            <div class="opcion" data-op="c">(2, 6)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">3. Verificar un par ordenado</h2>
+      <div class="bloque">
+        <p>Para comprobar si un par (x, y) es solución de un sistema, se sustituye en <strong>las dos</strong> ecuaciones. Si cumple ambas, es solución; si falla en una, no lo es.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 3</span>
+          <p>¿Es (4, 1) solución de x + y = 5 y x − y = 3?</p>
+          <div class="paso"><span class="n">1</span> Primera: 4 + 1 = 5. Correcto.</div>
+          <div class="paso"><span class="n">2</span> Segunda: 4 − 1 = 3. Correcto.</div>
+          <p><strong>Respuesta:</strong> sí, (4, 1) es solución.</p>
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Verificar la solución</h3>
+        <p>Indica si el par dado es solución del sistema.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. ¿Es (3, 2) solución de x + y = 5 y x − y = 1?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">Sí, cumple ambas</div>
+            <div class="opcion" data-op="b">No</div>
+            <div class="opcion" data-op="c">Solo la primera</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. ¿Es (1, 4) solución de 2x + y = 6 y x + y = 5?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">No</div>
+            <div class="opcion" data-op="b">Sí, cumple ambas</div>
+            <div class="opcion" data-op="c">Solo la segunda</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. ¿Es (2, 1) solución de x + y = 3 y 2x − y = 2?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">Sí, cumple ambas</div>
+            <div class="opcion" data-op="b">No, falla la segunda</div>
+            <div class="opcion" data-op="c">No, falla la primera</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">4. Aplicación: el sistema de precios</h2>
+      <div class="bloque">
+        <p>Muchos problemas reales tienen dos incógnitas y dos datos. Se asigna una variable a cada incógnita, se plantean dos ecuaciones y se resuelve el sistema.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 4</span>
+          <p>En una cafetería, 2 cafés y 1 té cuestan $7; 1 café y 1 té cuestan $5. ¿Cuánto cuesta cada uno?</p>
+          <div class="paso"><span class="n">1</span> Sea c el precio del café y t el del té: 2c + t = 7 y c + t = 5.</div>
+          <div class="paso"><span class="n">2</span> Se despeja t en la segunda: t = 5 − c.</div>
+          <div class="paso"><span class="n">3</span> Se sustituye: 2c + (5 − c) = 7, así que c + 5 = 7, c = 2.</div>
+          <div class="paso"><span class="n">4</span> Se halla t: t = 5 − 2 = 3.</div>
+          <p><strong>Respuesta:</strong> el café cuesta $2 y el té, $3.</p>
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 3 · Problemas de contexto</h3>
+        <p>Resuelve cada situación.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. Con el sistema del ejemplo (2c + t = 7 ; c + t = 5), ¿cuánto cuesta el café?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">$2</div>
+            <div class="opcion" data-op="b">$3</div>
+            <div class="opcion" data-op="c">$5</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. Con el mismo sistema, ¿cuánto cuesta el té?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">$2</div>
+            <div class="opcion" data-op="b">$3</div>
+            <div class="opcion" data-op="c">$5</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. Dos números suman 10 y su diferencia es 4. ¿Cuáles son?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">7 y 3</div>
+            <div class="opcion" data-op="b">6 y 4</div>
+            <div class="opcion" data-op="c">5 y 5</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">5. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas. Cada una se presenta en doble modalidad.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · El sistema de precios</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              En parejas, los estudiantes resuelven seis sistemas por sustitución, incluyendo el problema de las dos tiendas con precios de café y té, y comparan resultados.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante resuelve los seis sistemas en un documento compartido, mostrando los cinco pasos, y publica en el chat la solución del problema de precios.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · ¿Qué variable despejo?</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Para cuatro sistemas, los estudiantes deciden qué variable conviene despejar (la de coeficiente 1 o −1) y justifican su elección antes de resolver.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo marca en una hoja compartida la variable más fácil de despejar en cada sistema y explica por qué evita fracciones.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · Siempre verifico en ambas</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              El docente entrega soluciones, algunas con errores. Los estudiantes verifican cada par en las dos ecuaciones y corrigen las que no cumplan ambas.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante verifica tres pares ordenados en sus respectivos sistemas, marca cuáles son solución y describe en una frase el error de los que no lo son.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 6.1</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Ocho preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 6 respuestas correctas.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de sistemas por sustitución:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 8 sistemas asignados (resolver por sustitución) en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Despejar una variable</td>
+              <td>No logra despejar ninguna variable.</td>
+              <td>Despeja, pero elige la más difícil o comete errores.</td>
+              <td>Despeja correctamente la variable elegida.</td>
+              <td>Elige siempre la variable más fácil de despejar.</td>
+            </tr>
+            <tr>
+              <td>Sustituir sin errores de signo</td>
+              <td>No sustituye correctamente.</td>
+              <td>Sustituye, pero comete errores de signo.</td>
+              <td>Sustituye sin errores de signo.</td>
+              <td>Sustituye con fluidez incluso con paréntesis y restas.</td>
+            </tr>
+            <tr>
+              <td>Resolver ambas variables</td>
+              <td>Obtiene una sola variable o ninguna.</td>
+              <td>Resuelve una y se equivoca al hallar la otra.</td>
+              <td>Resuelve correctamente ambas variables.</td>
+              <td>Resuelve con seguridad y presenta el par ordenado.</td>
+            </tr>
+            <tr>
+              <td>Verificar en las dos ecuaciones</td>
+              <td>No verifica la solución.</td>
+              <td>Verifica en una sola ecuación.</td>
+              <td>Verifica la solución en las dos ecuaciones.</td>
+              <td>Verifica e interpreta la solución en el contexto del problema.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre y enlace con la próxima lección</h2>
+        <p>En esta lección se resolvieron sistemas de dos ecuaciones por <strong>sustitución</strong>, con un procedimiento de cinco pasos, y se verificó cada solución en las dos ecuaciones. También se plantearon problemas de contexto con dos incógnitas.</p>
+        <p>En la <strong>Lección 6.2 · Resolver sistemas por eliminación y clasificar sistemas</strong> se aprenderá otro método —sumar las ecuaciones para eliminar una variable— y a clasificar los sistemas en <strong>independiente</strong> (una solución), <strong>inconsistente</strong> (ninguna) o <strong>dependiente</strong> (infinitas).</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 6.1 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        var preguntasQuiz = [
+          {enun: '1. Resuelve: y = 2x ; x + y = 9.', ops: ['(3, 6)', '(6, 3)', '(3, 3)', '(9, 0)'], correcta: 0},
+          {enun: '2. Resuelve: x = y + 2 ; 2x + y = 10.', ops: ['(2, 4)', '(4, 2)', '(4, 4)', '(2, 2)'], correcta: 1},
+          {enun: '3. Resuelve: y = x − 1 ; 3x − y = 7.', ops: ['(2, 3)', '(3, 2)', '(3, 3)', '(1, 2)'], correcta: 1},
+          {enun: '4. ¿Es (5, 2) solución de x + y = 7 y x − y = 3?', ops: ['Sí, cumple ambas', 'No, falla la primera', 'No, falla la segunda', 'No cumple ninguna'], correcta: 0},
+          {enun: '5. ¿Es (1, 3) solución de 2x + y = 5 y x + 2y = 8?', ops: ['Sí, cumple ambas', 'No, falla la segunda ecuación', 'No, falla la primera', 'Sí, ambas exactas'], correcta: 1},
+          {enun: '6. Dos boletos de adulto y uno de niño cuestan $25; un adulto y un niño cuestan $15. ¿Precio del boleto de adulto?', ops: ['$10', '$5', '$15', '$12'], correcta: 0},
+          {enun: '7. Con el mismo sistema anterior, ¿cuánto cuesta el boleto de niño?', ops: ['$10', '$5', '$15', '$20'], correcta: 1},
+          {enun: '8. La suma de dos números es 12 y uno es el doble del otro. ¿Cuál es el mayor?', ops: ['8', '4', '6', '12'], correcta: 0}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 6) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 8 correctas. ¡Aprobado! Puedes continuar a la Lección 6.2.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 8 correctas. Repasa la lección e intenta de nuevo (se requieren 6).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>

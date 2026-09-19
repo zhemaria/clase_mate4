@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 8.2 · Funciones exponenciales, crecimiento/decaimiento e introducción a logaritmos</title>
+    <style>
+      :root {
+        --tema: #b71c1c;
+        --tema-d: #7f0000;
+        --tema-bg: #ffebee;
+        --tema-bg2: #ffcdd2;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #7f0000 0%, #b71c1c 55%, #d32f2f 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(127, 0, 0, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 22px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffcdd2; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #546e7a; }
+      .btn.sec:hover { background: #37474f; }
+
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #fff8e1; color: #5c3900; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #3a0a0a; color: #ffebee; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 8 · Modelado de funciones y simulacro GED</div>
+        <h1>Lección 8.2 · Funciones exponenciales, crecimiento/decaimiento e introducción a logaritmos</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Graficar y caracterizar funciones exponenciales f(x) = a · bˣ (crecimiento si b &gt; 1; decaimiento si 0 &lt; b &lt; 1).</li>
+          <li>Aplicar el crecimiento/decaimiento exponencial en contextos reales (interés compuesto, población, vida media).</li>
+          <li>Usar la fórmula de interés compuesto A = P(1 + r/n)^(nt).</li>
+          <li>Comprender el logaritmo como la operación inversa de la exponencial.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con la lección anterior.</strong> Las cuadráticas (8.1) crecen y luego decrecen formando una parábola. Las funciones <strong>exponenciales</strong> son distintas: crecen (o decaen) cada vez más rápido al multiplicarse por una base fija. Modelan el dinero que gana interés, una población que se duplica o una sustancia que se desintegra.</p>
+      </div>
+
+      <h2 class="seccion">1. La función exponencial f(x) = a · bˣ</h2>
+      <div class="bloque">
+        <p>En f(x) = a · bˣ, el número <strong>a</strong> es el valor inicial (cuando x = 0) y la <strong>base b</strong> decide el comportamiento:</p>
+        <table class="reglas">
+          <caption class="sr-only">Comportamiento de la función exponencial según la base b.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Si la base b…</th>
+              <th scope="col">La función…</th>
+              <th scope="col">Ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>es mayor que 1 (b &gt; 1)</td><td>crece (crecimiento)</td><td>y = 2ˣ</td></tr>
+            <tr><td>está entre 0 y 1 (0 &lt; b &lt; 1)</td><td>decae (decaimiento)</td><td>y = (1/2)ˣ</td></tr>
+          </tbody>
+        </table>
+
+        <div class="diagrama-wrap">
+          <svg width="320" height="260" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dos curvas exponenciales en el mismo plano. La curva y igual a dos elevado a x crece de izquierda a derecha; la curva y igual a un medio elevado a x decae. Ambas se cruzan en el punto cero coma uno.">
+            <!-- cuadrícula -->
+            <g stroke="#eeeeee" stroke-width="1">
+              <line x1="40" y1="30" x2="284" y2="30"/><line x1="40" y1="56" x2="284" y2="56"/>
+              <line x1="40" y1="82" x2="284" y2="82"/><line x1="40" y1="108" x2="284" y2="108"/>
+              <line x1="40" y1="134" x2="284" y2="134"/><line x1="40" y1="160" x2="284" y2="160"/>
+              <line x1="40" y1="186" x2="284" y2="186"/><line x1="40" y1="212" x2="284" y2="212"/>
+              <line x1="84" y1="30" x2="84" y2="238"/><line x1="128" y1="30" x2="128" y2="238"/>
+              <line x1="172" y1="30" x2="172" y2="238"/><line x1="216" y1="30" x2="216" y2="238"/>
+              <line x1="260" y1="30" x2="260" y2="238"/>
+            </g>
+            <!-- ejes -->
+            <line x1="40" y1="238" x2="300" y2="238" stroke="#7f0000" stroke-width="2"/>
+            <line x1="128" y1="24" x2="128" y2="238" stroke="#7f0000" stroke-width="2"/>
+            <text x="292" y="232" font-family="Segoe UI, sans-serif" font-size="13" fill="#7f0000">x</text>
+            <text x="112" y="34" font-family="Segoe UI, sans-serif" font-size="13" fill="#7f0000">y</text>
+            <!-- crecimiento y=2^x: (-2,.25)(-1,.5)(0,1)(1,2)(2,4)(3,8) -->
+            <polyline points="40,231 84,225 128,212 172,186 216,134 260,30" fill="none" stroke="#b71c1c" stroke-width="3"/>
+            <text x="196" y="56" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#b71c1c">y = 2ˣ (crece)</text>
+            <!-- decaimiento y=(1/2)^x: (-2,4)(-1,2)(0,1)(1,.5)(2,.25)(3,.125) -->
+            <polyline points="40,134 84,186 128,212 172,225 216,231 260,235" fill="none" stroke="#0d47a1" stroke-width="3"/>
+            <text x="150" y="250" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#0d47a1">y = (1/2)ˣ (decae)</text>
+            <!-- punto (0,1) -->
+            <circle cx="128" cy="212" r="5" fill="#333333"/>
+            <text x="134" y="208" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#333333">(0, 1)</text>
+          </svg>
+        </div>
+
+        <p>Las dos curvas se cruzan en (0, 1) porque cualquier base elevada a 0 da 1. A la derecha, la de crecimiento sube cada vez más rápido; la de decaimiento se acerca a cero sin tocarlo.</p>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de funciones exponenciales -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo de funciones exponenciales y logaritmos en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Cambia la base, observa crecimiento vs. decaimiento, simula interés compuesto y explora el logaritmo como inversa en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · ¿Crece o decae?</h3>
+        <p>Observa la base b.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. f(x) = 3ˣ:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">crece</div>
+            <div class="opcion" data-op="b">decae</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. f(x) = (0.5)ˣ:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">crece</div>
+            <div class="opcion" data-op="b">decae</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. En f(x) = a · bˣ, la función decae cuando:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">b &gt; 1</div>
+            <div class="opcion" data-op="b">0 &lt; b &lt; 1</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">2. Crecimiento y decaimiento en contexto</h2>
+      <div class="bloque">
+        <p>El crecimiento exponencial aparece cuando algo se <strong>multiplica</strong> por un factor fijo en cada período: una población que se duplica, una cuenta que gana interés. El decaimiento aparece cuando algo se reduce por un factor fijo: la <strong>vida media</strong> de una sustancia radiactiva.</p>
+
+        <div class="caja-tip">
+          <strong>Vida media:</strong> es el tiempo en que una cantidad se reduce a la mitad. Si quedan 80 g y la vida media es 1 hora, tras 1 hora quedan 40 g, tras 2 horas 20 g, y así.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · En contexto</h3>
+        <p>Identifica el modelo.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. Una población que se duplica cada año es un ejemplo de:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">crecimiento exponencial</div>
+            <div class="opcion" data-op="b">decaimiento exponencial</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. Una sustancia radiactiva con vida media es un ejemplo de:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">crecimiento exponencial</div>
+            <div class="opcion" data-op="b">decaimiento exponencial</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. "Vida media" es el tiempo en que la cantidad:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">se reduce a la mitad</div>
+            <div class="opcion" data-op="b">se duplica</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">3. El interés compuesto</h2>
+      <div class="bloque">
+        <p>El interés compuesto es crecimiento exponencial aplicado al dinero. Está en la <strong>hoja de fórmulas del GED</strong>:</p>
+        <p class="formula">A = P(1 + r/n)^(nt)</p>
+        <p>Donde P es el capital inicial, r la tasa (en decimal), n las veces que se capitaliza por año, t el número de años y A el monto final.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1</span>
+          <p>$1,000 al 5% anual, capitalizado una vez al año (n = 1), durante 10 años.</p>
+          <div class="paso"><span class="n">1</span> Se sustituye: A = 1000(1 + 0.05/1)^(1·10) = 1000(1.05)¹⁰.</div>
+          <div class="paso"><span class="n">2</span> Con la calculadora: (1.05)¹⁰ ≈ 1.6289.</div>
+          <div class="paso"><span class="n">3</span> A ≈ 1000 × 1.6289 ≈ $1,628.89.</div>
+        </div>
+
+        <div class="caja-atencion">
+          <strong>Usa la calculadora TI-30XS:</strong> para potencias como (1.05)¹⁰ usa la tecla del exponente (^). Recuerda limpiar la memoria antes de empezar y trabajar con la tasa en decimal (5% = 0.05).
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 3 · Interés compuesto</h3>
+        <p>Identifica y calcula.</p>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">1. En A = P(1 + r/n)^(nt), ¿qué representa P?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">la tasa de interés</div>
+            <div class="opcion" data-op="b">la cantidad inicial (capital)</div>
+            <div class="opcion" data-op="c">el tiempo</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. $1,000 al 5% anual (n = 1) en 10 años da aproximadamente:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">$1,500.00</div>
+            <div class="opcion" data-op="b">$1,628.89</div>
+            <div class="opcion" data-op="c">$5,000.00</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. En la fórmula, r representa:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">el número de años</div>
+            <div class="opcion" data-op="b">la tasa de interés</div>
+            <div class="opcion" data-op="c">el capital</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">4. Introducción al logaritmo</h2>
+      <div class="bloque">
+        <p>El <strong>logaritmo</strong> es la operación <strong>inversa</strong> de la exponencial. Responde la pregunta: "¿a qué exponente hay que elevar la base para obtener este número?"</p>
+        <p class="formula">si b^y = x, entonces log_b(x) = y</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2</span>
+          <p>log₁₀(1000) pregunta: "¿a qué potencia elevo 10 para obtener 1000?" Como 10³ = 1000, entonces log₁₀(1000) = 3.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>El logaritmo base 10 en la TI-30XS:</strong> la tecla <em>log</em> calcula log₁₀ directamente. Por ejemplo, log(100) da 2, porque 10² = 100.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 4 · Logaritmos</h3>
+        <p>Piensa en "¿qué exponente?".</p>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">1. El logaritmo es la operación inversa de:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">la suma</div>
+            <div class="opcion" data-op="b">la exponencial</div>
+            <div class="opcion" data-op="c">la raíz cuadrada</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. log₁₀(1000) = ? (¿10 a qué potencia da 1000?)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">2</div>
+            <div class="opcion" data-op="b">3</div>
+            <div class="opcion" data-op="c">1000</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. log₁₀(100) = ?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">100</div>
+            <div class="opcion" data-op="b">2</div>
+            <div class="opcion" data-op="c">1</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">5. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas, con calculadora TI-30XS y la hoja de fórmulas del GED. Cada una se presenta en doble modalidad.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · El banco y el tiempo</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes calculan cómo crece $1,000 al 5% compuesto anual en 1, 5, 10 y 20 años, grafican los puntos y describen la forma de la curva.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada grupo construye la tabla de montos en un documento compartido y comenta por qué el crecimiento se acelera con el tiempo.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · ¿En cuántos años se duplica?</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              A partir de la tabla anterior, los estudiantes estiman en cuántos años se duplica el dinero e introducen la idea del logaritmo como la respuesta a esa pregunta.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante calcula log₁₀(1000) = 3 con la TI-30XS y verifica que 10³ = 1000, conectando logaritmo y exponente.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · Crece o decae</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes clasifican varias situaciones (población, vida media, interés, enfriamiento) como crecimiento o decaimiento y justifican con la base.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo etiqueta las situaciones y escribe junto a cada una si la base es mayor o menor que 1.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 8.2</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas. Se permite calculadora.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de funciones exponenciales y logaritmos:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 6 ejercicios de exponenciales y 4 de logaritmos básicos en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Tres criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con tres criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Distinguir crecimiento de decaimiento</td>
+              <td>No relaciona la base con el comportamiento.</td>
+              <td>Confunde a veces crecimiento con decaimiento.</td>
+              <td>Distingue crecimiento de decaimiento por la base.</td>
+              <td>Explica el comportamiento y lo conecta con la gráfica.</td>
+            </tr>
+            <tr>
+              <td>Aplicar el interés compuesto</td>
+              <td>No usa la fórmula.</td>
+              <td>Sustituye con errores en las variables.</td>
+              <td>Aplica A = P(1 + r/n)^(nt) en un contexto real.</td>
+              <td>Aplica la fórmula con fluidez y la calculadora con precisión.</td>
+            </tr>
+            <tr>
+              <td>Conectar logaritmo y exponencial</td>
+              <td>No reconoce el logaritmo como inversa.</td>
+              <td>Reconoce la idea, pero comete errores.</td>
+              <td>Conecta el logaritmo con la exponencial como inversas.</td>
+              <td>Calcula logaritmos base 10 y los interpreta con seguridad.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre y enlace con la próxima lección</h2>
+        <p>En esta lección se estudiaron las <strong>funciones exponenciales</strong> (crecimiento y decaimiento), el <strong>interés compuesto</strong> y una primera mirada al <strong>logaritmo</strong> como inversa de la exponencial.</p>
+        <p>La <strong>Lección 8.3 · Proyecto final integrador y simulacro GED</strong> cierra el Nivel 4: presentarás tu proyecto <strong>"Mi modelo matemático"</strong> y enfrentarás un <strong>simulacro</strong> en condiciones reales de examen. Es el último paso antes del GED Mathematical Reasoning.</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 8.2 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        var preguntasQuiz = [
+          {enun: '1. f(x) = 4ˣ. ¿Crece o decae?', ops: ['crece', 'decae', 'es constante', 'es lineal'], correcta: 0},
+          {enun: '2. f(x) = (1/3)ˣ. ¿Crece o decae?', ops: ['crece', 'decae', 'es lineal', 'no es función'], correcta: 1},
+          {enun: '3. En f(x) = a · bˣ, ¿qué representa a?', ops: ['el valor inicial', 'la base', 'el exponente', 'la pendiente'], correcta: 0},
+          {enun: '4. Las gráficas de y = 2ˣ y y = (1/2)ˣ se cruzan en el punto:', ops: ['(0, 1)', '(1, 0)', '(0, 0)', '(1, 1)'], correcta: 0},
+          {enun: '5. $2,000 al 10% anual (n = 1) en 1 año dan:', ops: ['$2,200', '$2,100', '$2,010', '$4,000'], correcta: 0},
+          {enun: '6. Una población se duplica cada año y empieza en 100. ¿Cuántos a los 3 años?', ops: ['600', '800', '300', '2,300'], correcta: 1},
+          {enun: '7. Una sustancia de 80 g con vida media de 1 hora. ¿Cuánto queda tras 2 horas?', ops: ['40 g', '20 g', '60 g', '0 g'], correcta: 1},
+          {enun: '8. En A = P(1 + r/n)^(nt), ¿qué representa t?', ops: ['la tasa', 'el capital', 'el tiempo', 'la base'], correcta: 2},
+          {enun: '9. log₁₀(1000) = ?', ops: ['2', '3', '100', '1000'], correcta: 1},
+          {enun: '10. Si 10² = 100, entonces log₁₀(100) = ?', ops: ['10', '2', '100', '1'], correcta: 1}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 7) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Puedes continuar a la Lección 8.3.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. Repasa la lección e intenta de nuevo (se requieren 7).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>

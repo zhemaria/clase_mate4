@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 6.2 · Resolver sistemas por eliminación y clasificar sistemas</title>
+    <style>
+      :root {
+        --tema: #4e342e;
+        --tema-d: #3e2723;
+        --tema-bg: #efebe9;
+        --tema-bg2: #d7ccc8;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #3e2723 0%, #4e342e 55%, #6d4c41 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(62, 39, 35, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 24px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffebee; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #546e7a; }
+      .btn.sec:hover { background: #37474f; }
+
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #ffebee; color: #b71c1c; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #2e2320; color: #efebe9; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 6 · Sistemas de ecuaciones lineales</div>
+        <h1>Lección 6.2 · Resolver sistemas por eliminación y clasificar sistemas</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Resolver sistemas por el método de eliminación (combinación lineal).</li>
+          <li>Multiplicar una o ambas ecuaciones para crear coeficientes opuestos.</li>
+          <li>Clasificar sistemas como independiente, inconsistente o dependiente.</li>
+          <li>Elegir el método más eficiente según la estructura del sistema.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con la lección anterior.</strong> En la Lección 6.1 se resolvieron sistemas por sustitución. La sustitución es ideal cuando una variable ya está despejada; pero cuando las dos ecuaciones están en la forma ax + by = c, suele ser más rápido el método de <strong>eliminación</strong>: sumar las ecuaciones para que una variable desaparezca.</p>
+      </div>
+
+      <h2 class="seccion">1. El método de eliminación</h2>
+      <div class="bloque">
+        <p>La idea es lograr que los coeficientes de una variable sean <strong>opuestos</strong> (por ejemplo, +y y −y) para que, al sumar las ecuaciones, esa variable se elimine. A veces ya están opuestos; otras veces hay que multiplicar una o ambas ecuaciones.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1 · Coeficientes ya opuestos</span>
+          <p>Resolver: x + y = 10 y x − y = 4.</p>
+          <div class="paso"><span class="n">1</span> Se suman las dos ecuaciones: (x + y) + (x − y) = 10 + 4.</div>
+          <div class="paso"><span class="n">2</span> La y se elimina: 2x = 14, así que x = 7.</div>
+          <div class="paso"><span class="n">3</span> Se halla y: 7 + y = 10, y = 3.</div>
+          <p><strong>Solución:</strong> (7, 3).</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2 · Multiplicar una ecuación</span>
+          <p>Resolver: 2x + 3y = 13 y x − y = −1.</p>
+          <div class="paso"><span class="n">1</span> Se multiplica la segunda por 3: 3x − 3y = −3.</div>
+          <div class="paso"><span class="n">2</span> Se suma a la primera: (2x + 3y) + (3x − 3y) = 13 + (−3).</div>
+          <div class="paso"><span class="n">3</span> Se elimina la y: 5x = 10, x = 2.</div>
+          <div class="paso"><span class="n">4</span> Se halla y: 2 − y = −1, y = 3.</div>
+          <p><strong>Solución:</strong> (2, 3).</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 3 · Multiplicar ambas</span>
+          <p>Resolver: 2x + 3y = 7 y 3x + 2y = 8.</p>
+          <div class="paso"><span class="n">1</span> Para eliminar x: la primera por 3 (6x + 9y = 21) y la segunda por 2 (6x + 4y = 16).</div>
+          <div class="paso"><span class="n">2</span> Se restan: 5y = 5, y = 1.</div>
+          <div class="paso"><span class="n">3</span> Se halla x: 2x + 3(1) = 7, x = 2.</div>
+          <p><strong>Solución:</strong> (2, 1).</p>
+        </div>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de eliminación y clasificación -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo de sistemas por eliminación y clasificación en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Elimina una variable, resuelve el sistema y clasifica el resultado (una, ninguna o infinitas soluciones) en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · Eliminación</h3>
+        <p>Selecciona la solución (x, y).</p>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">1. x + y = 8 ; x − y = 2</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(3, 5)</div>
+            <div class="opcion" data-op="b">(5, 3)</div>
+            <div class="opcion" data-op="c">(5, 5)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. 2x + y = 7 ; x − y = 2</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(3, 1)</div>
+            <div class="opcion" data-op="b">(1, 3)</div>
+            <div class="opcion" data-op="c">(3, 3)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="c">
+          <div class="enun">3. 3x + 2y = 12 ; x − 2y = −4</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(3, 2)</div>
+            <div class="opcion" data-op="b">(2, 2)</div>
+            <div class="opcion" data-op="c">(2, 3)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">2. Clasificar los sistemas</h2>
+      <div class="bloque">
+        <p>No todos los sistemas tienen exactamente una solución. Según cómo sean las dos rectas, hay tres tipos:</p>
+
+        <table class="reglas">
+          <caption class="sr-only">Clasificación de sistemas según el número de soluciones.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Tipo</th>
+              <th scope="col">Rectas</th>
+              <th scope="col">Soluciones</th>
+              <th scope="col">Al resolver aparece…</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Independiente</td><td>Se cruzan en un punto</td><td>Una solución</td><td>x = … , y = …</td></tr>
+            <tr><td>Inconsistente</td><td>Paralelas</td><td>Ninguna</td><td>Algo falso (p. ej. 0 = 5)</td></tr>
+            <tr><td>Dependiente</td><td>La misma recta</td><td>Infinitas</td><td>Algo siempre cierto (0 = 0)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="caja-tip">
+          <strong>El resultado avisa del tipo:</strong> si al eliminar las dos variables queda una igualdad falsa (como 0 = 5), el sistema es inconsistente; si queda una igualdad siempre cierta (0 = 0), es dependiente.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Clasificar</h3>
+        <p>Según el resultado, indica el tipo de sistema.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. Al resolver, se obtiene 0 = 5. ¿Qué tipo es?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">Inconsistente (sin solución)</div>
+            <div class="opcion" data-op="b">Dependiente</div>
+            <div class="opcion" data-op="c">Independiente</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. Al resolver, se obtiene 0 = 0. ¿Qué tipo es?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">Inconsistente</div>
+            <div class="opcion" data-op="b">Dependiente (infinitas soluciones)</div>
+            <div class="opcion" data-op="c">Independiente</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. Al resolver, se obtiene x = 3, y = 1. ¿Qué tipo es?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">Independiente (una solución)</div>
+            <div class="opcion" data-op="b">Inconsistente</div>
+            <div class="opcion" data-op="c">Dependiente</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">3. ¿Sustitución o eliminación?</h2>
+      <div class="bloque">
+        <p>Ambos métodos llevan a la misma solución; lo importante es elegir el más rápido para cada sistema.</p>
+        <table class="reglas">
+          <caption class="sr-only">Cuándo conviene usar sustitución y cuándo eliminación.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Conviene…</th>
+              <th scope="col">Cuándo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Sustitución</td><td>Cuando una variable ya está despejada o tiene coeficiente 1 o −1.</td></tr>
+            <tr><td>Eliminación</td><td>Cuando las dos ecuaciones están en la forma ax + by = c y los coeficientes se alinean fácilmente.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="seccion">4. Aplicación: mezclas, monedas y velocidades</h2>
+      <div class="bloque">
+        <div class="ejemplo">
+          <span class="et">Ejemplo 4 · Monedas</span>
+          <p>Hay 12 monedas, unas de 5¢ y otras de 10¢, que suman 95¢. ¿Cuántas hay de cada una?</p>
+          <div class="paso"><span class="n">1</span> Sea n el número de monedas de 5¢ y d el de 10¢: n + d = 12 y 5n + 10d = 95.</div>
+          <div class="paso"><span class="n">2</span> Se divide la segunda entre 5: n + 2d = 19.</div>
+          <div class="paso"><span class="n">3</span> Se resta la primera: d = 7. Entonces n = 5.</div>
+          <p><strong>Respuesta:</strong> 5 monedas de 5¢ y 7 de 10¢.</p>
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 3 · Aplicación</h3>
+        <p>Resuelve cada situación.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. Con el ejemplo (12 monedas de 5¢ y 10¢ que suman 95¢), ¿cuántas son de 10¢?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">7</div>
+            <div class="opcion" data-op="b">5</div>
+            <div class="opcion" data-op="c">12</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. Con el mismo problema, ¿cuántas son de 5¢?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">7</div>
+            <div class="opcion" data-op="b">5</div>
+            <div class="opcion" data-op="c">6</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. Dos números suman 20 y su diferencia es 6. ¿Cuál es el mayor?</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">13</div>
+            <div class="opcion" data-op="b">7</div>
+            <div class="opcion" data-op="c">10</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">5. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas. Cada una se presenta en doble modalidad.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · ¿Cuántas soluciones tiene?</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes resuelven seis sistemas por eliminación y clasifican cada resultado: ¿se cruzan en un punto, son paralelas o son la misma recta?
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada grupo resuelve los seis sistemas en un documento compartido y etiqueta cada uno como independiente, inconsistente o dependiente, justificando con el resultado obtenido.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · ¿Elimino o sustituyo?</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Para cada sistema dado, los estudiantes deciden si conviene eliminar o sustituir y justifican su elección en dos oraciones antes de resolver.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo marca el método más eficiente para cada sistema en una hoja compartida y explica brevemente por qué.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · Mezclas y monedas</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              En parejas, los estudiantes plantean y resuelven problemas de monedas y mezclas con sistemas, eligiendo el método y verificando la respuesta en el contexto.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada grupo modela un problema de monedas o de mezcla, plantea el sistema, lo resuelve por eliminación y comprueba que la respuesta tenga sentido.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 6.2</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de eliminación y clasificación:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 10 sistemas asignados (mezcla de métodos) en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Crear coeficientes opuestos</td>
+              <td>No multiplica las ecuaciones por los factores adecuados.</td>
+              <td>Multiplica, pero elige factores incorrectos.</td>
+              <td>Multiplica por los factores correctos para crear opuestos.</td>
+              <td>Encuentra los factores con fluidez, incluso multiplicando ambas.</td>
+            </tr>
+            <tr>
+              <td>Eliminar y resolver</td>
+              <td>No logra eliminar la variable.</td>
+              <td>Elimina, pero comete errores al resolver.</td>
+              <td>Elimina la variable y resuelve correctamente.</td>
+              <td>Resuelve con seguridad y halla ambas variables.</td>
+            </tr>
+            <tr>
+              <td>Clasificar el sistema</td>
+              <td>No clasifica el sistema.</td>
+              <td>Clasifica, pero sin justificación o con error.</td>
+              <td>Clasifica correctamente con justificación.</td>
+              <td>Clasifica e interpreta el significado gráfico de cada tipo.</td>
+            </tr>
+            <tr>
+              <td>Elegir el método eficiente</td>
+              <td>No reconoce qué método conviene.</td>
+              <td>Elige un método, pero no el más eficiente.</td>
+              <td>Elige el método más eficiente para el sistema dado.</td>
+              <td>Justifica su elección y la aplica con rapidez.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre y enlace con la próxima lección</h2>
+        <p>En esta lección se resolvieron sistemas por <strong>eliminación</strong>, creando coeficientes opuestos, y se aprendió a <strong>clasificarlos</strong> en independiente, inconsistente o dependiente, además de elegir el método más eficiente.</p>
+        <p>En la <strong>Lección 6.3 · Método gráfico, aplicaciones y modelado con sistemas</strong> se resolverán sistemas <strong>graficando</strong> las dos rectas y leyendo el punto de intersección, se conectará lo gráfico con lo algebraico y se modelarán situaciones reales como el <strong>punto de equilibrio</strong> de una empresa.</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 6.2 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        var preguntasQuiz = [
+          {enun: '1. Resuelve por eliminación: x + y = 9 ; x − y = 1.', ops: ['(5, 4)', '(4, 5)', '(5, 5)', '(9, 1)'], correcta: 0},
+          {enun: '2. Resuelve: 2x + y = 8 ; x − y = 1.', ops: ['(3, 2)', '(2, 3)', '(3, 3)', '(1, 2)'], correcta: 0},
+          {enun: '3. Resuelve: 3x + 2y = 12 ; 3x − 2y = 0.', ops: ['(3, 2)', '(2, 3)', '(2, 2)', '(0, 6)'], correcta: 1},
+          {enun: '4. Resuelve: 2x + 3y = 7 ; 3x + 2y = 8.', ops: ['(1, 2)', '(2, 1)', '(2, 2)', '(3, 1)'], correcta: 1},
+          {enun: '5. Al resolver, se obtiene 0 = 7. ¿Qué tipo de sistema es?', ops: ['Inconsistente (sin solución)', 'Independiente', 'Dependiente', 'Tiene una solución'], correcta: 0},
+          {enun: '6. Al resolver, se obtiene 0 = 0. ¿Qué tipo de sistema es?', ops: ['Sin solución', 'Infinitas soluciones (dependiente)', 'Una solución', 'Inconsistente'], correcta: 1},
+          {enun: '7. Dos rectas tienen pendientes distintas. ¿Cómo es el sistema?', ops: ['Se cruzan en un punto (independiente)', 'Son paralelas', 'Son la misma recta', 'No tiene solución'], correcta: 0},
+          {enun: '8. Hay 10 monedas de 5¢ y 25¢ que suman 130¢. ¿Cuántas son de 25¢?', ops: ['4', '6', '5', '10'], correcta: 0},
+          {enun: '9. Con el mismo problema anterior, ¿cuántas son de 5¢?', ops: ['4', '6', '5', '8'], correcta: 1},
+          {enun: '10. Dos números suman 15 y uno es 3 más que el otro. ¿Cuál es el menor?', ops: ['9', '6', '7.5', '12'], correcta: 1}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 7) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Puedes continuar a la Lección 6.3.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. Repasa la lección e intenta de nuevo (se requieren 7).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>

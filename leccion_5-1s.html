@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 5.1 · Simplificar expresiones racionales: factorizar y cancelar</title>
+    <style>
+      :root {
+        --tema: #37474f;
+        --tema-d: #263238;
+        --tema-bg: #eceff1;
+        --tema-bg2: #cfd8dc;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #263238 0%, #37474f 55%, #546e7a 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(38, 50, 56, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 25px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffebee; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #78909c; }
+      .btn.sec:hover { background: #546e7a; }
+
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #ffebee; color: #b71c1c; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #1a2327; color: #eceff1; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 5 · Expresiones racionales complejas</div>
+        <h1>Lección 5.1 · Simplificar expresiones racionales: factorizar y cancelar</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Simplificar fracciones algebraicas factorizando el numerador y el denominador.</li>
+          <li>Cancelar únicamente factores comunes, nunca términos.</li>
+          <li>Identificar los valores excluidos del dominio (los que anulan el denominador).</li>
+          <li>Reconocer y evitar el error de cancelación incorrecta.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con el tema anterior.</strong> En los Temas 3 y 4 la factorización fue la herramienta clave. Ahora vuelve a serlo: una <strong>expresión racional</strong> es una fracción cuyo numerador y denominador son polinomios. Para simplificarla se factoriza arriba y abajo, y se cancelan los factores comunes —exactamente como con las fracciones de números.</p>
+      </div>
+
+      <h2 class="seccion">1. La analogía con las fracciones numéricas</h2>
+      <div class="bloque">
+        <p>Para simplificar 12/18 se factoriza arriba y abajo y se cancela el factor común:</p>
+        <p class="formula">12/18 = (2 · 6) / (3 · 6) = 2/3</p>
+        <p>El 6 se cancela porque es un <strong>factor</strong> (algo que multiplica) presente arriba y abajo. Con polinomios el procedimiento es idéntico: se factoriza y se cancelan los factores comunes.</p>
+
+        <div class="diagrama-wrap">
+          <svg width="480" height="150" viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simplificación de una fracción algebraica. La fracción con numerador x más tres por x menos tres y denominador x más tres por x menos dos. El factor común x más tres se cancela arriba y abajo, dejando x menos tres sobre x menos dos.">
+            <text x="120" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="17" font-weight="700" fill="#263238">(x + 3)(x − 3)</text>
+            <line x1="40" y1="70" x2="200" y2="70" stroke="#37474f" stroke-width="2"/>
+            <text x="120" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="17" font-weight="700" fill="#263238">(x + 3)(x − 2)</text>
+            <line x1="62" y1="48" x2="98" y2="58" stroke="#c62828" stroke-width="2.5"/>
+            <line x1="62" y1="88" x2="98" y2="98" stroke="#c62828" stroke-width="2.5"/>
+            <text x="240" y="78" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#37474f">=</text>
+            <text x="360" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="17" font-weight="700" fill="#263238">(x − 3)</text>
+            <line x1="300" y1="70" x2="420" y2="70" stroke="#37474f" stroke-width="2"/>
+            <text x="360" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="17" font-weight="700" fill="#263238">(x − 2)</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de simplificación de racionales -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo de simplificación de expresiones racionales en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Factoriza, cancela factores comunes e identifica los valores excluidos del dominio paso a paso en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <h2 class="seccion">2. Simplificar fracciones algebraicas</h2>
+      <div class="bloque">
+        <p>El procedimiento tiene tres pasos: factorizar el numerador, factorizar el denominador y cancelar los factores comunes.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1 · Monomios</span>
+          <p>Simplificar 6x² / 9x.</p>
+          <div class="paso"><span class="n">1</span> Se escribe en factores: (3 · 2 · x · x) / (3 · 3 · x).</div>
+          <div class="paso"><span class="n">2</span> Se cancela el 3 y una x.</div>
+          <p><strong>Respuesta:</strong> 2x / 3.</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2 · Con trinomio</span>
+          <p>Simplificar (x² + 5x + 6) / (x + 2).</p>
+          <div class="paso"><span class="n">1</span> Se factoriza el numerador: (x + 2)(x + 3).</div>
+          <div class="paso"><span class="n">2</span> Se cancela el factor común (x + 2).</div>
+          <p><strong>Respuesta:</strong> x + 3.</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 3</span>
+          <p>Simplificar (x² − 4) / (x² − x − 2).</p>
+          <div class="paso"><span class="n">1</span> Numerador: (x + 2)(x − 2). Denominador: (x − 2)(x + 1).</div>
+          <div class="paso"><span class="n">2</span> Se cancela (x − 2).</div>
+          <p><strong>Respuesta:</strong> (x + 2) / (x + 1).</p>
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · Simplificar</h3>
+        <p>Selecciona la forma simplificada.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. 4x² / 6x</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">2x / 3</div>
+            <div class="opcion" data-op="b">2x² / 3</div>
+            <div class="opcion" data-op="c">4x / 6</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. (x² − 1) / (x − 1)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x − 1</div>
+            <div class="opcion" data-op="b">x + 1</div>
+            <div class="opcion" data-op="c">x² − 1</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. (x² + 4x + 4) / (x + 2)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x + 2</div>
+            <div class="opcion" data-op="b">x + 4</div>
+            <div class="opcion" data-op="c">x² + 2</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">3. Valores excluidos del dominio</h2>
+      <div class="bloque">
+        <p>Una fracción nunca puede tener denominador cero. Los <strong>valores excluidos</strong> son los que hacen cero al denominador <strong>original</strong> (antes de cancelar). Para hallarlos se factoriza el denominador y se iguala cada factor a cero.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 4</span>
+          <p>¿Qué valores se excluyen en (x + 1) / (x² − 9)?</p>
+          <div class="paso"><span class="n">1</span> Se factoriza el denominador: (x + 3)(x − 3).</div>
+          <div class="paso"><span class="n">2</span> Se iguala cada factor a cero: x + 3 = 0 o x − 3 = 0.</div>
+          <p><strong>Valores excluidos:</strong> x = −3 y x = 3.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>Los valores excluidos se toman del denominador original:</strong> aunque al simplificar se cancele un factor, los valores que lo anulaban siguen excluidos del dominio. Por eso conviene anotarlos antes de cancelar.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Valores excluidos</h3>
+        <p>Indica los valores que se excluyen del dominio.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. 3 / (x − 5)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x = 5</div>
+            <div class="opcion" data-op="b">x = −5</div>
+            <div class="opcion" data-op="c">x = 3</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. (x + 1) / [(x − 4)(x + 2)]</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x = 4 y x = −2</div>
+            <div class="opcion" data-op="b">x = −4 y x = 2</div>
+            <div class="opcion" data-op="c">x = −1</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. x / (x² − 16)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x = 4 y x = −4</div>
+            <div class="opcion" data-op="b">x = 16</div>
+            <div class="opcion" data-op="c">x = 4 solamente</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">4. El error trampa: factores, no términos</h2>
+      <div class="bloque">
+        <p>Solo se cancelan <strong>factores</strong> (cosas que multiplican a todo), nunca <strong>términos</strong> (cosas que se suman o restan).</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 5 · Bien</span>
+          <p>Simplificar (x + 2) / (x² − 4).</p>
+          <div class="paso"><span class="n">1</span> Se factoriza el denominador: (x + 2)(x − 2).</div>
+          <div class="paso"><span class="n">2</span> (x + 2) es un factor común: se cancela.</div>
+          <p><strong>Respuesta:</strong> 1 / (x − 2).</p>
+        </div>
+
+        <div class="caja-atencion">
+          <strong>Cancelación incorrecta:</strong> en (x + 4) / x <em>no</em> se puede cancelar la x para obtener 4, porque arriba la x está <em>sumada</em> (es un término, no un factor). De igual modo, en (x + 3) / 3 el 3 no es factor de todo el numerador, así que no se cancela. Cancelar términos es el error más común con fracciones algebraicas.
+        </div>
+      </div>
+
+      <h2 class="seccion">5. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas. Cada una se presenta en doble modalidad.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · ¿Qué valores excluyo?</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes simplifican ocho expresiones racionales y, para cada una, identifican los valores excluidos del dominio a partir del denominador original. Comparan resultados en grupo.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante simplifica la lista en un documento compartido, anota los valores excluidos de cada fracción y publica en el chat una donde un valor excluido provenga de un factor que se canceló.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · Cazadores del error</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              El docente presenta simplificaciones con cancelaciones incorrectas de términos. Los estudiantes detectan el error, explican por qué no se puede cancelar y corrigen el procedimiento.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante recibe tres simplificaciones con errores de cancelación, las corrige en una hoja compartida y describe el error en una frase ("se cancelaron términos, no factores").
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · Del número al polinomio</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              En parejas, los estudiantes simplifican primero una fracción numérica (como 12/18) y luego una algebraica del mismo tipo, comprobando que el procedimiento es idéntico: factorizar y cancelar.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo empareja una fracción numérica con una algebraica análoga y muestra los pasos de factorización y cancelación lado a lado.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 5.1</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de simplificación de expresiones racionales:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 10 ejercicios asignados (simplificar e identificar valores excluidos) en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Tres criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con tres criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Factorizar numerador y denominador</td>
+              <td>No logra factorizar.</td>
+              <td>Factoriza uno de los dos o con errores.</td>
+              <td>Factoriza correctamente numerador y denominador.</td>
+              <td>Factoriza con fluidez y reconoce el patrón más eficiente.</td>
+            </tr>
+            <tr>
+              <td>Cancelar solo factores</td>
+              <td>Cancela términos en lugar de factores.</td>
+              <td>Cancela factores, pero a veces confunde términos.</td>
+              <td>Cancela únicamente factores comunes.</td>
+              <td>Cancela con seguridad y justifica por qué no se cancelan términos.</td>
+            </tr>
+            <tr>
+              <td>Identificar valores excluidos</td>
+              <td>No identifica valores excluidos.</td>
+              <td>Identifica algunos, pero omite los del factor cancelado.</td>
+              <td>Identifica todos los valores excluidos del dominio.</td>
+              <td>Identifica todos y los anota antes de cancelar de forma sistemática.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre y enlace con la próxima lección</h2>
+        <p>En esta lección se aprendió a <strong>simplificar expresiones racionales</strong> factorizando y cancelando solo factores comunes, y a identificar los <strong>valores excluidos</strong> del dominio.</p>
+        <p>En la <strong>Lección 5.2 · Sumar, restar, multiplicar y dividir expresiones racionales</strong> se operará con estas fracciones algebraicas: multiplicar (factorizar y cancelar), dividir (multiplicar por el recíproco) y sumar o restar con denominador común y con denominadores diferentes, siempre por analogía con las fracciones numéricas.</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 5.1 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        var preguntasQuiz = [
+          {enun: '1. Simplifica 8x³ / 12x.', ops: ['2x³ / 3', '2x² / 3', '8x² / 12', '4x² / 6'], correcta: 1},
+          {enun: '2. Simplifica (x² − 9) / (x + 3).', ops: ['x + 3', 'x − 3', 'x − 9', 'x² − 3'], correcta: 1},
+          {enun: '3. Simplifica (x + 2) / (x² − 4).', ops: ['1 / (x + 2)', 'x − 2', '1 / (x − 2)', '(x + 2) / (x − 2)'], correcta: 2},
+          {enun: '4. Simplifica (x² + 5x + 6) / (x + 2).', ops: ['x + 3', 'x + 2', 'x + 5', 'x² + 3'], correcta: 0},
+          {enun: '5. ¿Qué valor se excluye en 5 / (x − 7)?', ops: ['7', '−7', '5', '0'], correcta: 0},
+          {enun: '6. ¿Qué valores se excluyen en (x + 1) / (x² − 9)?', ops: ['x = 3 y x = −3', 'x = 9', 'x = −1', 'x = 3 solamente'], correcta: 0},
+          {enun: '7. ¿Qué valores se excluyen en x / [(x − 2)(x + 5)]?', ops: ['x = 2 y x = −5', 'x = −2 y x = 5', 'x = 0', 'x = 2 solamente'], correcta: 0},
+          {enun: '8. Al simplificar (x + 3) / (x² + x − 6), ¿qué valores hay que excluir?', ops: ['x = 2 solamente', 'x = 2 y x = −3', 'x = −3 solamente', 'x = 3 y x = −2'], correcta: 1},
+          {enun: '9. ¿Es correcto cancelar la x en (x + 4) / x para obtener 4?', ops: ['No, no se cancelan términos en una suma', 'Sí, queda 4', 'Sí, queda x + 4', 'Sí, siempre'], correcta: 0},
+          {enun: '10. ¿Se puede cancelar el 3 en (x + 3) / 3?', ops: ['Sí, queda x', 'No, el 3 no es factor de todo el numerador', 'Sí, queda x + 1', 'Sí, queda x / 3'], correcta: 1}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 7) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Puedes continuar a la Lección 5.2.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. Repasa la lección e intenta de nuevo (se requieren 7).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>

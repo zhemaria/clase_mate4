@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 4.3 · La fórmula cuadrática, el discriminante y aplicaciones</title>
+    <style>
+      :root {
+        --tema: #880e4f;
+        --tema-d: #5d0935;
+        --tema-bg: #fce4ec;
+        --tema-bg2: #f8bbd0;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #5d0935 0%, #880e4f 55%, #ad1457 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(93, 9, 53, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 25px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffebee; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #546e7a; }
+      .btn.sec:hover { background: #37474f; }
+
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #ffebee; color: #b71c1c; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #263238; color: #eceff1; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 4 · Ecuaciones cuadráticas</div>
+        <h1>Lección 4.3 · La fórmula cuadrática, el discriminante y aplicaciones</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Aplicar la fórmula cuadrática para resolver cualquier ecuación cuadrática.</li>
+          <li>Identificar correctamente los valores de a, b y c.</li>
+          <li>Usar el discriminante (b² − 4ac) para predecir el número de soluciones reales.</li>
+          <li>Resolver problemas aplicados e interpretar las soluciones en su contexto.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con la lección anterior.</strong> En la Lección 4.2 se vio que completar el cuadrado en la ecuación general produce la <strong>fórmula cuadrática</strong>. Ahora se usará esa fórmula directamente: con ella se resuelve <em>cualquier</em> ecuación cuadrática, se factorice o no. En esta lección se permite el uso de la <strong>calculadora</strong> y de la <strong>hoja de fórmulas del GED</strong>.</p>
+      </div>
+
+      <h2 class="seccion">1. La fórmula cuadrática</h2>
+      <div class="bloque">
+        <p>Para cualquier ecuación en forma estándar ax² + bx + c = 0, las soluciones son:</p>
+        <p class="formula">x = (−b ± √(b² − 4ac)) / 2a</p>
+        <p>El primer paso siempre es <strong>identificar a, b y c</strong> con sus signos. Por ejemplo, en 2x² − 4x − 3 = 0: a = 2, b = −4, c = −3.</p>
+
+        <div class="caja-atencion">
+          <strong>Cuida los signos de b y c:</strong> el valor de b incluye su signo. En −b, un b negativo se vuelve positivo. Sustituir con paréntesis —por ejemplo (−4)²— evita los errores de signo más frecuentes.
+        </div>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de la fórmula cuadrática -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo de la fórmula cuadrática y el discriminante en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Introduce a, b y c, observa el discriminante y obtén las soluciones paso a paso con la fórmula cuadrática en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <h2 class="seccion">2. El discriminante: ¿cuántas soluciones?</h2>
+      <div class="bloque">
+        <p>La parte de la fórmula que está dentro de la raíz, <strong>b² − 4ac</strong>, se llama <strong>discriminante</strong>. Su signo revela cuántas soluciones reales tiene la ecuación <em>antes</em> de resolverla:</p>
+
+        <table class="reglas">
+          <caption class="sr-only">Relación entre el signo del discriminante y el número de soluciones reales.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Discriminante b² − 4ac</th>
+              <th scope="col">Número de soluciones reales</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>mayor que 0</td><td>2 soluciones distintas</td></tr>
+            <tr><td>igual a 0</td><td>1 solución (doble)</td></tr>
+            <tr><td>menor que 0</td><td>0 soluciones reales</td></tr>
+          </tbody>
+        </table>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1</span>
+          <p>¿Cuántas soluciones tiene x² + 3x + 5 = 0?</p>
+          <div class="paso"><span class="n">1</span> a = 1, b = 3, c = 5.</div>
+          <div class="paso"><span class="n">2</span> Discriminante: (3)² − 4(1)(5) = 9 − 20 = −11.</div>
+          <div class="paso"><span class="n">3</span> Como −11 &lt; 0, no hay soluciones reales.</div>
+          <p><strong>Respuesta:</strong> ninguna solución real.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>Calcula el discriminante primero:</strong> antes de resolver, pregúntate "¿cuántas soluciones espero?". Así sabrás si la ecuación tiene dos, una o ninguna, y detectarás errores si tu resultado no coincide con esa predicción.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · El discriminante</h3>
+        <p>Calcula b² − 4ac e indica el número de soluciones reales.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. x² − 5x + 6 = 0 (discriminante y soluciones)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">1 → 2 soluciones</div>
+            <div class="opcion" data-op="b">0 → 1 solución</div>
+            <div class="opcion" data-op="c">−1 → ninguna</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. x² − 6x + 9 = 0 (discriminante y soluciones)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">36 → 2 soluciones</div>
+            <div class="opcion" data-op="b">0 → 1 solución</div>
+            <div class="opcion" data-op="c">−36 → ninguna</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="c">
+          <div class="enun">3. 2x² + x + 4 = 0 (discriminante y soluciones)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">33 → 2 soluciones</div>
+            <div class="opcion" data-op="b">0 → 1 solución</div>
+            <div class="opcion" data-op="c">−31 → ninguna</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">3. Resolver con la fórmula</h2>
+      <div class="bloque">
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2 · Soluciones enteras</span>
+          <p>Resolver x² + 5x + 6 = 0 con la fórmula.</p>
+          <div class="paso"><span class="n">1</span> a = 1, b = 5, c = 6.</div>
+          <div class="paso"><span class="n">2</span> Discriminante: 5² − 4(1)(6) = 25 − 24 = 1.</div>
+          <div class="paso"><span class="n">3</span> x = (−5 ± √1) / 2 = (−5 ± 1) / 2.</div>
+          <div class="paso"><span class="n">4</span> x = −2 o x = −3.</div>
+          <p><strong>Soluciones:</strong> x = −2 y x = −3.</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 3 · Con calculadora (raíz no exacta)</span>
+          <p>Resolver 2x² − 4x − 3 = 0.</p>
+          <div class="paso"><span class="n">1</span> a = 2, b = −4, c = −3.</div>
+          <div class="paso"><span class="n">2</span> Discriminante: (−4)² − 4(2)(−3) = 16 + 24 = 40.</div>
+          <div class="paso"><span class="n">3</span> x = (4 ± √40) / 4. Con calculadora, √40 ≈ 6.32.</div>
+          <div class="paso"><span class="n">4</span> x ≈ (4 + 6.32) / 4 ≈ 2.58 o x ≈ (4 − 6.32) / 4 ≈ −0.58.</div>
+          <p><strong>Soluciones (aproximadas):</strong> x ≈ 2.58 y x ≈ −0.58.</p>
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Resolver con la fórmula</h3>
+        <p>Selecciona las soluciones correctas.</p>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">1. x² + 7x + 10 = 0</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x = 2 y x = 5</div>
+            <div class="opcion" data-op="b">x = −2 y x = −5</div>
+            <div class="opcion" data-op="c">x = −2 y x = 5</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. x² − 3x − 10 = 0</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x = 5 y x = −2</div>
+            <div class="opcion" data-op="b">x = −5 y x = 2</div>
+            <div class="opcion" data-op="c">x = 5 y x = 2</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. x² − 2x − 1 = 0 (usa calculadora)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x ≈ 1.41 y x ≈ −1.41</div>
+            <div class="opcion" data-op="b">x ≈ 2.41 y x ≈ −0.41</div>
+            <div class="opcion" data-op="c">x = 1 solamente</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">4. Aplicación: la trayectoria de un proyectil</h2>
+      <div class="bloque">
+        <p>Las funciones cuadráticas modelan la altura de un objeto lanzado al aire. Si h(t) es la altura (en pies) a los t segundos, resolver h(t) = 0 indica cuándo toca el suelo, y resolver h(t) = un valor indica cuándo alcanza esa altura.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 4</span>
+          <p>Una pelota se lanza y su altura es h(t) = −16t² + 96t + 5. ¿Cuándo toca el suelo? (usar calculadora)</p>
+          <div class="paso"><span class="n">1</span> Tocar el suelo significa h(t) = 0: −16t² + 96t + 5 = 0.</div>
+          <div class="paso"><span class="n">2</span> a = −16, b = 96, c = 5.</div>
+          <div class="paso"><span class="n">3</span> Discriminante: 96² − 4(−16)(5) = 9216 + 320 = 9536. √9536 ≈ 97.65.</div>
+          <div class="paso"><span class="n">4</span> t = (−96 ± 97.65) / (−32).</div>
+          <div class="paso"><span class="n">5</span> Se descarta la raíz negativa; queda t ≈ 6.05.</div>
+          <p><strong>Respuesta:</strong> la pelota toca el suelo a los 6.05 segundos, aproximadamente.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>Interpreta el contexto:</strong> en problemas de tiempo y altura, las soluciones negativas no tienen sentido (el tiempo no es negativo). La solución válida es la que corresponde a la situación real descrita.
+        </div>
+      </div>
+
+      <h2 class="seccion">5. Tres métodos: ¿cuál conviene?</h2>
+      <div class="bloque">
+        <p>Ya se conocen tres formas de resolver una ecuación cuadrática. Saber elegir ahorra tiempo:</p>
+        <table class="reglas">
+          <caption class="sr-only">Comparación de los tres métodos para resolver ecuaciones cuadráticas y cuándo conviene cada uno.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Método</th>
+              <th scope="col">¿Cuándo conviene?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Factorización</td><td>Cuando el trinomio se factoriza fácilmente con enteros.</td></tr>
+            <tr><td>Completar el cuadrado</td><td>Cuando a = 1 y b es par; útil para entender la estructura.</td></tr>
+            <tr><td>Fórmula cuadrática</td><td>Siempre funciona; ideal cuando no se factoriza o las raíces no son enteras.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="seccion">6. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas, con calculadora y hoja de fórmulas. Cada una se presenta en doble modalidad.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · El proyectil</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Con h(t) = −16t² + 96t + 5, los estudiantes calculan cuándo la pelota toca el suelo y cuándo alcanza 120 pies, interpretando las soluciones en el contexto del lanzamiento.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante resuelve el problema del proyectil en un documento compartido y publica en el chat la interpretación de cada solución en segundos.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · ¿Cuántas soluciones espero?</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Antes de resolver, los estudiantes clasifican seis ecuaciones según el discriminante (dos, una o ninguna solución) y luego comprueban su predicción resolviendo con la fórmula.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante calcula el discriminante de las seis ecuaciones en una hoja compartida, predice el número de soluciones y verifica resolviendo las que tengan solución real.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · El método más eficiente</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              El grupo recibe una lista mixta y, para cada ecuación, decide y justifica qué método conviene: factorización o fórmula. Luego la resuelve por el método elegido.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo etiqueta cada ecuación con el método más eficiente, la resuelve y comenta por qué esa elección ahorró tiempo.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 4.3</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Doce preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 8 respuestas correctas. Se permite calculadora y hoja de fórmulas.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de fórmula cuadrática y discriminante:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 10 ejercicios asignados (fórmula cuadrática, discriminante y aplicaciones) en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Identificar a, b, c</td>
+              <td>Confunde los coeficientes o sus signos.</td>
+              <td>Identifica a, b, c pero con un error de signo.</td>
+              <td>Identifica a, b, c correctamente con sus signos.</td>
+              <td>Identifica los coeficientes con seguridad en cualquier forma de la ecuación.</td>
+            </tr>
+            <tr>
+              <td>Calcular e interpretar el discriminante</td>
+              <td>No calcula el discriminante.</td>
+              <td>Lo calcula, pero interpreta mal el número de soluciones.</td>
+              <td>Calcula b² − 4ac e interpreta el número de soluciones.</td>
+              <td>Usa el discriminante para anticipar y verificar el resultado.</td>
+            </tr>
+            <tr>
+              <td>Aplicar la fórmula</td>
+              <td>Sustituye con errores que invalidan el resultado.</td>
+              <td>Aplica la fórmula con errores de signo o de cálculo.</td>
+              <td>Aplica la fórmula completa sin errores de sustitución.</td>
+              <td>Resuelve con fluidez, incluso con raíces no exactas y calculadora.</td>
+            </tr>
+            <tr>
+              <td>Resolver e interpretar aplicaciones</td>
+              <td>No plantea ni interpreta el problema.</td>
+              <td>Plantea el problema, pero no interpreta las soluciones.</td>
+              <td>Resuelve el problema e interpreta las soluciones en contexto.</td>
+              <td>Modela, resuelve e interpreta con precisión, descartando lo imposible.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre del Tema 4 y enlace con el próximo tema</h2>
+        <p>Con esta lección se cierra el <strong>Tema 4 · Ecuaciones cuadráticas</strong>. Se dominaron los tres métodos de resolución —factorización, completar el cuadrado y la <strong>fórmula cuadrática</strong>—, el uso del <strong>discriminante</strong> para predecir el número de soluciones y el modelado de situaciones reales como la trayectoria de un proyectil.</p>
+        <p>El <strong>Tema 5 · Expresiones racionales complejas</strong> comienza con la <strong>Lección 5.1 · Simplificar expresiones racionales: factorizar y cancelar</strong>. Toda la destreza de factorización del Tema 3 volverá a ser protagonista: ahora servirá para simplificar fracciones con polinomios e identificar los valores excluidos del dominio. ¡Excelente trabajo!</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 4.3 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        var preguntasQuiz = [
+          {enun: '1. En 3x² − 2x + 1 = 0, ¿cuánto valen a, b y c?', ops: ['a = 3, b = −2, c = 1', 'a = 3, b = 2, c = 1', 'a = 3, b = −2, c = −1', 'a = −3, b = 2, c = 1'], correcta: 0},
+          {enun: '2. Discriminante de x² − 5x + 6 = 0 y número de soluciones.', ops: ['1 → 2 soluciones', '0 → 1 solución', '−1 → ninguna', '49 → 2 soluciones'], correcta: 0},
+          {enun: '3. Discriminante de x² + 4x + 4 = 0 y número de soluciones.', ops: ['16 → 2 soluciones', '0 → 1 solución', '−16 → ninguna', '8 → 2 soluciones'], correcta: 1},
+          {enun: '4. Discriminante de x² + x + 3 = 0 y número de soluciones.', ops: ['13 → 2 soluciones', '0 → 1 solución', '−11 → ninguna', '11 → 2 soluciones'], correcta: 2},
+          {enun: '5. Resuelve x² + 5x + 6 = 0 con la fórmula.', ops: ['x = 2 y x = 3', 'x = −2 y x = −3', 'x = −1 y x = −6', 'x = 2 y x = −3'], correcta: 1},
+          {enun: '6. Resuelve x² + 7x + 10 = 0.', ops: ['x = 2 y x = 5', 'x = −2 y x = −5', 'x = −2 y x = 5', 'x = 2 y x = −5'], correcta: 1},
+          {enun: '7. Resuelve x² − 3x − 10 = 0.', ops: ['x = −5 y x = 2', 'x = 5 y x = −2', 'x = 5 y x = 2', 'x = −5 y x = −2'], correcta: 1},
+          {enun: '8. Resuelve x² − 6x + 9 = 0.', ops: ['x = 3 (solución doble)', 'x = 3 y x = −3', 'x = 9 y x = 1', 'ninguna solución'], correcta: 0},
+          {enun: '9. Resuelve 2x² + 5x − 3 = 0.', ops: ['x = 1/2 y x = −3', 'x = −1/2 y x = 3', 'x = 1/2 y x = 3', 'x = −1/2 y x = −3'], correcta: 0},
+          {enun: '10. Una pelota tiene altura h(t) = −16t² + 32t. ¿Cuándo toca el suelo (h = 0)?', ops: ['a los 2 segundos', 'a los 16 segundos', 'a los 32 segundos', 'a 1 segundo'], correcta: 0},
+          {enun: '11. El producto de dos números enteros consecutivos es 12. Si el menor es x, la ecuación es x² + x − 12 = 0. ¿Cuál es el menor positivo?', ops: ['2', '3', '4', '6'], correcta: 1},
+          {enun: '12. ¿Qué método es el más seguro cuando una ecuación no se factoriza con enteros?', ops: ['Adivinar', 'La fórmula cuadrática', 'Factor común', 'Dividir entre x'], correcta: 1}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 8) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 12 correctas. ¡Aprobado! Has completado el Tema 4; puedes continuar al Tema 5.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 12 correctas. Repasa la lección e intenta de nuevo (se requieren 8).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>

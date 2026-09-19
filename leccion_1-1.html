@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 1.1 · El plano cartesiano: pares ordenados, distancia y punto medio</title>
+    <style>
+      :root {
+        --tema: #1a237e;
+        --tema-d: #10174f;
+        --tema-bg: #e8eaf6;
+        --tema-bg2: #c5cae9;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #10174f 0%, #1a237e 55%, #283593 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(16, 23, 79, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 25px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      /* Bloque de enlace al interactivo */
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffebee; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .campo-num {
+        font-size: 16px; padding: 7px 10px; border: 2px solid #cfcfcf;
+        border-radius: 7px; width: 130px; font-family: inherit;
+      }
+      .campo-num:focus { border-color: var(--tema); outline: none; }
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #546e7a; }
+      .btn.sec:hover { background: #37474f; }
+
+      /* Botón de plataforma externa (ThatQuiz / MyOpenMath) */
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      /* Quiz dentro de acordeón */
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #ffebee; color: #b71c1c; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #263238; color: #eceff1; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 1 · Geometría analítica</div>
+        <h1>Lección 1.1 · El plano cartesiano: pares ordenados, distancia y punto medio</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Graficar pares ordenados en los cuatro cuadrantes del plano cartesiano.</li>
+          <li>Calcular la distancia entre dos puntos con la fórmula derivada del Teorema de Pitágoras.</li>
+          <li>Calcular el punto medio de un segmento.</li>
+          <li>Identificar figuras geométricas en el plano de coordenadas y calcular su perímetro.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con el nivel anterior.</strong> En el Nivel 3 se estudió el Teorema de Pitágoras (a² + b² = c²) para hallar el lado desconocido de un triángulo rectángulo. Esta lección abre el Nivel 4 aplicando ese mismo teorema a un contexto nuevo: el <strong>plano cartesiano</strong>. La fórmula de la distancia entre dos puntos no es una fórmula nueva que memorizar, sino el Teorema de Pitágoras escrito con coordenadas. Con esta base se construirá, en las próximas lecciones, todo el estudio de la recta y de las funciones.</p>
+      </div>
+
+      <h2 class="seccion">1. El plano cartesiano y los pares ordenados</h2>
+      <div class="bloque">
+        <p>El <strong>plano cartesiano</strong> está formado por dos rectas numéricas perpendiculares: el <strong>eje x</strong> (horizontal) y el <strong>eje y</strong> (vertical). Se cruzan en el <strong>origen</strong> (0, 0). Cada punto se localiza con un <strong>par ordenado</strong> (x, y): primero se cuenta horizontalmente (x) y después verticalmente (y).</p>
+        <p>Los ejes dividen el plano en cuatro <strong>cuadrantes</strong>, numerados con números romanos en sentido contrario a las manecillas del reloj a partir de la esquina superior derecha.</p>
+
+        <div class="diagrama-wrap">
+          <svg width="360" height="360" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plano cartesiano con el eje x horizontal y el eje y vertical cruzándose en el origen. El cuadrante uno está arriba a la derecha, donde x y y son positivos; el dos arriba a la izquierda, con x negativo y y positivo; el tres abajo a la izquierda, con ambos negativos; y el cuatro abajo a la derecha, con x positivo y y negativo. Se muestran cuatro puntos de ejemplo: A en tres coma dos, B en menos cuatro coma tres, C en menos dos coma menos tres y D en cuatro coma menos dos.">
+            <g stroke="#e0e0e0" stroke-width="1">
+              <line x1="60" y1="36" x2="60" y2="324" /><line x1="84" y1="36" x2="84" y2="324" />
+              <line x1="108" y1="36" x2="108" y2="324" /><line x1="132" y1="36" x2="132" y2="324" />
+              <line x1="156" y1="36" x2="156" y2="324" /><line x1="204" y1="36" x2="204" y2="324" />
+              <line x1="228" y1="36" x2="228" y2="324" /><line x1="252" y1="36" x2="252" y2="324" />
+              <line x1="276" y1="36" x2="276" y2="324" /><line x1="300" y1="36" x2="300" y2="324" />
+              <line x1="36" y1="60" x2="324" y2="60" /><line x1="36" y1="84" x2="324" y2="84" />
+              <line x1="36" y1="108" x2="324" y2="108" /><line x1="36" y1="132" x2="324" y2="132" />
+              <line x1="36" y1="156" x2="324" y2="156" /><line x1="36" y1="204" x2="324" y2="204" />
+              <line x1="36" y1="228" x2="324" y2="228" /><line x1="36" y1="252" x2="324" y2="252" />
+              <line x1="36" y1="276" x2="324" y2="276" /><line x1="36" y1="300" x2="324" y2="300" />
+            </g>
+            <line x1="30" y1="180" x2="330" y2="180" stroke="#10174f" stroke-width="2.5" />
+            <line x1="180" y1="330" x2="180" y2="30" stroke="#10174f" stroke-width="2.5" />
+            <polygon points="330,180 320,175 320,185" fill="#10174f" />
+            <polygon points="180,30 175,40 185,40" fill="#10174f" />
+            <g font-family="Segoe UI, sans-serif" font-size="14" fill="#10174f" font-weight="700">
+              <text x="334" y="184">x</text>
+              <text x="176" y="26">y</text>
+            </g>
+            <g font-family="Segoe UI, sans-serif" font-size="15" fill="#9e9e9e" font-style="italic">
+              <text x="250" y="78">I</text>
+              <text x="104" y="78">II</text>
+              <text x="100" y="290">III</text>
+              <text x="248" y="290">IV</text>
+            </g>
+            <g fill="#1a237e">
+              <circle cx="252" cy="132" r="5" /><circle cx="84" cy="108" r="5" />
+              <circle cx="132" cy="252" r="5" /><circle cx="276" cy="228" r="5" />
+            </g>
+            <g font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1a237e">
+              <text x="258" y="128">A(3, 2)</text>
+              <text x="20" y="104">B(−4, 3)</text>
+              <text x="74" y="270">C(−2, −3)</text>
+              <text x="284" y="224">D(4, −2)</text>
+            </g>
+          </svg>
+        </div>
+
+        <table class="reglas">
+          <caption class="sr-only">Signo de las coordenadas según el cuadrante del plano cartesiano.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Cuadrante</th>
+              <th scope="col">Signo de x</th>
+              <th scope="col">Signo de y</th>
+              <th scope="col">Ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>I</td><td>positivo (+)</td><td>positivo (+)</td><td>(3, 2)</td></tr>
+            <tr><td>II</td><td>negativo (−)</td><td>positivo (+)</td><td>(−4, 3)</td></tr>
+            <tr><td>III</td><td>negativo (−)</td><td>negativo (−)</td><td>(−2, −3)</td></tr>
+            <tr><td>IV</td><td>positivo (+)</td><td>negativo (−)</td><td>(4, −2)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="caja-atencion">
+          <strong>Cuidado con el orden:</strong> el par (3, 2) no es lo mismo que (2, 3). En (x, y) la primera coordenada siempre indica el desplazamiento horizontal y la segunda, el vertical. Un punto sobre el eje x tiene la forma (x, 0); uno sobre el eje y tiene la forma (0, y).
+        </div>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo del plano cartesiano -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo del plano cartesiano en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Practica la lectura y el trazado de pares ordenados, y la distancia y el punto medio entre dos puntos en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <h2 class="seccion">2. La distancia entre dos puntos</h2>
+      <div class="bloque">
+        <p>Para hallar la distancia entre dos puntos se forma, de manera natural, un triángulo rectángulo: la diferencia horizontal de las coordenadas (Δx) es un cateto, la diferencia vertical (Δy) es el otro, y la distancia buscada es la hipotenusa. Por el Teorema de Pitágoras:</p>
+        <p class="formula">d = √[(x₂ − x₁)² + (y₂ − y₁)²]</p>
+
+        <div class="diagrama-wrap">
+          <svg width="360" height="320" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dos puntos en el plano, P en uno coma dos y Q en cuatro coma seis. Desde P se traza un cateto horizontal de longitud tres hasta el punto cuatro coma dos, y desde ahí un cateto vertical de longitud cuatro hasta Q. La hipotenusa que une P con Q es la distancia, igual a cinco.">
+            <g stroke="#e0e0e0" stroke-width="1">
+              <line x1="40" y1="280" x2="40" y2="40" /><line x1="76" y1="280" x2="76" y2="40" />
+              <line x1="112" y1="280" x2="112" y2="40" /><line x1="148" y1="280" x2="148" y2="40" />
+              <line x1="184" y1="280" x2="184" y2="40" /><line x1="220" y1="280" x2="220" y2="40" />
+              <line x1="256" y1="280" x2="256" y2="40" /><line x1="292" y1="280" x2="292" y2="40" />
+              <line x1="40" y1="280" x2="320" y2="280" /><line x1="40" y1="244" x2="320" y2="244" />
+              <line x1="40" y1="208" x2="320" y2="208" /><line x1="40" y1="172" x2="320" y2="172" />
+              <line x1="40" y1="136" x2="320" y2="136" /><line x1="40" y1="100" x2="320" y2="100" />
+              <line x1="40" y1="64" x2="320" y2="64" />
+            </g>
+            <line x1="40" y1="280" x2="320" y2="280" stroke="#10174f" stroke-width="2" />
+            <line x1="40" y1="280" x2="40" y2="40" stroke="#10174f" stroke-width="2" />
+            <polygon points="76,208 184,208 184,64" fill="#c5cae9" opacity="0.55" />
+            <line x1="76" y1="208" x2="184" y2="208" stroke="#00695c" stroke-width="3" />
+            <line x1="184" y1="208" x2="184" y2="64" stroke="#00695c" stroke-width="3" />
+            <line x1="76" y1="208" x2="184" y2="64" stroke="#1a237e" stroke-width="3.5" />
+            <rect x="160" y="184" width="24" height="24" fill="none" stroke="#00695c" stroke-width="2" />
+            <g fill="#1a237e"><circle cx="76" cy="208" r="5" /><circle cx="184" cy="64" r="5" /></g>
+            <g font-family="Segoe UI, sans-serif" font-size="13" font-weight="700">
+              <text x="44" y="226" fill="#1a237e">P(1, 2)</text>
+              <text x="190" y="60" fill="#1a237e">Q(4, 6)</text>
+              <text x="112" y="226" fill="#00695c" text-anchor="middle">Δx = 3</text>
+              <text x="220" y="140" fill="#00695c">Δy = 4</text>
+              <text x="108" y="120" fill="#10174f" font-size="15">d = 5</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1 · Distancia con catetos 3 y 4</span>
+          <p>Hallar la distancia entre P(1, 2) y Q(4, 6).</p>
+          <div class="paso"><span class="n">1</span> Se calculan las diferencias: x₂ − x₁ = 4 − 1 = 3 y y₂ − y₁ = 6 − 2 = 4.</div>
+          <div class="paso"><span class="n">2</span> Se sustituye: d = √(3² + 4²) = √(9 + 16).</div>
+          <div class="paso"><span class="n">3</span> Se suma y se saca la raíz: d = √25 = 5.</div>
+          <p><strong>Respuesta:</strong> la distancia es 5 unidades.</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2 · Con coordenadas negativas</span>
+          <p>Hallar la distancia entre A(−2, 1) y B(3, 13).</p>
+          <div class="paso"><span class="n">1</span> Diferencias: 3 − (−2) = 5 y 13 − 1 = 12.</div>
+          <div class="paso"><span class="n">2</span> Sustitución: d = √(5² + 12²) = √(25 + 144) = √169.</div>
+          <div class="paso"><span class="n">3</span> Raíz: d = 13.</div>
+          <p><strong>Respuesta:</strong> la distancia es 13 unidades.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>El orden de la resta no afecta el resultado:</strong> como las diferencias se elevan al cuadrado, da igual restar (x₂ − x₁) o (x₁ − x₂). El cuadrado convierte cualquier resultado en positivo.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · Calcular la distancia</h3>
+        <p>Selecciona la distancia correcta entre cada par de puntos.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. Entre (0, 0) y (3, 4).</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">5</div>
+            <div class="opcion" data-op="b">7</div>
+            <div class="opcion" data-op="c">25</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. Entre (1, 1) y (1, 6).</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">6</div>
+            <div class="opcion" data-op="b">5</div>
+            <div class="opcion" data-op="c">7</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">3. Entre (−1, 2) y (2, 6).</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">4</div>
+            <div class="opcion" data-op="b">5</div>
+            <div class="opcion" data-op="c">25</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">3. El punto medio de un segmento</h2>
+      <div class="bloque">
+        <p>El <strong>punto medio</strong> es el punto que está exactamente a la mitad del segmento que une dos puntos. Su coordenada x es el <strong>promedio</strong> de las dos coordenadas x, y su coordenada y es el promedio de las dos coordenadas y:</p>
+        <p class="formula">M = ( (x₁ + x₂)/2 , (y₁ + y₂)/2 )</p>
+
+        <div class="diagrama-wrap">
+          <svg width="360" height="220" viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Segmento que une el punto A en uno coma uno con el punto B en siete coma cinco. El punto medio M está en cuatro coma tres, justo en el centro del segmento, porque cuatro es el promedio de uno y siete, y tres es el promedio de uno y cinco.">
+            <g stroke="#e0e0e0" stroke-width="1">
+              <line x1="30" y1="190" x2="330" y2="190" /><line x1="30" y1="150" x2="330" y2="150" />
+              <line x1="30" y1="110" x2="330" y2="110" /><line x1="30" y1="70" x2="330" y2="70" />
+              <line x1="30" y1="30" x2="330" y2="30" />
+            </g>
+            <line x1="30" y1="190" x2="330" y2="190" stroke="#10174f" stroke-width="2" />
+            <line x1="30" y1="200" x2="30" y2="20" stroke="#10174f" stroke-width="2" />
+            <line x1="66" y1="150" x2="282" y2="30" stroke="#1a237e" stroke-width="3" />
+            <g fill="#1a237e"><circle cx="66" cy="150" r="5" /><circle cx="282" cy="30" r="5" /></g>
+            <circle cx="174" cy="90" r="6" fill="#00695c" />
+            <g font-family="Segoe UI, sans-serif" font-size="13" font-weight="700">
+              <text x="40" y="168" fill="#1a237e">A(1, 1)</text>
+              <text x="244" y="24" fill="#1a237e">B(7, 5)</text>
+              <text x="182" y="86" fill="#00695c">M(4, 3)</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 3 · Punto medio</span>
+          <p>Hallar el punto medio del segmento que une A(2, 4) y B(8, 10).</p>
+          <div class="paso"><span class="n">1</span> Promedio de las x: (2 + 8) / 2 = 10 / 2 = 5.</div>
+          <div class="paso"><span class="n">2</span> Promedio de las y: (4 + 10) / 2 = 14 / 2 = 7.</div>
+          <p><strong>Respuesta:</strong> el punto medio es M(5, 7).</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 4 · Hallar un extremo a partir del punto medio</span>
+          <p>El punto medio de un segmento es M(4, 3) y uno de sus extremos es A(2, 1). ¿Cuál es el otro extremo B(x, y)?</p>
+          <div class="paso"><span class="n">1</span> Para la x: (2 + x)/2 = 4, entonces 2 + x = 8, de donde x = 6.</div>
+          <div class="paso"><span class="n">2</span> Para la y: (1 + y)/2 = 3, entonces 1 + y = 6, de donde y = 5.</div>
+          <p><strong>Respuesta:</strong> el otro extremo es B(6, 5).</p>
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Calcular el punto medio</h3>
+        <p>Selecciona el punto medio correcto de cada segmento.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. Entre (2, 2) y (6, 8).</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(4, 5)</div>
+            <div class="opcion" data-op="b">(8, 10)</div>
+            <div class="opcion" data-op="c">(4, 4)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. Entre (0, 0) y (10, 4).</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(5, 2)</div>
+            <div class="opcion" data-op="b">(10, 4)</div>
+            <div class="opcion" data-op="c">(5, 4)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. Entre (−4, 2) y (2, −6).</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">(−1, −2)</div>
+            <div class="opcion" data-op="b">(−2, −4)</div>
+            <div class="opcion" data-op="c">(3, 4)</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">4. Figuras en el plano: el perímetro</h2>
+      <div class="bloque">
+        <p>Cuando los vértices de una figura se dan como puntos del plano, la fórmula de la distancia permite medir cada lado y sumarlos para obtener el <strong>perímetro</strong>.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 5 · Perímetro de un triángulo</span>
+          <p>Un triángulo tiene vértices en A(0, 0), B(3, 0) y C(0, 4). Calcular su perímetro.</p>
+          <div class="paso"><span class="n">1</span> Lado AB (horizontal): d = √[(3 − 0)² + (0 − 0)²] = √9 = 3.</div>
+          <div class="paso"><span class="n">2</span> Lado AC (vertical): d = √[(0 − 0)² + (4 − 0)²] = √16 = 4.</div>
+          <div class="paso"><span class="n">3</span> Lado BC (inclinado): d = √[(0 − 3)² + (4 − 0)²] = √(9 + 16) = √25 = 5.</div>
+          <div class="paso"><span class="n">4</span> Perímetro: 3 + 4 + 5 = 12.</div>
+          <p><strong>Respuesta:</strong> el perímetro es 12 unidades.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>Atajo útil:</strong> cuando dos puntos comparten la misma coordenada x, el segmento es vertical y su longitud es la diferencia de las y. Si comparten la misma y, es horizontal y su longitud es la diferencia de las x. Solo los lados inclinados requieren la fórmula completa.
+        </div>
+      </div>
+
+      <h2 class="seccion">5. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas. Cada una se presenta en doble modalidad: una versión para el aula presencial y otra para la sesión en línea.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · El plano de la ciudad</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Sobre un mapa de coordenadas de una ciudad ficticia proyectado en la pizarra, el docente marca la biblioteca, el hospital y dos escuelas. Los estudiantes determinan a qué distancia está la biblioteca del hospital y cuál es el punto exacto entre las dos escuelas, mostrando los cálculos en sus cuadernos.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En una pizarra compartida, cada estudiante recibe las coordenadas de dos lugares de la ciudad, calcula la distancia entre ellos y publica en el chat el resultado junto con las diferencias Δx y Δy que lo justifican.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · El triángulo en el plano</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              En parejas, los estudiantes grafican un triángulo con tres puntos dados, miden cada lado con la fórmula de la distancia y calculan el perímetro. Un voluntario explica en la pizarra cuál lado pudo calcularse sin la fórmula completa y por qué.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo grafica el triángulo en una herramienta de cuadrícula compartida, reparte los tres lados entre sus integrantes y reúne los resultados para verificar el perímetro total.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · El extremo perdido</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              El docente plantea varios casos en los que se conocen el punto medio y un extremo, y se pide hallar el otro. Los estudiantes resuelven en la pizarra mostrando cómo la fórmula del promedio se "deshace" para encontrar la coordenada que falta.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante recibe un punto medio y un extremo distintos, halla el extremo que falta y verifica su respuesta calculando de nuevo el punto medio con los dos extremos, comprobando que coincide.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 1.1</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas. Se permite calculadora.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de coordenadas y distancia:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 10 ejercicios asignados en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Tres criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con tres criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Graficar pares ordenados</td>
+              <td>Invierte las coordenadas o confunde los cuadrantes.</td>
+              <td>Grafica con errores ocasionales de signo o de cuadrante.</td>
+              <td>Grafica correctamente pares ordenados en los cuatro cuadrantes.</td>
+              <td>Grafica con fluidez e identifica el cuadrante a partir de los signos sin vacilar.</td>
+            </tr>
+            <tr>
+              <td>Aplicar la fórmula de distancia</td>
+              <td>No plantea la fórmula o suma las coordenadas sin elevarlas al cuadrado.</td>
+              <td>Aplica la fórmula con errores de sustitución o de signo.</td>
+              <td>Aplica la fórmula de distancia sin errores de sustitución.</td>
+              <td>Aplica la fórmula con fluidez y reconoce cuándo el segmento es horizontal o vertical.</td>
+            </tr>
+            <tr>
+              <td>Calcular el punto medio</td>
+              <td>Suma las coordenadas sin dividir entre 2 o las invierte.</td>
+              <td>Calcula el punto medio con errores ocasionales de cálculo.</td>
+              <td>Calcula el punto medio correctamente y lo interpreta geométricamente.</td>
+              <td>Calcula el punto medio con fluidez y halla un extremo desconocido a partir del punto medio.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre y enlace con la próxima lección</h2>
+        <p>En esta lección se estableció el lenguaje del <strong>plano cartesiano</strong>: los <strong>pares ordenados</strong> y los cuatro cuadrantes, la <strong>fórmula de la distancia</strong> (que no es más que el Teorema de Pitágoras con coordenadas) y la <strong>fórmula del punto medio</strong> (el promedio de las coordenadas). Con ellas se midieron lados y perímetros de figuras en el plano.</p>
+        <p>En la <strong>Lección 1.2 · La pendiente: concepto, fórmula e interpretación</strong> se estudiará cómo medir la <strong>inclinación</strong> de una recta. La pendiente se calculará como el cociente entre el cambio vertical y el cambio horizontal (los mismos Δy y Δx de esta lección) y se interpretará como una <strong>tasa de cambio</strong>: dólares por hora, metros por segundo o costo por unidad.</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 1.1 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        /* ---- Práctica de opciones (selección múltiple) ---- */
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        /* ---- Quiz ---- */
+        var preguntasQuiz = [
+          {enun: '1. ¿En qué cuadrante se encuentra el punto (−3, 5)?', ops: ['Cuadrante I', 'Cuadrante II', 'Cuadrante III', 'Cuadrante IV'], correcta: 1},
+          {enun: '2. ¿Dónde se localiza el punto (0, −4)?', ops: ['Sobre el eje x', 'Sobre el eje y', 'En el cuadrante III', 'En el origen'], correcta: 1},
+          {enun: '3. Un punto está 2 unidades a la izquierda y 3 abajo del origen. ¿Cuáles son sus coordenadas?', ops: ['(2, 3)', '(−2, 3)', '(−2, −3)', '(2, −3)'], correcta: 2},
+          {enun: '4. Distancia entre (1, 2) y (4, 6).', ops: ['5', '7', '12', '25'], correcta: 0},
+          {enun: '5. Distancia entre (−2, 1) y (3, 1).', ops: ['1', '4', '5', '6'], correcta: 2},
+          {enun: '6. Distancia entre (0, 0) y (6, 8).', ops: ['10', '14', '48', '100'], correcta: 0},
+          {enun: '7. Punto medio del segmento de (2, 4) a (8, 10).', ops: ['(10, 14)', '(6, 6)', '(5, 7)', '(3, 3)'], correcta: 2},
+          {enun: '8. Punto medio del segmento de (−3, 5) a (7, −1).', ops: ['(2, 2)', '(4, 4)', '(5, 3)', '(−5, 3)'], correcta: 0},
+          {enun: '9. Un triángulo tiene vértices A(0, 0), B(3, 0) y C(0, 4). ¿Cuál es su perímetro?', ops: ['7', '10', '12', '15'], correcta: 2},
+          {enun: '10. El punto medio de un segmento es (4, 3) y un extremo es (2, 1). ¿Cuál es el otro extremo?', ops: ['(3, 2)', '(6, 5)', '(2, 2)', '(8, 4)'], correcta: 1}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 7) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Puedes continuar a la Lección 1.2.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. Repasa la lección e intenta de nuevo (se requieren 7).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>

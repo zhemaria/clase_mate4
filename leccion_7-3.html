@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lección 7.3 · Tasa de cambio promedio e identificar tipos de funciones</title>
+    <style>
+      :root {
+        --tema: #006064;
+        --tema-d: #00363a;
+        --tema-bg: #e0f7fa;
+        --tema-bg2: #b2ebf2;
+        --acento: #00695c;
+        --txt: #222;
+        --bg: #f5f7fa;
+        --that: #5e35b1;
+        --that-d: #4527a0;
+        --that-txt: #ffffff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        margin: 0; background: var(--bg); color: var(--txt);
+        line-height: 1.6; font-size: 16px;
+      }
+      .contenedor { max-width: 880px; margin: 0 auto; padding: 24px; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      header.principal {
+        background: var(--tema);
+        background: linear-gradient(135deg, #00363a 0%, #006064 55%, #00838f 100%);
+        color: #fff; padding: 32px 30px; border-radius: 14px;
+        margin-bottom: 22px; box-shadow: 0 4px 14px rgba(0, 54, 58, 0.28);
+      }
+      header.principal .ruta {
+        font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
+      }
+      header.principal h1 { margin: 8px 0 6px; font-size: 23px; font-weight: 700; }
+      header.principal .meta { font-size: 14px; opacity: 0.96; }
+
+      h2.seccion {
+        color: var(--tema-d); font-size: 21px; margin: 34px 0 12px;
+        padding-bottom: 6px; border-bottom: 3px solid var(--tema-bg);
+      }
+      h3 { color: var(--tema-d); font-size: 17px; margin: 20px 0 8px; }
+
+      .caja-objetivos {
+        background: var(--tema-bg); border-left: 6px solid var(--tema);
+        padding: 18px 22px; border-radius: 0 10px 10px 0; margin-bottom: 22px;
+      }
+      .caja-objetivos h2 { margin: 0 0 10px; color: var(--tema-d); font-size: 19px; }
+      .caja-objetivos ul { margin: 0; padding-left: 22px; }
+      .caja-objetivos li { margin: 5px 0; }
+
+      .bloque {
+        background: #fff; border-radius: 10px; padding: 4px 24px 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); margin-bottom: 18px;
+      }
+      p { margin: 10px 0; }
+
+      .formula {
+        text-align: center; font-size: 20px; font-weight: 700;
+        color: var(--tema-d); margin: 14px 0;
+      }
+
+      .ejemplo {
+        background: #fafafa; border: 1px solid #e3e3e3; border-radius: 8px;
+        padding: 14px 18px; margin: 14px 0;
+      }
+      .ejemplo .et {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 12px; font-weight: 700; padding: 3px 12px;
+        border-radius: 12px; margin-bottom: 8px; letter-spacing: 0.4px;
+      }
+      .paso { margin: 7px 0; padding-left: 30px; position: relative; }
+      .paso .n {
+        position: absolute; left: 0; top: 0; background: var(--tema-bg);
+        color: var(--tema-d); width: 22px; height: 22px; border-radius: 50%;
+        font-size: 13px; font-weight: 700; text-align: center; line-height: 22px;
+      }
+
+      .diagrama-wrap { text-align: center; margin: 18px 0; }
+      .diagrama-wrap svg { max-width: 100%; height: auto; }
+
+      .caja-tip {
+        background: #e8f5e9; border-left: 5px solid #2e7d32;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        color: #1b5e20; font-size: 15px;
+      }
+      .caja-tip strong { color: #1b5e20; }
+
+      .caja-atencion {
+        background: #fff8e1; border-left: 5px solid #f9a825;
+        padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0;
+        font-size: 15px; color: #5c3900;
+      }
+      .caja-atencion strong { color: #5c3900; }
+
+      .enlace-interactivo {
+        display: flex; align-items: flex-start; gap: 14px;
+        background: var(--tema-bg); border: 2px solid var(--tema);
+        border-left: 6px solid var(--tema); border-radius: 10px;
+        padding: 16px 20px; margin: 18px 0; text-decoration: none;
+        color: var(--tema-d); transition: background 0.15s;
+      }
+      .enlace-interactivo:hover { background: var(--tema-bg2); }
+      .enlace-interactivo .ei-icono { font-size: 26px; line-height: 1; flex-shrink: 0; }
+      .enlace-interactivo .ei-titulo { display: block; font-weight: 700; font-size: 16px; color: var(--tema-d); }
+      .enlace-interactivo .ei-sub { display: block; font-size: 14px; color: #333; margin: 4px 0 8px; }
+      .enlace-interactivo .ei-cta {
+        display: inline-block; background: var(--tema); color: #fff;
+        font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 7px;
+      }
+
+      .reglas { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+      .reglas th, .reglas td { border: 1px solid #e0e0e0; padding: 9px 12px; text-align: left; }
+      .reglas th { background: var(--tema); color: #fff; }
+      .reglas td:first-child { background: var(--tema-bg); font-weight: 600; color: var(--tema-d); }
+
+      .practica {
+        background: var(--tema-bg2); border: 1px dashed var(--tema);
+        border-radius: 10px; padding: 16px 20px; margin: 18px 0;
+      }
+      .practica h3 { margin-top: 0; color: var(--tema-d); }
+      .pregunta { margin: 14px 0; }
+      .pregunta .enun { font-weight: 600; margin-bottom: 8px; }
+      .opciones { display: flex; flex-direction: column; gap: 7px; }
+      .opcion {
+        background: #fff; border: 2px solid #e0e0e0; border-radius: 8px;
+        padding: 9px 14px; cursor: pointer; transition: all 0.15s;
+      }
+      .opcion:hover { border-color: var(--tema); }
+      .opcion.correcta { border-color: #2e7d32; background: #e8f5e9; font-weight: 600; }
+      .opcion.incorrecta { border-color: #c62828; background: #ffebee; }
+      .opcion.elegida { border-color: var(--tema); }
+      .fb { margin-top: 8px; font-size: 14px; font-weight: 600; display: none; }
+      .fb.ok { color: #1b5e20; }
+      .fb.no { color: #c62828; }
+
+      .btn {
+        background: var(--tema); color: #fff; border: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+        font-family: inherit; margin-top: 8px;
+      }
+      .btn:hover { background: var(--tema-d); }
+      .btn.sec { background: #546e7a; }
+      .btn.sec:hover { background: #37474f; }
+
+      .btnTQ {
+        display: inline-block; background: var(--that); color: var(--that-txt);
+        border: 2px solid var(--that-d); text-decoration: none; padding: 9px 20px;
+        border-radius: 8px; font-size: 14px; font-weight: 700; font-family: inherit;
+        cursor: pointer; margin-top: 8px; transition: background 0.15s;
+      }
+      .btnTQ:hover, .btnTQ:focus { background: var(--that-d); }
+      .btnTQ:visited { color: var(--that-txt); }
+      .btnTQ:focus-visible { outline: 3px solid var(--that-d); outline-offset: 2px; }
+      .btnTQ .ext { margin-left: 4px; }
+
+      .modalidad { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+      .modo { flex: 1; min-width: 230px; border-radius: 9px; padding: 14px 16px; font-size: 14px; }
+      .modo-pres { background: #e3f2fd; border-left: 5px solid #1565c0; }
+      .modo-pres strong { color: #0d47a1; }
+      .modo-virt { background: #f3e5f5; border-left: 5px solid #6a1b9a; }
+      .modo-virt strong { color: #4a148c; }
+      .modo h3 { margin: 0 0 6px; font-size: 15px; }
+      .modo-pres h3 { color: #0d47a1; }
+      .modo-virt h3 { color: #4a148c; }
+
+      .actividad { margin-bottom: 18px; }
+      .actividad > .titulo-act {
+        font-weight: 700; color: var(--tema-d); font-size: 15px;
+        background: var(--tema-bg); padding: 7px 14px; border-radius: 7px;
+      }
+
+      details.quiz-acordeon {
+        background: #fff; border: 2px solid var(--tema); border-radius: 12px;
+        margin: 22px 0; overflow: hidden;
+      }
+      details.quiz-acordeon > summary {
+        list-style: none; cursor: pointer; display: flex; align-items: center;
+        gap: 12px; padding: 16px 24px; background: var(--tema-bg);
+      }
+      details.quiz-acordeon > summary::-webkit-details-marker { display: none; }
+      details.quiz-acordeon > summary .chevron-q {
+        font-size: 16px; color: var(--tema-d); transition: transform 0.2s; flex-shrink: 0;
+      }
+      details.quiz-acordeon[open] > summary .chevron-q { transform: rotate(90deg); }
+      details.quiz-acordeon > summary h2 { margin: 0; color: var(--tema-d); font-size: 20px; }
+      .quiz-inner { padding: 6px 24px 20px; }
+      #resultado-quiz {
+        font-size: 17px; font-weight: 700; margin: 14px 0; padding: 12px;
+        border-radius: 8px; text-align: center; display: none;
+      }
+      #resultado-quiz.aprob { background: #e8f5e9; color: #1b5e20; }
+      #resultado-quiz.repro { background: #ffebee; color: #b71c1c; }
+
+      .caja-tarea {
+        background: #ede7f6; border-left: 6px solid #5e35b1;
+        padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0;
+      }
+      .caja-tarea h2 { margin-top: 0; color: #4527a0; }
+
+      .rubrica { margin: 22px 0; overflow-x: auto; }
+      .rubrica h2 { color: var(--tema-d); }
+      table.tabla-rubrica {
+        width: 100%; border-collapse: collapse; font-size: 13px; background: #fff;
+        border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      }
+      table.tabla-rubrica th, table.tabla-rubrica td {
+        border: 1px solid #e0e0e0; padding: 8px 10px; vertical-align: top;
+      }
+      table.tabla-rubrica th {
+        background: var(--tema); color: #fff; font-size: 12px;
+        text-transform: uppercase; letter-spacing: 0.3px;
+      }
+      table.tabla-rubrica td:first-child {
+        background: var(--tema-bg); font-weight: 600; color: var(--tema-d);
+      }
+
+      .cierre {
+        background: #04282b; color: #e0f7fa; border-radius: 12px;
+        padding: 22px 26px; margin: 24px 0 10px;
+      }
+      .cierre h2 { color: #fff; margin-top: 0; }
+      .cierre strong { color: #9bff8f; }
+
+      footer {
+        text-align: center; padding: 20px; color: #555; font-size: 13px;
+        border-top: 1px solid #ddd; margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="principal">
+        <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 7 · Sistemas de desigualdades y funciones</div>
+        <h1>Lección 7.3 · Tasa de cambio promedio e identificar tipos de funciones</h1>
+        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+      </header>
+
+      <div class="caja-objetivos">
+        <h2>Objetivos de la lección</h2>
+        <ul>
+          <li>Calcular la tasa de cambio promedio de una función en un intervalo: (f(b) − f(a)) / (b − a).</li>
+          <li>Interpretar la tasa en contexto, con unidades ($ por año, metros por segundo).</li>
+          <li>Distinguir funciones lineales, cuadráticas y exponenciales a partir de tablas.</li>
+          <li>Conectar la pendiente de una recta con la tasa de cambio constante de una función lineal.</li>
+        </ul>
+      </div>
+
+      <div class="bloque">
+        <p><strong>Conexión con la lección anterior.</strong> En la Lección 7.2 se aprendió qué es una función y a evaluar f(x). Ahora se estudia <strong>cómo cambia</strong> una función: qué tan rápido sube o baja entre dos puntos. Esa medida es la <strong>tasa de cambio promedio</strong>, y su patrón revela el tipo de función.</p>
+      </div>
+
+      <h2 class="seccion">1. La tasa de cambio promedio</h2>
+      <div class="bloque">
+        <p>La tasa de cambio promedio de una función en el intervalo de x = a a x = b mide cuánto cambia la salida por cada unidad de entrada. Es, en esencia, la <strong>pendiente</strong> entre los puntos (a, f(a)) y (b, f(b)).</p>
+        <p class="formula">tasa = (f(b) − f(a)) / (b − a)</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1</span>
+          <p>Si f(2) = 10 y f(5) = 25, ¿cuál es la tasa de cambio promedio en [2, 5]?</p>
+          <div class="paso"><span class="n">1</span> Se aplica la fórmula: (25 − 10) / (5 − 2).</div>
+          <div class="paso"><span class="n">2</span> Se calcula: 15 / 3 = 5.</div>
+          <p><strong>Respuesta:</strong> la función crece, en promedio, 5 unidades por cada unidad de x.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>Tasa de cambio = pendiente:</strong> calcular la tasa de cambio promedio entre dos puntos es exactamente lo mismo que calcular la pendiente de la recta que los une. En una función lineal, esa tasa es la misma en todo intervalo.
+        </div>
+      </div>
+
+      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de tasa de cambio y tipos de función -->
+      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
+         aria-label="Abrir el interactivo de tasa de cambio promedio y tipos de funciones en GEDparaHispanos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Calcula tasas de cambio en distintos intervalos y descubre el patrón de las funciones lineales, cuadráticas y exponenciales en el portal GEDparaHispanos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <div class="practica">
+        <h3>Práctica interactiva 1 · Calcular la tasa</h3>
+        <p>Aplica la fórmula (f(b) − f(a)) / (b − a).</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. f(1) = 3 y f(4) = 12. Tasa de cambio promedio:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">3</div>
+            <div class="opcion" data-op="b">9</div>
+            <div class="opcion" data-op="c">4</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. f(0) = 5 y f(2) = 5. Tasa de cambio promedio:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">0</div>
+            <div class="opcion" data-op="b">5</div>
+            <div class="opcion" data-op="c">2</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. f(2) = 8 y f(6) = 20. Tasa de cambio promedio:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">3</div>
+            <div class="opcion" data-op="b">12</div>
+            <div class="opcion" data-op="c">4</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">2. Interpretar la tasa en contexto</h2>
+      <div class="bloque">
+        <p>La tasa de cambio promedio cobra sentido con <strong>unidades</strong>: dólares por año, metros por segundo, personas por mes. La unidad es siempre "unidad de salida por unidad de entrada".</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2</span>
+          <p>Una cuenta de ahorro pasa de $100 a $160 en 3 años. ¿Cuál es la tasa de cambio promedio?</p>
+          <div class="paso"><span class="n">1</span> Cambio en el dinero: 160 − 100 = 60 dólares.</div>
+          <div class="paso"><span class="n">2</span> En 3 años: 60 / 3 = 20.</div>
+          <p><strong>Respuesta:</strong> la cuenta crece, en promedio, $20 por año.</p>
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Interpretar</h3>
+        <p>Calcula e interpreta con unidades.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. Una cuenta pasa de $200 a $260 en 3 años. La tasa es:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">$20 por año</div>
+            <div class="opcion" data-op="b">$60 por año</div>
+            <div class="opcion" data-op="c">$260 por año</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">2. Un auto recorre de 0 a 150 m en 5 s. La tasa es:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">30 m/s</div>
+            <div class="opcion" data-op="b">150 m/s</div>
+            <div class="opcion" data-op="c">5 m/s</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. La tasa de cambio promedio se mide en:</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">unidades de salida por unidad de entrada</div>
+            <div class="opcion" data-op="b">solo dólares</div>
+            <div class="opcion" data-op="c">solo metros</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">3. Identificar el tipo de función</h2>
+      <div class="bloque">
+        <p>El patrón de los valores de salida revela el tipo de función. Conviene mirar las diferencias o las razones entre valores consecutivos (con entradas igualmente espaciadas):</p>
+
+        <table class="reglas">
+          <caption class="sr-only">Patrón de salida que identifica cada tipo de función.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Tipo</th>
+              <th scope="col">Patrón en la tabla</th>
+              <th scope="col">Ejemplo de salidas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Lineal</td><td>Diferencia constante (suma lo mismo)</td><td>2, 5, 8, 11 (+3)</td></tr>
+            <tr><td>Cuadrática</td><td>Segunda diferencia constante</td><td>0, 1, 4, 9 (dif: 1, 3, 5)</td></tr>
+            <tr><td>Exponencial</td><td>Razón constante (multiplica lo mismo)</td><td>1, 2, 4, 8 (×2)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="caja-tip">
+          <strong>Suma constante o producto constante:</strong> si para pasar de un valor al siguiente se <em>suma</em> siempre lo mismo, es lineal; si se <em>multiplica</em> siempre por lo mismo, es exponencial; si la segunda diferencia es constante, es cuadrática.
+        </div>
+      </div>
+
+      <div class="practica">
+        <h3>Práctica interactiva 3 · Clasificar</h3>
+        <p>Identifica el tipo de función según el patrón.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. Salidas: 2, 5, 8, 11 (se suma 3 cada vez).</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">lineal</div>
+            <div class="opcion" data-op="b">cuadrática</div>
+            <div class="opcion" data-op="c">exponencial</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. Salidas: 1, 2, 4, 8 (se multiplica por 2 cada vez).</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">lineal</div>
+            <div class="opcion" data-op="b">exponencial</div>
+            <div class="opcion" data-op="c">cuadrática</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="c">
+          <div class="enun">3. Salidas: 0, 1, 4, 9 (segunda diferencia constante).</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">lineal</div>
+            <div class="opcion" data-op="b">exponencial</div>
+            <div class="opcion" data-op="c">cuadrática</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion">4. Práctica guiada en clase</h2>
+      <div class="bloque">
+        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas. Cada una se presenta en doble modalidad.</p>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 1 · Inversión, caída libre y viral</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes calculan la tasa de cambio promedio de tres situaciones: una cuenta de ahorro (lineal), la altura de un objeto en caída libre (cuadrática) y una publicación viral (exponencial), e interpretan cada resultado con unidades.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada grupo calcula y compara las tres tasas en un documento compartido y comenta por qué la lineal es constante mientras que las otras dos cambian de un intervalo a otro.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 2 · El detective de patrones</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Los estudiantes clasifican seis tablas de datos en lineal, cuadrática o exponencial, justificando con la diferencia constante, la segunda diferencia o la razón constante.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              En salas pequeñas, cada grupo etiqueta las seis tablas y escribe junto a cada una la evidencia del patrón que la identifica.
+            </div>
+          </div>
+        </div>
+
+        <div class="actividad">
+          <div class="titulo-act">Actividad 3 · Pendiente y tasa</div>
+          <div class="modalidad">
+            <div class="modo modo-pres">
+              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
+              Para una función lineal, los estudiantes calculan la tasa de cambio en distintos intervalos y comprueban que siempre coincide con la pendiente de la recta.
+            </div>
+            <div class="modo modo-virt">
+              <h3><span aria-hidden="true">💻</span> En línea</h3>
+              Cada estudiante calcula la tasa en tres intervalos de una misma función lineal y confirma en el chat que el valor es siempre el mismo: la pendiente.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="quiz-acordeon">
+        <summary>
+          <span class="chevron-q" aria-hidden="true">▶</span>
+          <h2>Quiz de la lección 7.3</h2>
+        </summary>
+        <div class="quiz-inner">
+          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas.</p>
+          <div id="quiz-cuerpo"></div>
+          <div id="resultado-quiz"></div>
+          <button class="btn" id="btn-corregir">Corregir quiz</button>
+          <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
+        </div>
+      </details>
+
+      <div class="caja-tarea">
+        <h2>Tarea asincrónica</h2>
+        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de tasa de cambio y tipos de función:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 8 ejercicios asignados (calcular tasas y clasificar funciones) en MyOpenMath antes de la próxima sesión:</p>
+        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
+      </div>
+
+      <div class="rubrica">
+        <h2>Rúbrica analítica de la lección</h2>
+        <p>Tres criterios evaluados en cuatro niveles de desempeño.</p>
+        <table class="tabla-rubrica">
+          <caption class="sr-only">Rúbrica analítica con tres criterios y cuatro niveles de desempeño.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Criterio</th>
+              <th scope="col">Inicial (1)</th>
+              <th scope="col">En desarrollo (2)</th>
+              <th scope="col">Competente (3)</th>
+              <th scope="col">Destacado (4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Calcular la tasa de cambio</td>
+              <td>No aplica la fórmula.</td>
+              <td>Aplica la fórmula con errores de cálculo o de signo.</td>
+              <td>Calcula (f(b) − f(a)) / (b − a) correctamente.</td>
+              <td>Calcula con fluidez, incluso con tasas negativas o cero.</td>
+            </tr>
+            <tr>
+              <td>Interpretar en contexto</td>
+              <td>No interpreta el resultado.</td>
+              <td>Interpreta sin unidades o con unidades incorrectas.</td>
+              <td>Interpreta el resultado con unidades y significado.</td>
+              <td>Interpreta con precisión y explica el sentido del signo.</td>
+            </tr>
+            <tr>
+              <td>Clasificar el tipo de función</td>
+              <td>No identifica el patrón.</td>
+              <td>Identifica un patrón, pero clasifica mal.</td>
+              <td>Clasifica como lineal, cuadrática o exponencial según el patrón.</td>
+              <td>Clasifica y justifica con la diferencia o la razón constante.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cierre">
+        <h2>Cierre del Tema 7 y enlace con el próximo tema</h2>
+        <p>Con esta lección se cierra el <strong>Tema 7 · Sistemas de desigualdades y funciones</strong>. Se aprendió a calcular e interpretar la <strong>tasa de cambio promedio</strong> y a identificar funciones <strong>lineales, cuadráticas y exponenciales</strong> por su patrón.</p>
+        <p>El <strong>Tema 8 · Modelado de funciones, proyecto final y simulacro GED</strong> comienza con la <strong>Lección 8.1 · Funciones cuadráticas: la parábola, el vértice y las intercepts</strong>. Es el tramo final del Nivel 4: se reúne todo lo aprendido para modelar con funciones y preparar el examen GED. ¡Ya casi llegas a la meta!</p>
+      </div>
+
+      <footer>Spanish ASE Math · Nivel 4 · Lección 7.3 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+    </div>
+
+    <script>
+      (function () {
+        var preguntasOp = document.querySelectorAll('.practica .pregunta[data-correcta]');
+        preguntasOp.forEach(function (preg) {
+          var correcta = preg.getAttribute('data-correcta');
+          var opciones = preg.querySelectorAll('.opcion');
+          var fb = preg.querySelector('.fb');
+          opciones.forEach(function (op) {
+            op.addEventListener('click', function () {
+              opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+              var elegida = op.getAttribute('data-op');
+              if (elegida === correcta) {
+                op.classList.add('correcta');
+                fb.textContent = '¡Correcto! Bien razonado.';
+                fb.className = 'fb ok';
+              } else {
+                op.classList.add('incorrecta');
+                opciones.forEach(function (o) {
+                  if (o.getAttribute('data-op') === correcta) o.classList.add('correcta');
+                });
+                fb.textContent = 'Revisa: la opción marcada en verde es la correcta.';
+                fb.className = 'fb no';
+              }
+              fb.style.display = 'block';
+            });
+          });
+        });
+
+        var preguntasQuiz = [
+          {enun: '1. f(2) = 10 y f(5) = 25. ¿Tasa de cambio promedio?', ops: ['5', '15', '3', '35'], correcta: 0},
+          {enun: '2. f(0) = 4 y f(4) = 20. ¿Tasa de cambio promedio?', ops: ['16', '4', '5', '24'], correcta: 1},
+          {enun: '3. f(1) = 7 y f(3) = 7. ¿Tasa de cambio promedio?', ops: ['7', '14', '0', '2'], correcta: 2},
+          {enun: '4. f(3) = 12 y f(6) = 3. ¿Tasa de cambio promedio?', ops: ['3', '9', '−9', '−3'], correcta: 3},
+          {enun: '5. Salidas 3, 6, 9, 12 (diferencia constante). ¿Tipo de función?', ops: ['cuadrática', 'exponencial', 'lineal', 'racional'], correcta: 2},
+          {enun: '6. Salidas 2, 6, 18, 54 (se multiplica por 3). ¿Tipo de función?', ops: ['lineal', 'cuadrática', 'constante', 'exponencial'], correcta: 3},
+          {enun: '7. Salidas 1, 4, 9, 16 (segunda diferencia constante). ¿Tipo de función?', ops: ['cuadrática', 'lineal', 'exponencial', 'racional'], correcta: 0},
+          {enun: '8. Una cuenta crece de $300 a $360 en 2 años. ¿Tasa de cambio promedio?', ops: ['$30 por año', '$60 por año', '$360 por año', '$30'], correcta: 0},
+          {enun: '9. Un objeto baja de 80 m a 20 m en 3 s. ¿Tasa de cambio promedio?', ops: ['60 m/s', '−20 m/s', '20 m/s', '−60 m/s'], correcta: 1},
+          {enun: '10. En una función lineal, la tasa de cambio promedio es igual a:', ops: ['el intercepto', 'el vértice', 'la pendiente de la recta', 'cero siempre'], correcta: 2}
+        ];
+
+        var cuerpo = document.getElementById('quiz-cuerpo');
+        preguntasQuiz.forEach(function (p, i) {
+          var div = document.createElement('div');
+          div.className = 'pregunta';
+          div.setAttribute('data-idx', i);
+          var enun = document.createElement('div');
+          enun.className = 'enun';
+          enun.textContent = p.enun;
+          div.appendChild(enun);
+          var cont = document.createElement('div');
+          cont.className = 'opciones';
+          p.ops.forEach(function (texto, j) {
+            var op = document.createElement('div');
+            op.className = 'opcion';
+            op.setAttribute('data-j', j);
+            op.textContent = texto;
+            op.addEventListener('click', function () {
+              if (div.getAttribute('data-bloqueado') === 'si') return;
+              cont.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('elegida'); });
+              op.classList.add('elegida');
+              div.setAttribute('data-elegida', j);
+            });
+            cont.appendChild(op);
+          });
+          div.appendChild(cont);
+          var fb = document.createElement('div');
+          fb.className = 'fb';
+          div.appendChild(fb);
+          cuerpo.appendChild(div);
+        });
+
+        var btnCorregir = document.getElementById('btn-corregir');
+        var btnReintentar = document.getElementById('btn-reintentar');
+        var resultado = document.getElementById('resultado-quiz');
+
+        btnCorregir.addEventListener('click', function () {
+          var aciertos = 0;
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div, i) {
+            var elegida = div.getAttribute('data-elegida');
+            var fb = div.querySelector('.fb');
+            var opciones = div.querySelectorAll('.opcion');
+            div.setAttribute('data-bloqueado', 'si');
+            opciones.forEach(function (o) { o.classList.remove('correcta', 'incorrecta'); });
+            if (elegida === null) {
+              fb.textContent = 'No se respondió esta pregunta.';
+              fb.className = 'fb no';
+              fb.style.display = 'block';
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              return;
+            }
+            var idxElegida = parseInt(elegida, 10);
+            if (idxElegida === preguntasQuiz[i].correcta) {
+              aciertos++;
+              opciones[idxElegida].classList.add('correcta');
+              fb.textContent = '¡Correcto!';
+              fb.className = 'fb ok';
+            } else {
+              opciones[idxElegida].classList.add('incorrecta');
+              opciones[preguntasQuiz[i].correcta].classList.add('correcta');
+              fb.textContent = 'Incorrecto. La respuesta correcta está marcada en verde.';
+              fb.className = 'fb no';
+            }
+            fb.style.display = 'block';
+          });
+
+          resultado.style.display = 'block';
+          if (aciertos >= 7) {
+            resultado.className = 'aprob';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Has completado el Tema 7; puedes continuar al Tema 8.';
+          } else {
+            resultado.className = 'repro';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. Repasa la lección e intenta de nuevo (se requieren 7).';
+          }
+          btnCorregir.style.display = 'none';
+          btnReintentar.style.display = 'inline-block';
+        });
+
+        btnReintentar.addEventListener('click', function () {
+          var divs = cuerpo.querySelectorAll('.pregunta');
+          divs.forEach(function (div) {
+            div.removeAttribute('data-elegida');
+            div.removeAttribute('data-bloqueado');
+            div.querySelectorAll('.opcion').forEach(function (o) { o.classList.remove('correcta', 'incorrecta', 'elegida'); });
+            var fb = div.querySelector('.fb');
+            fb.style.display = 'none';
+            fb.textContent = '';
+          });
+          resultado.style.display = 'none';
+          btnReintentar.style.display = 'none';
+          btnCorregir.style.display = 'inline-block';
+        });
+      })();
+    </script>
+  </body>
+</html>
