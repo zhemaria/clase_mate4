@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- Lección 5.3 · Matemáticas Nivel 4 · GEDparaHispanos
+<!-- Lección 5.1 · Matemáticas Nivel 4 · GEDparaHispanos
      José M. Fernández · CC BY-NC-SA 4.0 -->
 
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lección 5.3 · Resolver ecuaciones con expresiones racionales y modelado</title>
+    <title>Lección 5.1 · Simplificar expresiones racionales: factorizar y cancelar</title>
     <meta name="license" content="CC BY-NC-SA 4.0" />
     <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" />
     <style>
@@ -45,7 +45,7 @@
       header.principal .ruta {
         font-size: 13px; opacity: 0.94; letter-spacing: 0.4px; text-transform: uppercase;
       }
-      header.principal h1 { margin: 8px 0 6px; font-size: 24px; font-weight: 700; }
+      header.principal h1 { margin: 8px 0 6px; font-size: 25px; font-weight: 700; }
       header.principal .meta { font-size: 14px; opacity: 0.96; }
 
       h2.seccion {
@@ -266,252 +266,246 @@
     <div class="contenedor">
       <header class="principal">
         <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 5 · Expresiones racionales complejas</div>
-        <h1>Lección 5.3 · Resolver ecuaciones con expresiones racionales y modelado</h1>
+        <h1>Lección 5.1 · Simplificar expresiones racionales: factorizar y cancelar</h1>
         <div class="meta">Unas 4 horas, a su ritmo · NRS 4–5</div>
       </header>
 
       <div class="caja-objetivos">
         <h2>Objetivos de la lección</h2>
         <ul>
-          <li>Resolver ecuaciones con fracciones algebraicas multiplicando por el MCM para eliminar los denominadores.</li>
-          <li>Verificar que las soluciones no sean valores excluidos (soluciones extrañas).</li>
-          <li>Modelar y resolver problemas de trabajo conjunto.</li>
-          <li>Reconocer el planteamiento de problemas de distancia, velocidad y tiempo con variantes.</li>
+          <li>Simplificar fracciones algebraicas factorizando el numerador y el denominador.</li>
+          <li>Cancelar únicamente factores comunes, nunca términos.</li>
+          <li>Identificar los valores excluidos del dominio (los que anulan el denominador).</li>
+          <li>Reconocer y evitar el error de cancelación incorrecta.</li>
         </ul>
       </div>
       <nav class="indice" id="indice" aria-labelledby="indice-titulo">
         <h2 id="indice-titulo">Contenido de la lección</h2>
         <ol>
-          <li><a href="#s-1-limpiar-los-denominadores-con-el-mcm">1. Limpiar los denominadores con el MCM</a></li>
-          <li><a href="#s-2-soluciones-extranas">2. Soluciones extrañas</a></li>
-          <li><a href="#s-3-aplicacion-problemas-de-trabajo-conjunto">3. Aplicación: problemas de trabajo conjunto</a></li>
-          <li><a href="#s-4-otras-aplicaciones-distancia-velocidad-y-tiempo">4. Otras aplicaciones: distancia, velocidad y tiempo</a></li>
+          <li><a href="#s-1-la-analogia-con-las-fracciones-numericas">1. La analogía con las fracciones numéricas</a></li>
+          <li><a href="#s-2-simplificar-fracciones-algebraicas">2. Simplificar fracciones algebraicas</a></li>
+          <li><a href="#s-3-valores-excluidos-del-dominio">3. Valores excluidos del dominio</a></li>
+          <li><a href="#s-4-el-error-trampa-factores-no-terminos">4. El error trampa: factores, no términos</a></li>
           <li><a href="#s-tarea">Tarea</a></li>
-          <li><a href="#s-quiz">Quiz de la lección 5.3</a></li>
+          <li><a href="#s-quiz">Quiz de la lección 5.1</a></li>
           <li><a href="#s-rubrica">Rúbrica analítica de la lección</a></li>
-          <li><a href="#s-cierre">Cierre del Tema 5 y enlace con el próximo tema</a></li>
+          <li><a href="#s-cierre">Cierre y enlace con la próxima lección</a></li>
         </ol>
       </nav>
 
       <div class="bloque">
-        <p><strong>Conexión con la lección anterior.</strong> En la Lección 5.2 se sumaron, restaron, multiplicaron y dividieron fracciones algebraicas. Ahora aparecen dentro de <strong>ecuaciones</strong>. La estrategia es directa: multiplicar por el MCM de todos los denominadores para "limpiarlos" y transformar la ecuación racional en una lineal o cuadrática ya conocida.</p>
+        <p><strong>Conexión con el tema anterior.</strong> En los Temas 3 y 4 la factorización fue la herramienta clave. Ahora vuelve a serlo: una <strong>expresión racional</strong> es una fracción cuyo numerador y denominador son polinomios. Para simplificarla se factoriza arriba y abajo, y se cancelan los factores comunes —exactamente como con las fracciones de números.</p>
       </div>
 
-      <h2 class="seccion" id="s-1-limpiar-los-denominadores-con-el-mcm">1. Limpiar los denominadores con el MCM</h2>
+      <h2 class="seccion" id="s-1-la-analogia-con-las-fracciones-numericas">1. La analogía con las fracciones numéricas</h2>
       <div class="bloque">
-        <p>Al multiplicar ambos lados de la ecuación por el MCM de todos los denominadores, las fracciones desaparecen y queda una ecuación que ya se sabe resolver.</p>
+        <p>Para simplificar 12/18 se factoriza arriba y abajo y se cancela el factor común:</p>
+        <p class="formula">12/18 = (2 · 6) / (3 · 6) = 2/3</p>
+        <p>El 6 se cancela porque es un <strong>factor</strong> (algo que multiplica) presente arriba y abajo. Con polinomios el procedimiento es idéntico: se factoriza y se cancelan los factores comunes.</p>
 
-        <div class="ejemplo">
-          <span class="et">Ejemplo 1</span>
-          <p>Resolver 6/x + 1 = 4.</p>
-          <div class="paso"><span class="n">1</span> MCM de los denominadores: x.</div>
-          <div class="paso"><span class="n">2</span> Se multiplica todo por x: 6 + x = 4x.</div>
-          <div class="paso"><span class="n">3</span> Se resuelve: 6 = 3x, así que x = 2.</div>
-          <div class="paso"><span class="n">4</span> x = 2 no anula el denominador. Es válida.</div>
-          <p><strong>Solución:</strong> x = 2.</p>
-        </div>
-
-        <div class="ejemplo">
-          <span class="et">Ejemplo 2</span>
-          <p>Resolver 1/(x − 2) = 3/x.</p>
-          <div class="paso"><span class="n">1</span> MCM: x(x − 2). Al multiplicar: x = 3(x − 2).</div>
-          <div class="paso"><span class="n">2</span> Se resuelve: x = 3x − 6, entonces −2x = −6, x = 3.</div>
-          <div class="paso"><span class="n">3</span> x = 3 no anula ningún denominador. Es válida.</div>
-          <p><strong>Solución:</strong> x = 3.</p>
+        <div class="diagrama-wrap">
+          <svg width="480" height="150" viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simplificación de una fracción algebraica. La fracción con numerador x más tres por x menos tres y denominador x más tres por x menos dos. El factor común x más tres se cancela arriba y abajo, dejando x menos tres sobre x menos dos.">
+            <text x="120" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="17" font-weight="700" fill="#263238">(x + 3)(x − 3)</text>
+            <line x1="40" y1="70" x2="200" y2="70" stroke="#37474f" stroke-width="2"/>
+            <text x="120" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="17" font-weight="700" fill="#263238">(x + 3)(x − 2)</text>
+            <line x1="62" y1="48" x2="98" y2="58" stroke="#c62828" stroke-width="2.5"/>
+            <line x1="62" y1="88" x2="98" y2="98" stroke="#c62828" stroke-width="2.5"/>
+            <text x="240" y="78" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#37474f">=</text>
+            <text x="360" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="17" font-weight="700" fill="#263238">(x − 3)</text>
+            <line x1="300" y1="70" x2="420" y2="70" stroke="#37474f" stroke-width="2"/>
+            <text x="360" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="17" font-weight="700" fill="#263238">(x − 2)</text>
+          </svg>
         </div>
       </div>
-      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-3.html" target="_blank" rel="noopener noreferrer"
-         aria-label="Abrir el interactivo general de la Lección 5.3 (se abre en una pestaña nueva)">
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-1.html" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo general de la Lección 5.1 (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
           <span class="ei-titulo">Refuerza con el interactivo de la lección</span>
-          <span class="ei-sub">Una sola página con las cuatro prácticas de esta lección: resolver con el MCM, el verificador de soluciones extrañas, el trabajo conjunto y los problemas de distancia, velocidad y tiempo.</span>
+          <span class="ei-sub">Una sola página con las tres prácticas de esta lección: simplificar paso a paso, valores excluidos del dominio y la diferencia entre factores y términos.</span>
           <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
         </span>
       </a>
-      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-3.html#mcm" target="_blank" rel="noopener noreferrer"
-         aria-label="Abrir el interactivo en la parte de limpiar denominadores (se abre en una pestaña nueva)">
+
+      <h2 class="seccion" id="s-2-simplificar-fracciones-algebraicas">2. Simplificar fracciones algebraicas</h2>
+      <div class="bloque">
+        <p>El procedimiento tiene tres pasos: factorizar el numerador, factorizar el denominador y cancelar los factores comunes.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 1 · Monomios</span>
+          <p>Simplificar 6x² / 9x.</p>
+          <div class="paso"><span class="n">1</span> Se escribe en factores: (3 · 2 · x · x) / (3 · 3 · x).</div>
+          <div class="paso"><span class="n">2</span> Se cancela el 3 y una x.</div>
+          <p><strong>Respuesta:</strong> 2x / 3.</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 2 · Con trinomio</span>
+          <p>Simplificar (x² + 5x + 6) / (x + 2).</p>
+          <div class="paso"><span class="n">1</span> Se factoriza el numerador: (x + 2)(x + 3).</div>
+          <div class="paso"><span class="n">2</span> Se cancela el factor común (x + 2).</div>
+          <p><strong>Respuesta:</strong> x + 3.</p>
+        </div>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 3</span>
+          <p>Simplificar (x² − 4) / (x² − x − 2).</p>
+          <div class="paso"><span class="n">1</span> Numerador: (x + 2)(x − 2). Denominador: (x − 2)(x + 1).</div>
+          <div class="paso"><span class="n">2</span> Se cancela (x − 2).</div>
+          <p><strong>Respuesta:</strong> (x + 2) / (x + 1).</p>
+        </div>
+      </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-1.html#simplificar" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de simplificar fracciones algebraicas (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
-          <span class="ei-titulo">Practica la resolución con el MCM</span>
-          <span class="ei-sub">Cinco ecuaciones resueltas paso a paso, desde anotar los valores excluidos hasta la verificación final.</span>
+          <span class="ei-titulo">Practica la simplificación</span>
+          <span class="ei-sub">Simplificador paso a paso con la cancelación de factores marcada sobre la propia fracción, y ejercicios de opción múltiple.</span>
           <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
         </span>
       </a>
 
       <div class="practica">
-        <h3>Práctica interactiva 1 · Resolver</h3>
-        <p>Selecciona la solución correcta.</p>
+        <h3>Práctica interactiva 1 · Simplificar</h3>
+        <p>Selecciona la forma simplificada.</p>
 
         <div class="pregunta" data-correcta="a">
-          <div class="enun">1. 3/x = 6</div>
+          <div class="enun">1. 4x² / 6x</div>
           <div class="opciones">
-            <div class="opcion" data-op="a">x = 1/2</div>
-            <div class="opcion" data-op="b">x = 2</div>
+            <div class="opcion" data-op="a">2x / 3</div>
+            <div class="opcion" data-op="b">2x² / 3</div>
+            <div class="opcion" data-op="c">4x / 6</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="b">
+          <div class="enun">2. (x² − 1) / (x − 1)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x − 1</div>
+            <div class="opcion" data-op="b">x + 1</div>
+            <div class="opcion" data-op="c">x² − 1</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">3. (x² + 4x + 4) / (x + 2)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x + 2</div>
+            <div class="opcion" data-op="b">x + 4</div>
+            <div class="opcion" data-op="c">x² + 2</div>
+          </div>
+          <div class="fb"></div>
+        </div>
+      </div>
+
+      <h2 class="seccion" id="s-3-valores-excluidos-del-dominio">3. Valores excluidos del dominio</h2>
+      <div class="bloque">
+        <p>Una fracción nunca puede tener denominador cero. Los <strong>valores excluidos</strong> son los que hacen cero al denominador <strong>original</strong> (antes de cancelar). Para hallarlos se factoriza el denominador y se iguala cada factor a cero.</p>
+
+        <div class="ejemplo">
+          <span class="et">Ejemplo 4</span>
+          <p>¿Qué valores se excluyen en (x + 1) / (x² − 9)?</p>
+          <div class="paso"><span class="n">1</span> Se factoriza el denominador: (x + 3)(x − 3).</div>
+          <div class="paso"><span class="n">2</span> Se iguala cada factor a cero: x + 3 = 0 o x − 3 = 0.</div>
+          <p><strong>Valores excluidos:</strong> x = −3 y x = 3.</p>
+        </div>
+
+        <div class="caja-tip">
+          <strong>Los valores excluidos se toman del denominador original:</strong> aunque al simplificar se cancele un factor, los valores que lo anulaban siguen excluidos del dominio. Por eso conviene anotarlos antes de cancelar.
+        </div>
+      </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-1.html#excluidos" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de valores excluidos del dominio (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica los valores excluidos</span>
+          <span class="ei-sub">Explorador del denominador: arma (x − p)(x − q), prueba valores de x y comprueba qué ocurre cuando el denominador se vuelve cero.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <div class="practica">
+        <h3>Práctica interactiva 2 · Valores excluidos</h3>
+        <p>Indica los valores que se excluyen del dominio.</p>
+
+        <div class="pregunta" data-correcta="a">
+          <div class="enun">1. 3 / (x − 5)</div>
+          <div class="opciones">
+            <div class="opcion" data-op="a">x = 5</div>
+            <div class="opcion" data-op="b">x = −5</div>
             <div class="opcion" data-op="c">x = 3</div>
           </div>
           <div class="fb"></div>
         </div>
 
         <div class="pregunta" data-correcta="a">
-          <div class="enun">2. 4/x + 2 = 6</div>
+          <div class="enun">2. (x + 1) / [(x − 4)(x + 2)]</div>
           <div class="opciones">
-            <div class="opcion" data-op="a">x = 1</div>
-            <div class="opcion" data-op="b">x = 2</div>
-            <div class="opcion" data-op="c">x = 4</div>
+            <div class="opcion" data-op="a">x = 4 y x = −2</div>
+            <div class="opcion" data-op="b">x = −4 y x = 2</div>
+            <div class="opcion" data-op="c">x = −1</div>
           </div>
           <div class="fb"></div>
         </div>
 
         <div class="pregunta" data-correcta="a">
-          <div class="enun">3. 1/(x − 2) = 3/x</div>
+          <div class="enun">3. x / (x² − 16)</div>
           <div class="opciones">
-            <div class="opcion" data-op="a">x = 3</div>
-            <div class="opcion" data-op="b">x = 2</div>
-            <div class="opcion" data-op="c">x = −3</div>
+            <div class="opcion" data-op="a">x = 4 y x = −4</div>
+            <div class="opcion" data-op="b">x = 16</div>
+            <div class="opcion" data-op="c">x = 4 solamente</div>
           </div>
           <div class="fb"></div>
         </div>
       </div>
 
-      <h2 class="seccion" id="s-2-soluciones-extranas">2. Soluciones extrañas</h2>
+      <h2 class="seccion" id="s-4-el-error-trampa-factores-no-terminos">4. El error trampa: factores, no términos</h2>
       <div class="bloque">
-        <p>Al multiplicar por el MCM puede aparecer una "solución" que en realidad <strong>anula un denominador</strong> de la ecuación original. Esa solución es <strong>extraña</strong> y debe descartarse. Por eso es obligatorio verificar cada solución contra los valores excluidos.</p>
+        <p>Solo se cancelan <strong>factores</strong> (cosas que multiplican a todo), nunca <strong>términos</strong> (cosas que se suman o restan).</p>
 
         <div class="ejemplo">
-          <span class="et">Ejemplo 3</span>
-          <p>Resolver x/(x − 3) = 3/(x − 3) + 2.</p>
-          <div class="paso"><span class="n">1</span> MCM: (x − 3). Al multiplicar: x = 3 + 2(x − 3).</div>
-          <div class="paso"><span class="n">2</span> Se resuelve: x = 3 + 2x − 6, entonces x = 2x − 3, x = 3.</div>
-          <div class="paso"><span class="n">3</span> Pero x = 3 anula el denominador (x − 3). Es una solución extraña.</div>
-          <p><strong>Resultado:</strong> la ecuación no tiene solución.</p>
+          <span class="et">Ejemplo 5 · Bien</span>
+          <p>Simplificar (x + 2) / (x² − 4).</p>
+          <div class="paso"><span class="n">1</span> Se factoriza el denominador: (x + 2)(x − 2).</div>
+          <div class="paso"><span class="n">2</span> (x + 2) es un factor común: se cancela.</div>
+          <p><strong>Respuesta:</strong> 1 / (x − 2).</p>
         </div>
 
         <div class="caja-atencion">
-          <strong>Verifica siempre:</strong> una solución obtenida algebraicamente que coincide con un valor excluido <em>no</em> es válida. Siempre se comparan las soluciones con los valores que anulan los denominadores antes de darlas por buenas.
+          <strong>Cancelación incorrecta:</strong> en (x + 4) / x <em>no</em> se puede cancelar la x para obtener 4, porque arriba la x está <em>sumada</em> (es un término, no un factor). De igual modo, en (x + 3) / 3 el 3 no es factor de todo el numerador, así que no se cancela. Cancelar términos es el error más común con fracciones algebraicas.
         </div>
       </div>
-      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-3.html#extranas" target="_blank" rel="noopener noreferrer"
-         aria-label="Abrir el interactivo en la parte de soluciones extrañas (se abre en una pestaña nueva)">
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-1.html#trampa" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de factores y términos (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
-          <span class="ei-titulo">Practica con el verificador de soluciones extrañas</span>
-          <span class="ei-sub">Escribe un valor y el interactivo sustituye en cada denominador de la ecuación original: muestra cuál se anula y por qué esa solución se descarta.</span>
-          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
-        </span>
-      </a>
-
-      <h2 class="seccion" id="s-3-aplicacion-problemas-de-trabajo-conjunto">3. Aplicación: problemas de trabajo conjunto</h2>
-      <div class="bloque">
-        <p>Si una persona tarda <em>a</em> horas en hacer un trabajo y otra tarda <em>b</em> horas, trabajando juntas tardan <em>t</em> horas, donde:</p>
-        <p class="formula">1/a + 1/b = 1/t</p>
-        <p>Cada fracción representa la parte del trabajo que cada quien hace en una hora.</p>
-
-        <div class="ejemplo">
-          <span class="et">Ejemplo 4</span>
-          <p>Ana pinta una sala en 3 horas; Luis, en 6 horas. ¿Cuánto tardan juntos?</p>
-          <div class="paso"><span class="n">1</span> Se plantea: 1/3 + 1/6 = 1/t.</div>
-          <div class="paso"><span class="n">2</span> Se suma: 2/6 + 1/6 = 3/6 = 1/2.</div>
-          <div class="paso"><span class="n">3</span> Entonces 1/2 = 1/t, así que t = 2.</div>
-          <p><strong>Respuesta:</strong> juntos tardan 2 horas.</p>
-        </div>
-
-        <div class="caja-tip">
-          <strong>El resultado tiene sentido:</strong> juntos siempre tardan <em>menos</em> que el más rápido de los dos por separado. Si tu respuesta es mayor que el tiempo individual más corto, hay un error en el planteamiento.
-        </div>
-      </div>
-      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-3.html#trabajo" target="_blank" rel="noopener noreferrer"
-         aria-label="Abrir el interactivo en la parte de trabajo conjunto (se abre en una pestaña nueva)">
-        <span class="ei-icono" aria-hidden="true">🔗</span>
-        <span class="ei-cuerpo">
-          <span class="ei-titulo">Practica el trabajo conjunto</span>
-          <span class="ei-sub">Cambia los tiempos de cada persona y observa en una barra qué parte del trabajo hace cada quien en una hora, con el cálculo del tiempo conjunto.</span>
-          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
-        </span>
-      </a>
-
-      <div class="practica">
-        <h3>Práctica interactiva 2 · Trabajo conjunto</h3>
-        <p>Selecciona la respuesta correcta.</p>
-
-        <div class="pregunta" data-correcta="a">
-          <div class="enun">1. A tarda 2 h y B tarda 2 h. ¿Cuánto tardan juntos?</div>
-          <div class="opciones">
-            <div class="opcion" data-op="a">1 h</div>
-            <div class="opcion" data-op="b">2 h</div>
-            <div class="opcion" data-op="c">4 h</div>
-          </div>
-          <div class="fb"></div>
-        </div>
-
-        <div class="pregunta" data-correcta="a">
-          <div class="enun">2. A tarda 6 h y B tarda 3 h. ¿Cuánto tardan juntos?</div>
-          <div class="opciones">
-            <div class="opcion" data-op="a">2 h</div>
-            <div class="opcion" data-op="b">3 h</div>
-            <div class="opcion" data-op="c">9 h</div>
-          </div>
-          <div class="fb"></div>
-        </div>
-
-        <div class="pregunta" data-correcta="a">
-          <div class="enun">3. ¿Qué fórmula modela el trabajo conjunto?</div>
-          <div class="opciones">
-            <div class="opcion" data-op="a">1/a + 1/b = 1/t</div>
-            <div class="opcion" data-op="b">a + b = t</div>
-            <div class="opcion" data-op="c">a · b = t</div>
-          </div>
-          <div class="fb"></div>
-        </div>
-      </div>
-
-      <h2 class="seccion" id="s-4-otras-aplicaciones-distancia-velocidad-y-tiempo">4. Otras aplicaciones: distancia, velocidad y tiempo</h2>
-      <div class="bloque">
-        <p>Muchos problemas del GED usan la relación tiempo = distancia / velocidad, que produce ecuaciones racionales. Un caso típico es el de un bote o un avión afectado por una corriente o el viento:</p>
-        <table class="reglas">
-          <caption class="sr-only">Velocidad efectiva de un bote según la dirección respecto a la corriente.</caption>
-          <thead>
-            <tr>
-              <th scope="col">Situación</th>
-              <th scope="col">Velocidad efectiva</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>A favor de la corriente</td><td>v + c (la corriente ayuda)</td></tr>
-            <tr><td>En contra de la corriente</td><td>v − c (la corriente frena)</td></tr>
-          </tbody>
-        </table>
-        <p>Donde v es la velocidad en agua quieta y c, la velocidad de la corriente. Al expresar los tiempos como distancia/velocidad, se obtiene una ecuación racional que se resuelve con el método del MCM.</p>
-      </div>
-      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-3.html#dvt" target="_blank" rel="noopener noreferrer"
-         aria-label="Abrir el interactivo en la parte de distancia, velocidad y tiempo (se abre en una pestaña nueva)">
-        <span class="ei-icono" aria-hidden="true">🔗</span>
-        <span class="ei-cuerpo">
-          <span class="ei-titulo">Practica distancia, velocidad y tiempo</span>
-          <span class="ei-sub">Simulador del bote en el río: cambia la velocidad, la corriente y la distancia, y mira qué ocurre cuando la corriente iguala a la velocidad del bote.</span>
+          <span class="ei-titulo">Practica la diferencia entre factor y término</span>
+          <span class="ei-sub">Ocho cancelaciones para juzgar: unas válidas y otras no, con la explicación de por qué en cada caso.</span>
           <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
         </span>
       </a>
 
       <div class="caja-tarea">
         <h2 id="s-tarea">Tarea</h2>
-        <p>Para hacer por su cuenta, con el cuaderno y la calculadora:</p>
+        <p>Para hacer por su cuenta, con el cuaderno abierto:</p>
         <ul>
-          <li>¿Trabajamos juntos? Resuelva con 1/a + 1/b = 1/t y compruebe que el tiempo conjunto es menor que el de cada uno por separado: Ana pinta un cuarto en 6 h y Luis en 3 h; una llave llena un tanque en 4 h y otra en 12 h; una máquina termina un pedido en 5 h y otra en 20 h; una impresora saca un trabajo en 10 min y otra en 15 min.</li>
-          <li>A favor y en contra: un bote avanza a 15 mph en agua tranquila y tarda lo mismo en recorrer 20 millas a favor de la corriente que 10 millas en contra; ¿cuál es la velocidad de la corriente? Un avión vuela a 500 mph sin viento y recorre 1200 millas con viento a favor en el mismo tiempo que 800 millas en contra; ¿cuál es la velocidad del viento? Plantee cada tiempo como distancia / velocidad. Después invente dos problemas parecidos.</li>
-          <li>Caza de soluciones extrañas: resuelva, compare con los valores excluidos y descarte la solución que anule un denominador: x/(x − 3) = 3/(x − 3) + 2; x²/(x − 1) = 1/(x − 1); 3/x + 1 = 4/x. Explique en cuál no hay solución extraña.</li>
-          <li><strong>Práctica en línea:</strong> <a href="https://zhemaria.github.io/algebra/n4-l5-3.html" target="_blank" rel="noopener noreferrer">interactivo de la Lección 5.3<span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Haga varios ejercicios de cada práctica, resolviéndolos primero en el cuaderno, y anote los que falle para repasarlos.</li>
+          <li>¿Qué valores excluyo? Simplifique estas ocho expresiones y anote los valores excluidos a partir del denominador <em>original</em>: 6x / 9x², (x² − 9) / (x + 3), (x² + 5x + 6) / (x² − 4), (2x + 8) / (x² + 4x), (x² − x − 12) / (x² − 16), (3x − 6) / (x² − 4x + 4), (x² − 25) / (x² − 10x + 25) y (4x² − 1) / (2x² + x). Señale en cuáles un valor excluido proviene de un factor que se canceló.</li>
+          <li>Cazadores del error: cada simplificación es incorrecta. Explique en una frase por qué no se puede cancelar y corríjala: (x + 5) / 5 = x; (x² + 4) / (x + 2) = x + 2; (x + 3) / (x + 6) = 1/2.</li>
+          <li>Del número al polinomio: simplifique 12/18 y, a su lado, (x² + 5x + 6) / (x² + 6x + 9), escribiendo los pasos de factorizar y cancelar en paralelo. Después invente dos pares más.</li>
+          <li><strong>Práctica en línea:</strong> <a href="https://zhemaria.github.io/algebra/n4-l5-1.html" target="_blank" rel="noopener noreferrer">interactivo de la Lección 5.1<span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Haga varios ejercicios de cada práctica, resolviéndolos primero en el cuaderno, y anote los que falle para repasarlos.</li>
         </ul>
-        <p>Tiempo estimado: unos 70 minutos. Evalúe su trabajo con la rúbrica de esta lección.</p>
+        <p>Tiempo estimado: unos 60 minutos. Evalúe su trabajo con la rúbrica de esta lección.</p>
       </div>
 
       <details class="quiz-acordeon" id="s-quiz">
         <summary>
           <span class="chevron-q" aria-hidden="true">▶</span>
-          <h2>Quiz de la lección 5.3</h2>
+          <h2>Quiz de la lección 5.1</h2>
         </summary>
         <div class="quiz-inner">
-          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas. Se permite calculadora.</p>
+          <p>Diez preguntas. Al finalizar se marca cada respuesta y se puede reintentar las veces necesarias. Para aprobar se requieren al menos 7 respuestas correctas.</p>
           <div id="quiz-cuerpo"></div>
           <div id="resultado-quiz"></div>
           <button class="btn" id="btn-corregir">Corregir quiz</button>
@@ -520,9 +514,9 @@
       </details>
       <div class="rubrica">
         <h2 id="s-rubrica">Rúbrica analítica de la lección</h2>
-        <p>Cuatro criterios evaluados en cuatro niveles de desempeño. Léala <strong>antes</strong> de empezar la tarea y úsela <strong>después</strong> para evaluar su propio trabajo con honestidad.</p>
+        <p>Tres criterios evaluados en cuatro niveles de desempeño. Léala <strong>antes</strong> de empezar la tarea y úsela <strong>después</strong> para evaluar su propio trabajo con honestidad.</p>
         <table class="tabla-rubrica">
-          <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
+          <caption class="sr-only">Rúbrica analítica con tres criterios y cuatro niveles de desempeño.</caption>
           <thead>
             <tr>
               <th scope="col">Criterio</th>
@@ -534,45 +528,38 @@
           </thead>
           <tbody>
             <tr>
-              <td>Multiplicar por el MCM</td>
-              <td>No identifica el MCM o no lo aplica a todos los términos.</td>
-              <td>Multiplica, pero olvida algún término.</td>
-              <td>Multiplica por el MCM y elimina los denominadores correctamente.</td>
-              <td>Limpia los denominadores con fluidez en cualquier ecuación.</td>
+              <td>Factorizar numerador y denominador</td>
+              <td>No logra factorizar.</td>
+              <td>Factoriza uno de los dos o con errores.</td>
+              <td>Factoriza correctamente numerador y denominador.</td>
+              <td>Factoriza con fluidez y reconoce el patrón más eficiente.</td>
             </tr>
             <tr>
-              <td>Resolver la ecuación resultante</td>
-              <td>No resuelve la ecuación lineal o cuadrática.</td>
-              <td>La resuelve con errores de cálculo.</td>
-              <td>Resuelve correctamente la ecuación resultante.</td>
-              <td>Resuelve con seguridad, sea lineal o cuadrática.</td>
+              <td>Cancelar solo factores</td>
+              <td>Cancela términos en lugar de factores.</td>
+              <td>Cancela factores, pero a veces confunde términos.</td>
+              <td>Cancela únicamente factores comunes.</td>
+              <td>Cancela con seguridad y justifica por qué no se cancelan términos.</td>
             </tr>
             <tr>
-              <td>Verificar soluciones extrañas</td>
-              <td>No verifica las soluciones.</td>
-              <td>Verifica, pero no descarta la solución extraña.</td>
-              <td>Verifica y descarta las soluciones que anulan denominadores.</td>
-              <td>Verifica de forma sistemática y justifica el descarte.</td>
-            </tr>
-            <tr>
-              <td>Modelar una aplicación</td>
-              <td>No plantea la ecuación del problema.</td>
-              <td>Plantea la ecuación, pero no la resuelve o interpreta mal.</td>
-              <td>Modela y resuelve el problema con una ecuación racional.</td>
-              <td>Modela, resuelve e interpreta el resultado en el contexto real.</td>
+              <td>Identificar valores excluidos</td>
+              <td>No identifica valores excluidos.</td>
+              <td>Identifica algunos, pero omite los del factor cancelado.</td>
+              <td>Identifica todos los valores excluidos del dominio.</td>
+              <td>Identifica todos y los anota antes de cancelar de forma sistemática.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="cierre">
-        <h2 id="s-cierre">Cierre del Tema 5 y enlace con el próximo tema</h2>
-        <p>Con esta lección se cierra el <strong>Tema 5 · Expresiones racionales complejas</strong>. Se aprendió a resolver ecuaciones racionales multiplicando por el <strong>MCM</strong>, a descartar <strong>soluciones extrañas</strong> y a modelar problemas reales de trabajo conjunto y de distancia, velocidad y tiempo.</p>
-        <p>El <strong>Tema 6 · Sistemas de ecuaciones lineales</strong> comienza con la <strong>Lección 6.1 · Resolver sistemas de ecuaciones por sustitución</strong>. Se pasará de una sola ecuación a <strong>dos ecuaciones con dos variables</strong>, despejando una variable y sustituyéndola en la otra para hallar la solución del sistema. ¡Excelente avance!</p>
+        <h2 id="s-cierre">Cierre y enlace con la próxima lección</h2>
+        <p>En esta lección se aprendió a <strong>simplificar expresiones racionales</strong> factorizando y cancelando solo factores comunes, y a identificar los <strong>valores excluidos</strong> del dominio.</p>
+        <p>En la <strong>Lección 5.2 · Sumar, restar, multiplicar y dividir expresiones racionales</strong> se operará con estas fracciones algebraicas: multiplicar (factorizar y cancelar), dividir (multiplicar por el recíproco) y sumar o restar con denominador común y con denominadores diferentes, siempre por analogía con las fracciones numéricas.</p>
       </div>
 
       <footer>
-        <p>GEDparaHispanos · Matemáticas · Nivel 4 · Tema 5 · Lección 5.3</p>
+        <p>GEDparaHispanos · Matemáticas · Nivel 4 · Tema 5 · Lección 5.1</p>
         <p>José M. Fernández, ABE/ASE Math Master Teacher, Harry S. Truman College — City Colleges of Chicago</p>
         <p>© 2026. Esta obra está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener noreferrer" target="_blank">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>.</p>
       </footer>
@@ -608,16 +595,16 @@
         });
 
         var preguntasQuiz = [
-          {enun: '1. Resuelve 5/x = 10.', ops: ['x = 2', 'x = 1/2', 'x = 5', 'x = 50'], correcta: 1},
-          {enun: '2. Resuelve 6/x + 1 = 4.', ops: ['x = 2', 'x = 3', 'x = 6', 'x = 1/2'], correcta: 0},
-          {enun: '3. Resuelve 2/x = 8/(x + 3).', ops: ['x = 3', 'x = 1', 'x = −3', 'x = 2'], correcta: 1},
-          {enun: '4. Resuelve (x + 1)/2 = x/3.', ops: ['x = 3', 'x = 1', 'x = −3', 'x = −1'], correcta: 2},
-          {enun: '5. Al resolver x/(x − 4) = 4/(x − 4) se obtiene x = 4. ¿Es válida?', ops: ['Sí, x = 4', 'No, x = 4 es un valor excluido', 'Sí, siempre', 'No, debe ser x = 0'], correcta: 1},
-          {enun: '6. ¿Por qué se verifican las soluciones en ecuaciones racionales?', ops: ['Por costumbre', 'No es necesario', 'Para sumar fracciones', 'Para descartar valores excluidos (soluciones extrañas)'], correcta: 3},
-          {enun: '7. Ana pinta una sala en 3 h y Luis en 6 h. ¿Cuánto tardan juntos?', ops: ['4.5 h', '2 h', '9 h', '3 h'], correcta: 1},
-          {enun: '8. Dos grifos llenan un tanque: uno en 4 h y otro en 4 h. ¿Cuánto tardan juntos?', ops: ['8 h', '4 h', '2 h', '1 h'], correcta: 2},
-          {enun: '9. ¿Qué ecuación modela el trabajo conjunto (A tarda a horas, B tarda b horas)?', ops: ['1/a + 1/b = 1/t', 'a + b = t', '1/a − 1/b = 1/t', 'a · b = t'], correcta: 0},
-          {enun: '10. Un bote tiene velocidad v en agua quieta. Con la corriente c a favor, su velocidad efectiva es:', ops: ['v − c', 'v + c', 'v · c', 'v / c'], correcta: 1}
+          {enun: '1. Simplifica 8x³ / 12x.', ops: ['2x³ / 3', '2x² / 3', '8x² / 12', '4x² / 6'], correcta: 1},
+          {enun: '2. Simplifica (x² − 9) / (x + 3).', ops: ['x + 3', 'x − 3', 'x − 9', 'x² − 3'], correcta: 1},
+          {enun: '3. Simplifica (x + 2) / (x² − 4).', ops: ['1 / (x + 2)', 'x − 2', '1 / (x − 2)', '(x + 2) / (x − 2)'], correcta: 2},
+          {enun: '4. Simplifica (x² + 5x + 6) / (x + 2).', ops: ['x + 3', 'x + 2', 'x + 5', 'x² + 3'], correcta: 0},
+          {enun: '5. ¿Qué valor se excluye en 5 / (x − 7)?', ops: ['7', '−7', '5', '0'], correcta: 0},
+          {enun: '6. ¿Qué valores se excluyen en (x + 1) / (x² − 9)?', ops: ['x = 3 y x = −3', 'x = 9', 'x = −1', 'x = 3 solamente'], correcta: 0},
+          {enun: '7. ¿Qué valores se excluyen en x / [(x − 2)(x + 5)]?', ops: ['x = 2 y x = −5', 'x = −2 y x = 5', 'x = 0', 'x = 2 solamente'], correcta: 0},
+          {enun: '8. Al simplificar (x + 3) / (x² + x − 6), ¿qué valores hay que excluir?', ops: ['x = 2 solamente', 'x = 2 y x = −3', 'x = −3 solamente', 'x = 3 y x = −2'], correcta: 1},
+          {enun: '9. ¿Es correcto cancelar la x en (x + 4) / x para obtener 4?', ops: ['No, no se cancelan términos en una suma', 'Sí, queda 4', 'Sí, queda x + 4', 'Sí, siempre'], correcta: 0},
+          {enun: '10. ¿Se puede cancelar el 3 en (x + 3) / 3?', ops: ['Sí, queda x', 'No, el 3 no es factor de todo el numerador', 'Sí, queda x + 1', 'Sí, queda x / 3'], correcta: 1}
         ];
 
         var cuerpo = document.getElementById('quiz-cuerpo');
@@ -689,7 +676,7 @@
           resultado.style.display = 'block';
           if (aciertos >= 7) {
             resultado.className = 'aprob';
-            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Has completado el Tema 5; puedes continuar al Tema 6.';
+            resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. ¡Aprobado! Puedes continuar a la Lección 5.2.';
           } else {
             resultado.className = 'repro';
             resultado.textContent = 'Resultado: ' + aciertos + ' de 10 correctas. Repasa la lección e intenta de nuevo (se requieren 7).';

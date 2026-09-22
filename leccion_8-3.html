@@ -1,9 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- Lección 8.3 · Matemáticas Nivel 4 · GEDparaHispanos
+     José M. Fernández · CC BY-NC-SA 4.0 -->
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lección 8.3 · Proyecto final integrador y simulacro GED Mathematical Reasoning</title>
+    <meta name="license" content="CC BY-NC-SA 4.0" />
+    <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" />
     <style>
       :root {
         --tema: #b71c1c;
@@ -556,6 +561,27 @@
         border-top: 1px solid #ddd;
         margin-top: 20px;
       }
+    
+  /* ── ÍNDICE DE LA LECCIÓN ── */
+  .indice{ background:#fff; border:1px solid #d8dde3; border-left:6px solid var(--tema);
+    border-radius:10px; padding:16px 20px; margin:24px 0; }
+  .indice h2{ font-size:1.05rem; margin:0 0 10px; color:var(--tema-d); border:0; padding:0; background:none; }
+  .indice ol{ margin:0; padding-left:1.35em; }
+  .indice li{ margin:4px 0; }
+  .indice a{ color:var(--tema-d); text-decoration:underline; }
+  .indice a:hover{ color:var(--tema); }
+  .indice a:focus-visible,.volver-indice:focus-visible{ outline:3px solid #b05e00; outline-offset:2px; }
+  .volver-indice{ position:fixed; right:18px; bottom:18px; z-index:60;
+    background:var(--tema-d); color:#fff; border-radius:999px;
+    padding:10px 16px; font-weight:700; font-size:.92rem; text-decoration:none;
+    box-shadow:0 2px 10px rgba(0,0,0,.28); }
+  .volver-indice:hover{ background:var(--tema); color:#fff; }
+  .caja-tarea ul{ margin:8px 0; padding-left:22px; }
+  .caja-tarea li{ margin:6px 0; }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  footer p{ margin:4px 0; }
+  footer a{ color:inherit; }
+  @media print{ .indice,.volver-indice{ display:none; } }
     </style>
   </head>
   <body>
@@ -563,7 +589,7 @@
       <header class="principal">
         <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 8 · Modelado de funciones y simulacro GED</div>
         <h1>Lección 8.3 · Proyecto final integrador y simulacro GED Mathematical Reasoning</h1>
-        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+        <div class="meta">Unas 4 horas, a su ritmo · NRS 4–5</div>
       </header>
 
       <div class="caja-objetivos">
@@ -575,6 +601,18 @@
           <li>Identificar las áreas que requieren repaso final antes del examen real.</li>
         </ul>
       </div>
+      <nav class="indice" id="indice" aria-labelledby="indice-titulo">
+        <h2 id="indice-titulo">Contenido de la lección</h2>
+        <ol>
+          <li><a href="#s-1-el-proyecto-final-mi-modelo-matematico">1. El proyecto final "Mi modelo matemático"</a></li>
+          <li><a href="#s-2-la-presentacion-oral">2. La presentación oral</a></li>
+          <li><a href="#s-3-estrategias-para-el-simulacro-ged">3. Estrategias para el simulacro GED</a></li>
+          <li><a href="#s-tarea">Tarea</a></li>
+          <li><a href="#s-quiz">Evaluación final · 30 preguntas</a></li>
+          <li><a href="#s-rubrica">Rúbrica del proyecto final "Mi modelo matemático"</a></li>
+          <li><a href="#s-cierre">Cierre del Tema 8 y del Nivel 4</a></li>
+        </ol>
+      </nav>
 
       <div class="bloque">
         <p>
@@ -586,7 +624,7 @@
         </p>
       </div>
 
-      <h2 class="seccion">1. El proyecto final "Mi modelo matemático"</h2>
+      <h2 class="seccion" id="s-1-el-proyecto-final-mi-modelo-matematico">1. El proyecto final "Mi modelo matemático"</h2>
       <div class="bloque">
         <p>
           El proyecto consiste en modelar una
@@ -633,18 +671,16 @@
           (exponencial).
         </div>
       </div>
-
-      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub de la plantilla/simulador del proyecto final -->
       <a
         class="enlace-interactivo"
         href="https://zhemaria.github.io/interactivos/simulacro"
         target="_blank"
-        rel="noopener"
-        aria-label="Abrir la plantilla y el simulacro GED interactivo en GEDparaHispanos (se abre en una pestaña nueva)">
+        rel="noopener noreferrer"
+        aria-label="Abrir la plantilla del proyecto y el simulacro interactivo (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
           <span class="ei-titulo">Plantilla del proyecto y simulacro interactivo</span>
-          <span class="ei-sub">Usa la plantilla guiada de "Mi modelo matemático" y practica con el simulacro GED cronometrado en el portal GEDparaHispanos.</span>
+          <span class="ei-sub">Usa la plantilla guiada de "Mi modelo matemático" y practica con el simulacro cronometrado.</span>
           <span class="ei-cta">
             Abrir el recurso
             <span aria-hidden="true">›</span>
@@ -652,12 +688,12 @@
         </span>
       </a>
 
-      <h2 class="seccion">2. La presentación oral</h2>
+      <h2 class="seccion" id="s-2-la-presentacion-oral">2. La presentación oral</h2>
       <div class="bloque">
         <p>
-          Cada estudiante presenta su modelo en
+          Presenta tu modelo en
           <strong>3 a 4 minutos</strong>
-          , explicando la situación, mostrando la gráfica y comentando el análisis. El grupo puede hacer preguntas. Se valora el uso claro y preciso del
+          , explicando la situación, mostrando la gráfica y comentando el análisis, ante alguien de confianza (un familiar, un amigo o un compañero de estudio) o grabándote con el teléfono. Pide que te hagan preguntas o, si te grabas, háztelas tú al ver el video. Se valora el uso claro y preciso del
           <strong>vocabulario matemático</strong>
           (vértice, tasa de crecimiento, intercepto, dominio, etc.).
         </p>
@@ -667,7 +703,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">3. Estrategias para el simulacro GED</h2>
+      <h2 class="seccion" id="s-3-estrategias-para-el-simulacro-ged">3. Estrategias para el simulacro GED</h2>
       <div class="bloque">
         <p>El simulacro reproduce las condiciones reales del examen. Estas estrategias ayudan a rendir mejor:</p>
         <table class="reglas">
@@ -705,83 +741,28 @@
         </div>
       </div>
 
-      <h2 class="seccion">4. Práctica guiada en clase</h2>
-      <div class="bloque">
-        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas, en condiciones de simulacro. Cada una se presenta en doble modalidad.</p>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 1 · ¡Es hora del examen!</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3>
-                <span aria-hidden="true">🏫</span>
-                Presencial
-              </h3>
-              Simulacro de preguntas tipo GED en condiciones reales (cronometrado, solo TI-30XS y hoja de fórmulas). Al terminar, análisis de resultados: ¿qué temas necesito repasar?
-            </div>
-            <div class="modo modo-virt">
-              <h3>
-                <span aria-hidden="true">💻</span>
-                En línea
-              </h3>
-              Cada estudiante completa el simulacro en el tiempo asignado y registra en una hoja personal qué temas falló para su plan de repaso final.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 2 · Presentación del proyecto</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3>
-                <span aria-hidden="true">🏫</span>
-                Presencial
-              </h3>
-              Cada estudiante presenta "Mi modelo matemático" (3–4 min) ante el grupo, que formula preguntas. El docente evalúa con la rúbrica del proyecto.
-            </div>
-            <div class="modo modo-virt">
-              <h3>
-                <span aria-hidden="true">💻</span>
-                En línea
-              </h3>
-              Cada estudiante graba o presenta en vivo su proyecto y responde preguntas en el foro; los compañeros aportan retroalimentación.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 3 · Mi plan de preparación final</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3>
-                <span aria-hidden="true">🏫</span>
-                Presencial
-              </h3>
-              Con los resultados del simulacro, cada estudiante arma un plan individual: qué temas repasar, con qué recursos y en qué orden, antes del examen real.
-            </div>
-            <div class="modo modo-virt">
-              <h3>
-                <span aria-hidden="true">💻</span>
-                En línea
-              </h3>
-              Cada estudiante sube su plan de preparación final a Brightspace y comparte una meta concreta para la semana previa al GED.
-            </div>
-          </div>
-        </div>
+      <div class="caja-tarea">
+        <h2 id="s-tarea">Tarea</h2>
+        <p>La tarea de esta lección es el cierre del Nivel 4. Hágala en este orden:</p>
+        <ul>
+          <li><strong>El proyecto «Mi modelo matemático».</strong> Complete las cinco partes (situación, función, gráfica, análisis e interpretación). Puede apoyarse en la plantilla guiada de la sección 1. Cuando termine, califíquese con la rúbrica del proyecto y corrija lo que no llegue a «Competente».</li>
+          <li><strong>La presentación.</strong> Presente su modelo en 3 a 4 minutos a alguien de confianza, o grábese con el teléfono. Al ver la grabación, compruebe que usó el vocabulario matemático con precisión.</li>
+          <li><strong>El simulacro.</strong> Haga el <a href="https://zhemaria.github.io/examen/matematicas/" target="_blank" rel="noopener noreferrer">simulacro de Matemáticas de GEDparaHispanos<span class="sr-only"> (se abre en una pestaña nueva)</span></a> en condiciones reales: tiempo cronometrado, un solo intento y solo la calculadora TI-30XS y la hoja de fórmulas.</li>
+          <li><strong>Mi plan de preparación final.</strong> Con el informe del simulacro, anote qué temas debe repasar, con qué recursos y en qué orden. El <a href="https://zhemaria.github.io/algebra/n4-repaso.html" target="_blank" rel="noopener noreferrer">índice de repaso del Nivel 4<span class="sr-only"> (se abre en una pestaña nueva)</span></a> reúne las prácticas de los ocho temas. Termine con una meta concreta para la semana anterior al examen.</li>
+        </ul>
+        <p>Tiempo estimado: unas 3 horas, repartidas en varios días. El simulacro requiere un bloque sin interrupciones.</p>
       </div>
 
-      <details class="quiz-acordeon">
+      <details class="quiz-acordeon" id="s-quiz">
         <summary>
           <span class="chevron-q" aria-hidden="true">▶</span>
-          <h2>Evaluación final sumativa · 30 preguntas</h2>
+          <h2>Evaluación final · 30 preguntas</h2>
         </summary>
         <div class="quiz-inner">
           <p>
-            Treinta preguntas que integran todos los temas del Nivel 4 (5 por bloque). En el examen real es
-            <strong>un solo intento, 90 minutos</strong>
-            , con calculadora TI-30XS y hoja de fórmulas. Aquí puedes practicar y reintentar; para aprobar se requieren al menos
+            Treinta preguntas que integran todos los temas del Nivel 4 (5 por bloque), con calculadora TI-30XS y hoja de fórmulas. Aquí puedes practicar y reintentar las veces necesarias; para aprobar se requieren al menos
             <strong>21 de 30</strong>
-            correctas (70%).
+            correctas (70%). Para vivir las condiciones reales del examen —un solo intento y tiempo cronometrado— usa el <a href="https://zhemaria.github.io/examen/matematicas/" target="_blank" rel="noopener noreferrer">simulacro de Matemáticas<span class="sr-only"> (se abre en una pestaña nueva)</span></a>.
           </p>
           <div id="quiz-cuerpo"></div>
           <div id="resultado-quiz"></div>
@@ -789,34 +770,9 @@
           <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
         </div>
       </details>
-
-      <div class="caja-tarea">
-        <h2>Tarea asincrónica</h2>
-        <p>
-          <strong>1) Proyecto final (Brightspace).</strong>
-          Sube tu proyecto "Mi modelo matemático" completo (situación, función, gráfica, análisis e interpretación) al área de entregas:
-        </p>
-        <p>
-          <a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">
-            Subir a Brightspace
-            <span class="ext" aria-hidden="true">&#8599;</span>
-          </a>
-        </p>
-        <p>
-          <strong>2) Evaluación sumativa final (MyOpenMath/Brightspace).</strong>
-          Completa la evaluación sumativa final de 30 preguntas en condiciones de examen:
-        </p>
-        <p>
-          <a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">
-            Ir a la evaluación final
-            <span class="ext" aria-hidden="true">&#8599;</span>
-          </a>
-        </p>
-      </div>
-
       <div class="rubrica">
-        <h2>Rúbrica del proyecto final "Mi modelo matemático"</h2>
-        <p>Cinco criterios evaluados en cuatro niveles de desempeño (20 puntos). La nota del proyecto se integra con la evaluación sumativa para la calificación final del curso.</p>
+        <h2 id="s-rubrica">Rúbrica del proyecto final "Mi modelo matemático"</h2>
+        <p>Cinco criterios evaluados en cuatro niveles de desempeño (20 puntos). Léala <strong>antes</strong> de empezar el proyecto y úsela <strong>después</strong> para evaluar su propio trabajo con honestidad.</p>
         <table class="tabla-rubrica">
           <caption class="sr-only">Rúbrica analítica del proyecto final con cinco criterios y cuatro niveles de desempeño.</caption>
           <thead>
@@ -869,7 +825,7 @@
       </div>
 
       <div class="cierre">
-        <h2>Cierre del Tema 8 y del Nivel 4</h2>
+        <h2 id="s-cierre">Cierre del Tema 8 y del Nivel 4</h2>
         <p>
           ¡Lo lograste! Con esta lección se cierra el
           <strong>Tema 8</strong>
@@ -886,7 +842,12 @@
         </p>
       </div>
 
-      <footer>Spanish ASE Math · Nivel 4 · Lección 8.3 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+      <footer>
+        <p>GEDparaHispanos · Matemáticas · Nivel 4 · Tema 8 · Lección 8.3</p>
+        <p>José M. Fernández, ABE/ASE Math Master Teacher, Harry S. Truman College — City Colleges of Chicago</p>
+        <p>© 2026. Esta obra está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener noreferrer" target="_blank">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>.</p>
+      </footer>
+      <a class="volver-indice" href="#indice" aria-label="Volver al contenido de la lección"><span aria-hidden="true">↑</span> Índice</a>
     </div>
 
     <script>
@@ -1037,5 +998,20 @@
         });
       })();
     </script>
+  
+<script>
+  /* Abre el quiz (acordeón) cuando se llega a él desde el índice o por la URL */
+  (function () {
+    function abrir(id) {
+      var el = id && document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    }
+    abrir(location.hash.slice(1));
+    window.addEventListener('hashchange', function () { abrir(location.hash.slice(1)); });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function () { abrir(a.getAttribute('href').slice(1)); });
+    });
+  })();
+</script>
   </body>
 </html>

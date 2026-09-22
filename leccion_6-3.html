@@ -1,9 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- Lección 6.3 · Matemáticas Nivel 4 · GEDparaHispanos
+     José M. Fernández · CC BY-NC-SA 4.0 -->
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lección 6.3 · Método gráfico, aplicaciones y modelado con sistemas</title>
+    <meta name="license" content="CC BY-NC-SA 4.0" />
+    <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" />
     <style>
       :root {
         --tema: #4e342e;
@@ -234,6 +239,27 @@
         text-align: center; padding: 20px; color: #555; font-size: 13px;
         border-top: 1px solid #ddd; margin-top: 20px;
       }
+    
+  /* ── ÍNDICE DE LA LECCIÓN ── */
+  .indice{ background:#fff; border:1px solid #d8dde3; border-left:6px solid var(--tema);
+    border-radius:10px; padding:16px 20px; margin:24px 0; }
+  .indice h2{ font-size:1.05rem; margin:0 0 10px; color:var(--tema-d); border:0; padding:0; background:none; }
+  .indice ol{ margin:0; padding-left:1.35em; }
+  .indice li{ margin:4px 0; }
+  .indice a{ color:var(--tema-d); text-decoration:underline; }
+  .indice a:hover{ color:var(--tema); }
+  .indice a:focus-visible,.volver-indice:focus-visible{ outline:3px solid #b05e00; outline-offset:2px; }
+  .volver-indice{ position:fixed; right:18px; bottom:18px; z-index:60;
+    background:var(--tema-d); color:#fff; border-radius:999px;
+    padding:10px 16px; font-weight:700; font-size:.92rem; text-decoration:none;
+    box-shadow:0 2px 10px rgba(0,0,0,.28); }
+  .volver-indice:hover{ background:var(--tema); color:#fff; }
+  .caja-tarea ul{ margin:8px 0; padding-left:22px; }
+  .caja-tarea li{ margin:6px 0; }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  footer p{ margin:4px 0; }
+  footer a{ color:inherit; }
+  @media print{ .indice,.volver-indice{ display:none; } }
     </style>
   </head>
   <body>
@@ -241,7 +267,7 @@
       <header class="principal">
         <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 6 · Sistemas de ecuaciones lineales</div>
         <h1>Lección 6.3 · Método gráfico, aplicaciones y modelado con sistemas</h1>
-        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+        <div class="meta">Unas 4 horas, a su ritmo · NRS 4–5</div>
       </header>
 
       <div class="caja-objetivos">
@@ -253,12 +279,25 @@
           <li>Modelar situaciones reales, como el punto de equilibrio de una empresa.</li>
         </ul>
       </div>
+      <nav class="indice" id="indice" aria-labelledby="indice-titulo">
+        <h2 id="indice-titulo">Contenido de la lección</h2>
+        <ol>
+          <li><a href="#s-1-el-metodo-grafico">1. El método gráfico</a></li>
+          <li><a href="#s-2-conectar-lo-grafico-con-lo-algebraico">2. Conectar lo gráfico con lo algebraico</a></li>
+          <li><a href="#s-3-traducir-un-problema-verbal-a-un-sistema">3. Traducir un problema verbal a un sistema</a></li>
+          <li><a href="#s-4-modelado-el-punto-de-equilibrio">4. Modelado: el punto de equilibrio</a></li>
+          <li><a href="#s-tarea">Tarea</a></li>
+          <li><a href="#s-quiz">Quiz de la lección 6.3</a></li>
+          <li><a href="#s-rubrica">Rúbrica analítica de la lección</a></li>
+          <li><a href="#s-cierre">Cierre del Tema 6 y enlace con el próximo tema</a></li>
+        </ol>
+      </nav>
 
       <div class="bloque">
         <p><strong>Conexión con la lección anterior.</strong> En las Lecciones 6.1 y 6.2 se resolvieron sistemas con álgebra (sustitución y eliminación). Ahora se añade una tercera mirada: el <strong>método gráfico</strong>. Ver las dos rectas en el plano ayuda a entender por qué un sistema tiene una, ninguna o infinitas soluciones, y a conectar todo con las aplicaciones reales.</p>
       </div>
 
-      <h2 class="seccion">1. El método gráfico</h2>
+      <h2 class="seccion" id="s-1-el-metodo-grafico">1. El método gráfico</h2>
       <div class="bloque">
         <p>Para resolver un sistema gráficamente se grafican las dos rectas en el mismo plano. El <strong>punto donde se cruzan</strong> es la solución del sistema: su par (x, y) cumple las dos ecuaciones.</p>
 
@@ -294,14 +333,21 @@
 
         <p>En la gráfica, las rectas y = x + 1 e y = −x + 5 se cruzan en (2, 3). Ese es justamente el resultado que daría resolver el sistema por sustitución o eliminación.</p>
       </div>
-
-      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo del método gráfico -->
-      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
-         aria-label="Abrir el interactivo del método gráfico de sistemas en GEDparaHispanos (se abre en una pestaña nueva)">
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l6-3.html" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo general de la Lección 6.3 (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
-          <span class="ei-titulo">Refuerza con un interactivo</span>
-          <span class="ei-sub">Grafica las dos rectas, encuentra el punto de intersección y compáralo con la solución algebraica en el portal GEDparaHispanos.</span>
+          <span class="ei-titulo">Refuerza con el interactivo de la lección</span>
+          <span class="ei-sub">Una sola página con las cuatro prácticas de esta lección: mover las rectas y ver el cruce, pasar de la forma estándar al tipo de sistema, traducir problemas verbales y calcular el punto de equilibrio.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l6-3.html#grafico" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte del método gráfico (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica el método gráfico</span>
+          <span class="ei-sub">Deslizadores de pendiente e intercepto para mover las dos rectas y ver desplazarse el punto de cruce, más gráficas nuevas para leer la solución.</span>
           <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
         </span>
       </a>
@@ -341,7 +387,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">2. Conectar lo gráfico con lo algebraico</h2>
+      <h2 class="seccion" id="s-2-conectar-lo-grafico-con-lo-algebraico">2. Conectar lo gráfico con lo algebraico</h2>
       <div class="bloque">
         <p>La gráfica y el álgebra cuentan la misma historia. Los tres tipos de sistema del tema se ven así en el plano:</p>
         <table class="reglas">
@@ -363,8 +409,17 @@
           <strong>Graficar para visualizar, resolver para precisar:</strong> la gráfica muestra de un vistazo cuántas soluciones hay; el álgebra da el valor exacto del punto, sobre todo cuando no es un par de enteros.
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l6-3.html#conectar" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de conectar lo gráfico con lo algebraico (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica la conexión entre gráfica y álgebra</span>
+          <span class="ei-sub">Cuatro sistemas pasados de la forma estándar a y = mx + b, comparando pendientes e interceptos para saber el tipo antes de graficar.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
-      <h2 class="seccion">3. Traducir un problema verbal a un sistema</h2>
+      <h2 class="seccion" id="s-3-traducir-un-problema-verbal-a-un-sistema">3. Traducir un problema verbal a un sistema</h2>
       <div class="bloque">
         <p>El paso más importante en un problema verbal es <strong>definir las variables</strong> y escribir <strong>dos ecuaciones</strong> a partir del texto.</p>
 
@@ -377,6 +432,15 @@
           <p><strong>Respuesta:</strong> el boleto de niño cuesta $4 y el de adulto, $7.</p>
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l6-3.html#traducir" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de traducir problemas verbales (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica la traducción de problemas verbales</span>
+          <span class="ei-sub">Tabla de las frases más frecuentes del examen con su traducción, cuatro problemas armados paso a paso y ejercicios de planteamiento.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
       <div class="practica">
         <h3>Práctica interactiva 2 · Plantear el sistema</h3>
@@ -413,7 +477,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">4. Modelado: el punto de equilibrio</h2>
+      <h2 class="seccion" id="s-4-modelado-el-punto-de-equilibrio">4. Modelado: el punto de equilibrio</h2>
       <div class="bloque">
         <p>Una empresa tiene <strong>costos</strong> (fijos más variables) e <strong>ingresos</strong> (por las ventas). El <strong>punto de equilibrio</strong> (break-even) es donde costos e ingresos se igualan: ni gana ni pierde. Es la solución del sistema formado por la recta de costos y la de ingresos.</p>
 
@@ -429,6 +493,15 @@
           <strong>Interpreta el punto de equilibrio:</strong> a la izquierda del punto, los costos superan a los ingresos (pérdida); a la derecha, los ingresos superan a los costos (ganancia).
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l6-3.html#equilibrio" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte del punto de equilibrio (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica el punto de equilibrio</span>
+          <span class="ei-sub">Simulador con costos fijos, costo por unidad y precio de venta, con las zonas de pérdida y ganancia marcadas en la gráfica.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
       <div class="practica">
         <h3>Práctica interactiva 3 · Punto de equilibrio</h3>
@@ -465,54 +538,19 @@
         </div>
       </div>
 
-      <h2 class="seccion">5. Práctica guiada en clase</h2>
-      <div class="bloque">
-        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas, con calculadora. Cada una se presenta en doble modalidad.</p>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 1 · El punto de equilibrio</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              Dada una función de costos y una de ingresos, los estudiantes grafican ambas rectas, encuentran el punto de equilibrio e interpretan cuántas unidades deben venderse para ganar dinero.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              Cada grupo grafica costos e ingresos en una herramienta compartida, marca el punto de equilibrio y comenta la zona de ganancia y la de pérdida.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 2 · Del texto al sistema</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              Los estudiantes traducen dos problemas verbales a sistemas de ecuaciones, los resuelven por el método que prefieran e interpretan la solución en el contexto.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              En salas pequeñas, cada grupo define las variables, escribe las dos ecuaciones de cada problema y resuelve, explicando el significado de la respuesta.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 3 · Tres miradas, una solución</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              Para un mismo sistema, los estudiantes lo resuelven de las tres formas —gráfica, sustitución y eliminación— y comprueban que las tres dan el mismo punto.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              Cada grupo resuelve el mismo sistema por los tres métodos en un documento compartido y comenta cuál le resultó más rápido y por qué.
-            </div>
-          </div>
-        </div>
+      <div class="caja-tarea">
+        <h2 id="s-tarea">Tarea</h2>
+        <p>Para hacer por su cuenta, con el cuaderno, papel cuadriculado y la calculadora:</p>
+        <ul>
+          <li>El punto de equilibrio: un taller tiene costos C = 200 + 8x e ingresos I = 12x, donde x es el número de unidades vendidas. Grafique las dos rectas, halle el punto de equilibrio y sombree la zona de pérdida y la de ganancia. Repita con C = 150 + 3x e I = 8x.</li>
+          <li>Del texto al sistema: defina las variables, escriba las dos ecuaciones, resuelva por el método que prefiera e interprete la respuesta. (a) La suma de dos números es 30 y su diferencia es 6. (b) Un concierto vendió 100 entradas, a $12 las de adulto y a $5 las de niño, y recaudó $850; ¿cuántas se vendieron de cada tipo?</li>
+          <li>Tres miradas, una solución: resuelva el sistema y = 2x − 1 y x + y = 5 por el método gráfico, por sustitución y por eliminación. Compruebe que los tres dan el mismo punto y escriba cuál le resultó más rápido y por qué.</li>
+          <li><strong>Práctica en línea:</strong> <a href="https://zhemaria.github.io/algebra/n4-l6-3.html" target="_blank" rel="noopener noreferrer">interactivo de la Lección 6.3<span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Haga varios ejercicios de cada práctica, resolviéndolos primero en el cuaderno, y anote los que falle para repasarlos.</li>
+        </ul>
+        <p>Tiempo estimado: unos 70 minutos. Evalúe su trabajo con la rúbrica de esta lección.</p>
       </div>
 
-      <details class="quiz-acordeon">
+      <details class="quiz-acordeon" id="s-quiz">
         <summary>
           <span class="chevron-q" aria-hidden="true">▶</span>
           <h2>Quiz de la lección 6.3</h2>
@@ -525,18 +563,9 @@
           <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
         </div>
       </details>
-
-      <div class="caja-tarea">
-        <h2>Tarea asincrónica</h2>
-        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de método gráfico y modelado:</p>
-        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
-        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 6 sistemas asignados (incluyendo 2 con gráfica) en MyOpenMath antes de la próxima sesión:</p>
-        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
-      </div>
-
       <div class="rubrica">
-        <h2>Rúbrica analítica de la lección</h2>
-        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <h2 id="s-rubrica">Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño. Léala <strong>antes</strong> de empezar la tarea y úsela <strong>después</strong> para evaluar su propio trabajo con honestidad.</p>
         <table class="tabla-rubrica">
           <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
           <thead>
@@ -582,12 +611,17 @@
       </div>
 
       <div class="cierre">
-        <h2>Cierre del Tema 6 y enlace con el próximo tema</h2>
+        <h2 id="s-cierre">Cierre del Tema 6 y enlace con el próximo tema</h2>
         <p>Con esta lección se cierra el <strong>Tema 6 · Sistemas de ecuaciones lineales</strong>. Se dominan ahora los tres métodos —sustitución, eliminación y <strong>gráfico</strong>—, la clasificación de sistemas y el <strong>modelado</strong> de situaciones reales como el punto de equilibrio.</p>
         <p>El <strong>Tema 7 · Sistemas de desigualdades y funciones</strong> comienza con la <strong>Lección 7.1 · Sistemas de desigualdades lineales: graficar la región solución</strong>. Se pasará de las rectas a las <strong>regiones</strong> del plano: en lugar de un punto solución, habrá toda un área de soluciones posibles. ¡Vas muy bien!</p>
       </div>
 
-      <footer>Spanish ASE Math · Nivel 4 · Lección 6.3 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+      <footer>
+        <p>GEDparaHispanos · Matemáticas · Nivel 4 · Tema 6 · Lección 6.3</p>
+        <p>José M. Fernández, ABE/ASE Math Master Teacher, Harry S. Truman College — City Colleges of Chicago</p>
+        <p>© 2026. Esta obra está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener noreferrer" target="_blank">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>.</p>
+      </footer>
+      <a class="volver-indice" href="#indice" aria-label="Volver al contenido de la lección"><span aria-hidden="true">↑</span> Índice</a>
     </div>
 
     <script>
@@ -725,5 +759,20 @@
         });
       })();
     </script>
+  
+<script>
+  /* Abre el quiz (acordeón) cuando se llega a él desde el índice o por la URL */
+  (function () {
+    function abrir(id) {
+      var el = id && document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    }
+    abrir(location.hash.slice(1));
+    window.addEventListener('hashchange', function () { abrir(location.hash.slice(1)); });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function () { abrir(a.getAttribute('href').slice(1)); });
+    });
+  })();
+</script>
   </body>
 </html>

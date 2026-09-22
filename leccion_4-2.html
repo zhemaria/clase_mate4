@@ -1,9 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- Lección 4.2 · Matemáticas Nivel 4 · GEDparaHispanos
+     José M. Fernández · CC BY-NC-SA 4.0 -->
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lección 4.2 · Completar el cuadrado</title>
+    <meta name="license" content="CC BY-NC-SA 4.0" />
+    <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" />
     <style>
       :root {
         --tema: #880e4f;
@@ -234,6 +239,27 @@
         text-align: center; padding: 20px; color: #555; font-size: 13px;
         border-top: 1px solid #ddd; margin-top: 20px;
       }
+    
+  /* ── ÍNDICE DE LA LECCIÓN ── */
+  .indice{ background:#fff; border:1px solid #d8dde3; border-left:6px solid var(--tema);
+    border-radius:10px; padding:16px 20px; margin:24px 0; }
+  .indice h2{ font-size:1.05rem; margin:0 0 10px; color:var(--tema-d); border:0; padding:0; background:none; }
+  .indice ol{ margin:0; padding-left:1.35em; }
+  .indice li{ margin:4px 0; }
+  .indice a{ color:var(--tema-d); text-decoration:underline; }
+  .indice a:hover{ color:var(--tema); }
+  .indice a:focus-visible,.volver-indice:focus-visible{ outline:3px solid #b05e00; outline-offset:2px; }
+  .volver-indice{ position:fixed; right:18px; bottom:18px; z-index:60;
+    background:var(--tema-d); color:#fff; border-radius:999px;
+    padding:10px 16px; font-weight:700; font-size:.92rem; text-decoration:none;
+    box-shadow:0 2px 10px rgba(0,0,0,.28); }
+  .volver-indice:hover{ background:var(--tema); color:#fff; }
+  .caja-tarea ul{ margin:8px 0; padding-left:22px; }
+  .caja-tarea li{ margin:6px 0; }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  footer p{ margin:4px 0; }
+  footer a{ color:inherit; }
+  @media print{ .indice,.volver-indice{ display:none; } }
     </style>
   </head>
   <body>
@@ -241,7 +267,7 @@
       <header class="principal">
         <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 4 · Ecuaciones cuadráticas</div>
         <h1>Lección 4.2 · Completar el cuadrado</h1>
-        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+        <div class="meta">Unas 4 horas, a su ritmo · NRS 4–5</div>
       </header>
 
       <div class="caja-objetivos">
@@ -253,12 +279,26 @@
           <li>Comprender que completar el cuadrado es el origen de la fórmula cuadrática.</li>
         </ul>
       </div>
+      <nav class="indice" id="indice" aria-labelledby="indice-titulo">
+        <h2 id="indice-titulo">Contenido de la lección</h2>
+        <ol>
+          <li><a href="#s-1-la-idea-visual-completar-un-cuadrado">1. La idea visual: completar un cuadrado</a></li>
+          <li><a href="#s-2-los-cinco-pasos-cuando-a-1">2. Los cinco pasos (cuando a = 1)</a></li>
+          <li><a href="#s-3-cuando-a-1-dividir-primero">3. Cuando a ≠ 1: dividir primero</a></li>
+          <li><a href="#s-4-cuanto-hay-que-sumar">4. ¿Cuánto hay que sumar?</a></li>
+          <li><a href="#s-5-el-origen-de-la-formula-cuadratica">5. El origen de la fórmula cuadrática</a></li>
+          <li><a href="#s-tarea">Tarea</a></li>
+          <li><a href="#s-quiz">Quiz de la lección 4.2</a></li>
+          <li><a href="#s-rubrica">Rúbrica analítica de la lección</a></li>
+          <li><a href="#s-cierre">Cierre y enlace con la próxima lección</a></li>
+        </ol>
+      </nav>
 
       <div class="bloque">
         <p><strong>Conexión con la lección anterior.</strong> En la Lección 4.1 se resolvieron ecuaciones cuadráticas por factorización. Pero hay ecuaciones que <strong>no se factorizan</strong> con números enteros, como x² + 6x − 7 = 0 con raíces sencillas frente a otras con raíces irracionales. <strong>Completar el cuadrado</strong> es un método que funciona siempre, factorice o no la ecuación, y además es la base de la fórmula cuadrática.</p>
       </div>
 
-      <h2 class="seccion">1. La idea visual: completar un cuadrado</h2>
+      <h2 class="seccion" id="s-1-la-idea-visual-completar-un-cuadrado">1. La idea visual: completar un cuadrado</h2>
       <div class="bloque">
         <p>La expresión x² + 6x se puede representar como un cuadrado de lado x más un rectángulo de 6x. Si ese rectángulo se parte por la mitad y se acomoda a los lados, falta un pedacito cuadrado para "completar" un cuadrado grande. Ese pedacito es (6/2)² = 9.</p>
 
@@ -279,19 +319,17 @@
 
         <p>Al sumar ese término que falta, x² + 6x + 9 se convierte en el cuadrado perfecto (x + 3)². Esa es la idea central: <strong>agregar el término justo para formar un binomio al cuadrado</strong>.</p>
       </div>
-
-      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de completar el cuadrado -->
-      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
-         aria-label="Abrir el interactivo de completar el cuadrado en GEDparaHispanos (se abre en una pestaña nueva)">
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l4-2.html#visual" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte del modelo del área (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
           <span class="ei-titulo">Refuerza con un interactivo</span>
-          <span class="ei-sub">Visualiza cómo el término (b/2)² completa el cuadrado y resuelve ecuaciones paso a paso en el portal GEDparaHispanos.</span>
+          <span class="ei-sub">Mueve el valor de b y completa la esquina que falta para ver cómo x² + bx se convierte en un binomio al cuadrado.</span>
           <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
         </span>
       </a>
 
-      <h2 class="seccion">2. Los cinco pasos (cuando a = 1)</h2>
+      <h2 class="seccion" id="s-2-los-cinco-pasos-cuando-a-1">2. Los cinco pasos (cuando a = 1)</h2>
       <div class="bloque">
         <table class="reglas">
           <caption class="sr-only">Los cinco pasos para resolver una ecuación cuadrática completando el cuadrado.</caption>
@@ -372,7 +410,17 @@
         </div>
       </div>
 
-      <h2 class="seccion">3. Cuando a ≠ 1: dividir primero</h2>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l4-2.html#pasos" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de los cinco pasos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Sigue un caso paso a paso y resuelve ecuaciones completando el cuadrado, con dos intentos y la solución completa.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <h2 class="seccion" id="s-3-cuando-a-1-dividir-primero">3. Cuando a ≠ 1: dividir primero</h2>
       <div class="bloque">
         <p>El método de los cinco pasos asume que el coeficiente de x² es 1. Si no lo es, el <strong>primer movimiento</strong> es dividir toda la ecuación entre a.</p>
 
@@ -392,7 +440,17 @@
         </div>
       </div>
 
-      <h2 class="seccion">4. ¿Cuánto hay que sumar?</h2>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l4-2.html#dividir" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de dividir primero (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Divide la ecuación entre a antes de completar el cuadrado y comprueba que se dividen los tres términos.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <h2 class="seccion" id="s-4-cuanto-hay-que-sumar">4. ¿Cuánto hay que sumar?</h2>
       <div class="bloque">
         <p>El corazón del método es calcular (b/2)²: la mitad del coeficiente de x, elevada al cuadrado. Conviene practicarlo por separado:</p>
 
@@ -449,61 +507,47 @@
         </div>
       </div>
 
-      <h2 class="seccion">5. El origen de la fórmula cuadrática</h2>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l4-2.html#sumar" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de cuánto hay que sumar (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Refuerza con un interactivo</span>
+          <span class="ei-sub">Calcula (b/2)² para cualquier b, también cuando b es impar y el resultado es una fracción.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+
+      <h2 class="seccion" id="s-5-el-origen-de-la-formula-cuadratica">5. El origen de la fórmula cuadrática</h2>
       <div class="bloque">
         <p>Si se completa el cuadrado en la ecuación general ax² + bx + c = 0 (sin números, solo letras), el resultado es exactamente la <strong>fórmula cuadrática</strong>:</p>
         <p class="formula">x = (−b ± √(b² − 4ac)) / 2a</p>
         <p>Por eso este método es tan importante: no es un truco aislado, sino la demostración de dónde proviene la fórmula que se usará en la Lección 4.3 para resolver <em>cualquier</em> ecuación cuadrática.</p>
-      </div>
-
-      <h2 class="seccion">6. Práctica guiada en clase</h2>
-      <div class="bloque">
-        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas. Cada una se presenta en doble modalidad.</p>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 1 · De la figura al algoritmo</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              Los estudiantes completan el cuadrado con el modelo visual de área para dos ecuaciones y luego aplican el procedimiento algebraico de cinco pasos a seis ecuaciones más.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              Cada estudiante resuelve la lista en un documento compartido, identificando en cada caso el término (b/2)² que completa el cuadrado, y publica un ejemplo resuelto en el chat.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 2 · La derivación</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              En grupos de dos, con la guía del docente paso a paso, los estudiantes completan el cuadrado en la ecuación general ax² + bx + c = 0 hasta obtener la fórmula cuadrática.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              En salas pequeñas, cada grupo sigue la derivación guiada y registra los pasos clave; al final, compara su resultado con la fórmula de la hoja oficial del GED.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 3 · No pierdo soluciones</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              El docente presenta soluciones donde se olvidó el signo ±. Los estudiantes detectan la solución faltante y la recuperan, reforzando por qué la raíz cuadrada produce dos valores.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              Cada estudiante revisa tres resoluciones, identifica dónde falta el signo ± y escribe la solución completa con ambos valores.
-            </div>
-          </div>
+        <div class="ejemplo">
+          <span class="et">La derivación, paso a paso</span>
+          <p>Se aplican a ax² + bx + c = 0 los mismos pasos que en la sección 3, pero con letras.</p>
+          <div class="paso"><span class="n">1</span> Se divide todo entre a: x² + (b/a)x + c/a = 0.</div>
+          <div class="paso"><span class="n">2</span> Se pasa la constante al otro lado: x² + (b/a)x = −c/a.</div>
+          <div class="paso"><span class="n">3</span> Se suma la mitad del coeficiente de x, al cuadrado, en ambos lados: (b/2a)² = b²/4a². Queda x² + (b/a)x + b²/4a² = b²/4a² − c/a.</div>
+          <div class="paso"><span class="n">4</span> El lado izquierdo es un cuadrado perfecto, y el derecho se escribe con denominador común: (x + b/2a)² = (b² − 4ac)/4a².</div>
+          <div class="paso"><span class="n">5</span> Se saca raíz cuadrada sin olvidar el ±: x + b/2a = ±√(b² − 4ac) / 2a.</div>
+          <div class="paso"><span class="n">6</span> Se despeja x restando b/2a: x = (−b ± √(b² − 4ac)) / 2a.</div>
+          <p><strong>Resultado:</strong> la fórmula cuadrática, la misma que aparece en la hoja de fórmulas del GED.</p>
         </div>
       </div>
 
-      <details class="quiz-acordeon">
+      <div class="caja-tarea">
+        <h2 id="s-tarea">Tarea</h2>
+        <p>Para hacer por su cuenta, con el cuaderno abierto:</p>
+        <ul>
+          <li>De la figura al algoritmo: resuelva x² + 6x = 7 y x² + 4x = 12 dibujando el modelo del área. Luego aplique los cinco pasos a x² + 8x + 7 = 0, x² − 10x + 16 = 0, x² + 2x − 8 = 0, x² − 6x − 3 = 0, 2x² + 8x − 10 = 0 y 3x² − 12x + 6 = 0. En cada una, anote cuál es el término (b/2)² que completa el cuadrado.</li>
+          <li>La derivación: después de estudiar los seis pasos de la sección 5, cierre la lección y complete usted el cuadrado en ax² + bx + c = 0 hasta llegar a la fórmula cuadrática. Compare su resultado con la hoja de fórmulas del GED.</li>
+          <li>No pierdo soluciones: en cada resolución se olvidó el signo ±. Encuentre la solución que falta y escriba las dos: (x + 2)² = 9 → x = 1; (x − 4)² = 25 → x = 9; (x + 1)² = 7 → x = −1 + √7.</li>
+          <li><strong>Práctica en línea:</strong> <a href="https://zhemaria.github.io/algebra/n4-l4-2.html" target="_blank" rel="noopener noreferrer">interactivo de la Lección 4.2<span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Haga varios ejercicios de cada práctica, resolviéndolos primero en el cuaderno, y anote los que falle para repasarlos.</li>
+        </ul>
+        <p>Tiempo estimado: unos 60 minutos. Evalúe su trabajo con la rúbrica de esta lección.</p>
+      </div>
+
+      <details class="quiz-acordeon" id="s-quiz">
         <summary>
           <span class="chevron-q" aria-hidden="true">▶</span>
           <h2>Quiz de la lección 4.2</h2>
@@ -516,18 +560,9 @@
           <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
         </div>
       </details>
-
-      <div class="caja-tarea">
-        <h2>Tarea asincrónica</h2>
-        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de completar el cuadrado:</p>
-        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
-        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 8 ejercicios asignados (completar el cuadrado) en MyOpenMath antes de la próxima sesión:</p>
-        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
-      </div>
-
       <div class="rubrica">
-        <h2>Rúbrica analítica de la lección</h2>
-        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <h2 id="s-rubrica">Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño. Léala <strong>antes</strong> de empezar la tarea y úsela <strong>después</strong> para evaluar su propio trabajo con honestidad.</p>
         <table class="tabla-rubrica">
           <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
           <thead>
@@ -573,12 +608,17 @@
       </div>
 
       <div class="cierre">
-        <h2>Cierre y enlace con la próxima lección</h2>
+        <h2 id="s-cierre">Cierre y enlace con la próxima lección</h2>
         <p>En esta lección se aprendió a <strong>completar el cuadrado</strong>: un método que funciona siempre, sumando (b/2)² para formar un binomio al cuadrado y sacando la raíz con el signo ±. También se vio que este procedimiento, aplicado a la ecuación general, <strong>produce la fórmula cuadrática</strong>.</p>
         <p>En la <strong>Lección 4.3 · La fórmula cuadrática, el discriminante y aplicaciones</strong> se usará esa fórmula para resolver cualquier ecuación cuadrática de forma directa, se aprenderá a predecir el número de soluciones con el <strong>discriminante</strong> y se modelarán situaciones reales como la trayectoria de un proyectil.</p>
       </div>
 
-      <footer>Spanish ASE Math · Nivel 4 · Lección 4.2 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+      <footer>
+        <p>GEDparaHispanos · Matemáticas · Nivel 4 · Tema 4 · Lección 4.2</p>
+        <p>José M. Fernández, ABE/ASE Math Master Teacher, Harry S. Truman College — City Colleges of Chicago</p>
+        <p>© 2026. Esta obra está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener noreferrer" target="_blank">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>.</p>
+      </footer>
+      <a class="volver-indice" href="#indice" aria-label="Volver al contenido de la lección"><span aria-hidden="true">↑</span> Índice</a>
     </div>
 
     <script>
@@ -714,5 +754,20 @@
         });
       })();
     </script>
+  
+<script>
+  /* Abre el quiz (acordeón) cuando se llega a él desde el índice o por la URL */
+  (function () {
+    function abrir(id) {
+      var el = id && document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    }
+    abrir(location.hash.slice(1));
+    window.addEventListener('hashchange', function () { abrir(location.hash.slice(1)); });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function () { abrir(a.getAttribute('href').slice(1)); });
+    });
+  })();
+</script>
   </body>
 </html>

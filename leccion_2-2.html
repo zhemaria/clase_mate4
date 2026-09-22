@@ -1,9 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- Lección 2.2 · Matemáticas Nivel 4 · GEDparaHispanos
+     José M. Fernández · CC BY-NC-SA 4.0 -->
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lección 2.2 · Figuras 3D compuestas y área de superficie</title>
+    <meta name="license" content="CC BY-NC-SA 4.0" />
+    <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" />
     <style>
       :root {
         --tema: #004d40;
@@ -547,6 +552,27 @@
         border-top: 1px solid #ddd;
         margin-top: 20px;
       }
+    
+  /* ── ÍNDICE DE LA LECCIÓN ── */
+  .indice{ background:#fff; border:1px solid #d8dde3; border-left:6px solid var(--tema);
+    border-radius:10px; padding:16px 20px; margin:24px 0; }
+  .indice h2{ font-size:1.05rem; margin:0 0 10px; color:var(--tema-d); border:0; padding:0; background:none; }
+  .indice ol{ margin:0; padding-left:1.35em; }
+  .indice li{ margin:4px 0; }
+  .indice a{ color:var(--tema-d); text-decoration:underline; }
+  .indice a:hover{ color:var(--tema); }
+  .indice a:focus-visible,.volver-indice:focus-visible{ outline:3px solid #b05e00; outline-offset:2px; }
+  .volver-indice{ position:fixed; right:18px; bottom:18px; z-index:60;
+    background:var(--tema-d); color:#fff; border-radius:999px;
+    padding:10px 16px; font-weight:700; font-size:.92rem; text-decoration:none;
+    box-shadow:0 2px 10px rgba(0,0,0,.28); }
+  .volver-indice:hover{ background:var(--tema); color:#fff; }
+  .caja-tarea ul{ margin:8px 0; padding-left:22px; }
+  .caja-tarea li{ margin:6px 0; }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  footer p{ margin:4px 0; }
+  footer a{ color:inherit; }
+  @media print{ .indice,.volver-indice{ display:none; } }
     </style>
   </head>
   <body>
@@ -554,7 +580,7 @@
       <header class="principal">
         <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 2 · Volumen 3D y polinomios</div>
         <h1>Lección 2.2 · Figuras 3D compuestas y área de la superficie</h1>
-        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+        <div class="meta">Unas 4 horas, a su ritmo · NRS 4–5</div>
       </header>
       <div class="caja-objetivos">
         <h2>Objetivos de la lección</h2>
@@ -565,6 +591,19 @@
           <li>Comprender la idea básica de optimización: menos material para un volumen dado.</li>
         </ul>
       </div>
+      <nav class="indice" id="indice" aria-labelledby="indice-titulo">
+        <h2 id="indice-titulo">Contenido de la lección</h2>
+        <ol>
+          <li><a href="#s-1-descomponer-una-figura-compuesta">1. Descomponer una figura compuesta</a></li>
+          <li><a href="#s-2-volumen-de-figuras-compuestas">2. Volumen de figuras compuestas</a></li>
+          <li><a href="#s-3-area-de-superficie">3. Área de superficie</a></li>
+          <li><a href="#s-4-una-idea-de-optimizacion">4. Una idea de optimización</a></li>
+          <li><a href="#s-tarea">Tarea</a></li>
+          <li><a href="#s-quiz">Quiz de la lección 2.2</a></li>
+          <li><a href="#s-rubrica">Rúbrica analítica de la lección</a></li>
+          <li><a href="#s-cierre">Cierre y enlace con la próxima lección</a></li>
+        </ol>
+      </nav>
       <div class="bloque">
         <p>
           <strong>Conexión con la lección anterior.</strong>
@@ -574,7 +613,7 @@
           esas figuras en partes simples para hallar su volumen, y a calcular cuánto material recubre su superficie.
         </p>
       </div>
-      <h2 class="seccion">1. Descomponer una figura compuesta</h2>
+      <h2 class="seccion" id="s-1-descomponer-una-figura-compuesta">1. Descomponer una figura compuesta</h2>
       <div class="bloque">
         <p>
           Una
@@ -615,7 +654,7 @@
           </svg>
         </div>
       </div>
-      <h2 class="seccion">2. Volumen de figuras compuestas</h2>
+      <h2 class="seccion" id="s-2-volumen-de-figuras-compuestas">2. Volumen de figuras compuestas</h2>
       <div class="bloque">
         <div class="ejemplo">
           <span class="et">Ejemplo 1 · Cilindro con semiesfera</span>
@@ -662,8 +701,7 @@
           Si las partes se juntan para formar un cuerpo más grande, se suman. Si una parte se quita (un agujero, un hueco), se resta. Conviene hacer un dibujo y rotular cada parte antes de calcular.
         </div>
       </div>
-      <!-- ENLACE AL INTERACTIVO —  figuras compuestas -->
-      <a class="enlace-interactivo" href="https://zhemaria.github.io/geometria/compuestas_3d/" target="_blank" rel="noopener" aria-label="Abrir el interactivo de figuras 3D compuestas.">
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/geometria/compuestas_3d/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el interactivo de figuras 3D compuestas (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
           <span class="ei-titulo">Refuerza con un interactivo</span>
@@ -705,7 +743,7 @@
           <div class="fb"></div>
         </div>
       </div>
-      <h2 class="seccion">3. Área de superficie</h2>
+      <h2 class="seccion" id="s-3-area-de-superficie">3. Área de superficie</h2>
       <div class="bloque">
         <p>
           El
@@ -773,12 +811,11 @@
           Pitágoras: ℓ = √(r² + h²).
         </div>
       </div>
-      <!-- ENLACE AL INTERACTIVO —  area de la superficie -->
-      <a class="enlace-interactivo" href="https://zhemaria.github.io/geometria/area_superficie/" target="_blank" rel="noopener" aria-label="Abrir el interactivo de figuras 3D compuestas.">
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/geometria/area_superficie/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el interactivo del área de la superficie (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
           <span class="ei-titulo">Refuerza con un interactivo</span>
-          <span class="ei-sub">Observa coo se descomponen las figuras compuestas para poder calcular el área de su superficie.</span>
+          <span class="ei-sub">Observa cómo se descomponen las figuras compuestas para poder calcular el área de su superficie.</span>
           <span class="ei-cta">
             Abrir el interactivo
             <span aria-hidden="true">›</span>
@@ -816,7 +853,7 @@
           <div class="fb"></div>
         </div>
       </div>
-      <h2 class="seccion">4. Una idea de optimización</h2>
+      <h2 class="seccion" id="s-4-una-idea-de-optimizacion">4. Una idea de optimización</h2>
       <div class="bloque">
         <p>
           En diseño e ingeniería interesa lograr un volumen dado usando la
@@ -840,75 +877,20 @@
           </p>
         </div>
       </div>
-      <h2 class="seccion">5. Práctica guiada en clase</h2>
-      <div class="bloque">
-        <p>
-          Las siguientes tres actividades se realizan durante las horas sincrónicas, con la
-          <a href="https://www.ged.com/content/dam/websites/ged/resources/faq/math-formula-sheet-es.pdf" target="_blank" rel="noopener"><strong>hoja de fórmulas</strong></a>
-          del GED. Cada una se presenta en doble modalidad.
-        </p>
-        <div class="actividad">
-          <div class="titulo-act">Actividad 1 · El silo del granjero</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3>
-                <span aria-hidden="true">🏫</span>
-                Presencial
-              </h3>
-              El docente presenta un silo: cilindro de radio 3 m y altura 8 m, con un cono de altura 2 m encima. En parejas, los estudiantes descomponen la figura, calculan el volumen total y estiman
-              cuántas toneladas de maíz caben con una densidad dada.
-            </div>
-            <div class="modo modo-virt">
-              <h3>
-                <span aria-hidden="true">💻</span>
-                En línea
-              </h3>
-              Cada grupo en sala pequeña calcula el volumen del silo en una hoja compartida, indicando claramente el volumen del cilindro, el del cono y la suma, y reporta el total al grupo.
-            </div>
-          </div>
-        </div>
-        <div class="actividad">
-          <div class="titulo-act">Actividad 2 · La cápsula de medicina</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3>
-                <span aria-hidden="true">🏫</span>
-                Presencial
-              </h3>
-              Una cápsula es un cilindro con dos semiesferas en los extremos (es decir, una esfera completa). Los estudiantes calculan su volumen total dado el radio y la longitud del cilindro,
-              discutiendo por qué las dos semiesferas equivalen a una esfera.
-            </div>
-            <div class="modo modo-virt">
-              <h3>
-                <span aria-hidden="true">💻</span>
-                En línea
-              </h3>
-              Cada estudiante recibe una cápsula con dimensiones distintas, calcula el volumen y verifica con un compañero que ambos sumaron correctamente el cilindro y la esfera.
-            </div>
-          </div>
-        </div>
-        <div class="actividad">
-          <div class="titulo-act">Actividad 3 · ¿Cuánta pintura?</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3>
-                <span aria-hidden="true">🏫</span>
-                Presencial
-              </h3>
-              ¿Cuánta pintura se necesita para el exterior lateral del cilindro del silo? El grupo calcula el área lateral (2πrh) y discute si hay que incluir o no la tapa y la base según el contexto.
-            </div>
-            <div class="modo modo-virt">
-              <h3>
-                <span aria-hidden="true">💻</span>
-                En línea
-              </h3>
-              Los estudiantes calculan el área lateral en un documento compartido y, dado el rendimiento de la pintura (m² por litro), estiman cuántos litros se necesitan; comparan resultados en el
-              chat.
-            </div>
-          </div>
-        </div>
+      <div class="caja-tarea">
+        <h2 id="s-tarea">Tarea</h2>
+        <p>Para hacer por su cuenta, con el cuaderno, la hoja de fórmulas del GED y la calculadora:</p>
+        <ul>
+          <li>Tres figuras compuestas dibujadas por usted. Descomponga cada una, anote el volumen de cada parte y súmelos (o réstelos, si hay un hueco).</li>
+          <li>Un silo formado por un cilindro de radio 3 m y altura 8 m con un cono de 2 m de altura encima. Calcule por separado el volumen del cilindro y el del cono, y luego el total.</li>
+          <li>Una cápsula de medicina: un cilindro de radio 0.5 cm y 2 cm de largo con una semiesfera en cada extremo. Calcule su volumen y explique por qué las dos semiesferas forman una esfera completa.</li>
+          <li>La pintura del silo: calcule el área lateral del cilindro (2πrh) y decida si debe incluir la tapa y la base. Si un litro de pintura cubre 10 m², ¿cuántos litros hacen falta?</li>
+          <li>Cuatro áreas de superficie de sólidos distintos (prisma, cilindro, cono o esfera), usando la hoja de fórmulas.</li>
+          <li><strong>ThatQuiz:</strong> <a href="https://www.thatquiz.org/es-4/?-j82la0-la-mpnv600-nu-p0-f0" target="_blank" rel="noopener noreferrer">figuras compuestas y área de la superficie<span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Resuelva cada ejercicio en papel antes de escribir la respuesta.</li>
+        </ul>
+        <p>Tiempo estimado: unos 70 minutos. Evalúe su trabajo con la rúbrica de esta lección.</p>
       </div>
-      <details class="quiz-acordeon">
+      <details class="quiz-acordeon" id="s-quiz">
         <summary>
           <span class="chevron-q" aria-hidden="true">▶</span>
           Quiz de la lección 2.2
@@ -924,26 +906,9 @@
           <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
         </div>
       </details>
-      <div class="caja-tarea">
-        <h2>Tarea asincrónica</h2>
-        <p>
-          <strong>1) Práctica previa (ThatQuiz).</strong>
-          Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de figuras compuestas y área de superficie:
-        </p>
-        <p>
-          <a class="btnTQ" href="https://www.thatquiz.org/es-4/?-j82la0-la-mpnv600-nu-p0-f0" target="_blank" rel="noopener">
-            Ir a ThatQuiz
-            <span class="ext" aria-hidden="true">↗</span>
-          </a>
-        </p>
-        <p>
-          <strong>2) Tarea calificada (MyOpenMath).</strong>
-          Realiza los ejercicios asignados (de figuras compuestas y&nbsp; área de superficie en MyOpenMath antes de la próxima sesión:
-        </p>
-      </div>
       <div class="rubrica">
-        <h2>Rúbrica analítica de la lección</h2>
-        <p>Tres criterios evaluados en cuatro niveles de desempeño.</p>
+        <h2 id="s-rubrica">Rúbrica analítica de la lección</h2>
+        <p>Tres criterios evaluados en cuatro niveles de desempeño. Léala <strong>antes</strong> de empezar la tarea y úsela <strong>después</strong> para evaluar su propio trabajo con honestidad.</p>
         <table class="tabla-rubrica">
           <caption class="sr-only">Rúbrica analítica con tres criterios y cuatro niveles de desempeño.</caption>
           <thead>
@@ -981,7 +946,7 @@
         </table>
       </div>
       <div class="cierre">
-        <h2>Cierre y enlace con la próxima lección</h2>
+        <h2 id="s-cierre">Cierre y enlace con la próxima lección</h2>
         <p>
           En esta lección se aprendió a
           <strong>descomponer</strong>
@@ -1000,7 +965,12 @@
           de forma general.
         </p>
       </div>
-      <footer>Spanish ASE Math · Nivel 4 · Lección 2.2 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+      <footer>
+        <p>GEDparaHispanos · Matemáticas · Nivel 4 · Tema 2 · Lección 2.2</p>
+        <p>José M. Fernández, ABE/ASE Math Master Teacher, Harry S. Truman College — City Colleges of Chicago</p>
+        <p>© 2026. Esta obra está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener noreferrer" target="_blank">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>.</p>
+      </footer>
+      <a class="volver-indice" href="#indice" aria-label="Volver al contenido de la lección"><span aria-hidden="true">↑</span> Índice</a>
     </div>
     <p>
       <script>
@@ -1147,5 +1117,20 @@
         })();
       </script>
     </p>
+  
+<script>
+  /* Abre el quiz (acordeón) cuando se llega a él desde el índice o por la URL */
+  (function () {
+    function abrir(id) {
+      var el = id && document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    }
+    abrir(location.hash.slice(1));
+    window.addEventListener('hashchange', function () { abrir(location.hash.slice(1)); });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function () { abrir(a.getAttribute('href').slice(1)); });
+    });
+  })();
+</script>
   </body>
 </html>

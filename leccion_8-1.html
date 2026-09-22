@@ -1,9 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- Lección 8.1 · Matemáticas Nivel 4 · GEDparaHispanos
+     José M. Fernández · CC BY-NC-SA 4.0 -->
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lección 8.1 · Funciones cuadráticas: la parábola, el vértice y las intercepts</title>
+    <title>Lección 8.1 · Funciones cuadráticas: la parábola, el vértice y los interceptos</title>
+    <meta name="license" content="CC BY-NC-SA 4.0" />
+    <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" />
     <style>
       :root {
         --tema: #b71c1c;
@@ -234,14 +239,35 @@
         text-align: center; padding: 20px; color: #555; font-size: 13px;
         border-top: 1px solid #ddd; margin-top: 20px;
       }
+    
+  /* ── ÍNDICE DE LA LECCIÓN ── */
+  .indice{ background:#fff; border:1px solid #d8dde3; border-left:6px solid var(--tema);
+    border-radius:10px; padding:16px 20px; margin:24px 0; }
+  .indice h2{ font-size:1.05rem; margin:0 0 10px; color:var(--tema-d); border:0; padding:0; background:none; }
+  .indice ol{ margin:0; padding-left:1.35em; }
+  .indice li{ margin:4px 0; }
+  .indice a{ color:var(--tema-d); text-decoration:underline; }
+  .indice a:hover{ color:var(--tema); }
+  .indice a:focus-visible,.volver-indice:focus-visible{ outline:3px solid #b05e00; outline-offset:2px; }
+  .volver-indice{ position:fixed; right:18px; bottom:18px; z-index:60;
+    background:var(--tema-d); color:#fff; border-radius:999px;
+    padding:10px 16px; font-weight:700; font-size:.92rem; text-decoration:none;
+    box-shadow:0 2px 10px rgba(0,0,0,.28); }
+  .volver-indice:hover{ background:var(--tema); color:#fff; }
+  .caja-tarea ul{ margin:8px 0; padding-left:22px; }
+  .caja-tarea li{ margin:6px 0; }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  footer p{ margin:4px 0; }
+  footer a{ color:inherit; }
+  @media print{ .indice,.volver-indice{ display:none; } }
     </style>
   </head>
   <body>
     <div class="contenedor">
       <header class="principal">
         <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 8 · Modelado de funciones y simulacro GED</div>
-        <h1>Lección 8.1 · Funciones cuadráticas: la parábola, el vértice y las intercepts</h1>
-        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+        <h1>Lección 8.1 · Funciones cuadráticas: la parábola, el vértice y los interceptos</h1>
+        <div class="meta">Unas 4 horas, a su ritmo · NRS 4–5</div>
       </header>
 
       <div class="caja-objetivos">
@@ -249,16 +275,29 @@
         <ul>
           <li>Reconocer que f(x) = ax² + bx + c se grafica como una parábola que abre hacia arriba (a &gt; 0) o hacia abajo (a &lt; 0).</li>
           <li>Calcular el vértice (x = −b/2a) y el eje de simetría de una parábola.</li>
-          <li>Encontrar las intercepts con los ejes (x con la fórmula cuadrática; y con x = 0).</li>
+          <li>Encontrar los interceptos con los ejes (x con la fórmula cuadrática; y con x = 0).</li>
           <li>Usar el vértice para resolver problemas de máximo y mínimo.</li>
         </ul>
       </div>
+      <nav class="indice" id="indice" aria-labelledby="indice-titulo">
+        <h2 id="indice-titulo">Contenido de la lección</h2>
+        <ol>
+          <li><a href="#s-1-la-parabola-y-su-forma">1. La parábola y su forma</a></li>
+          <li><a href="#s-2-el-vertice-y-el-eje-de-simetria">2. El vértice y el eje de simetría</a></li>
+          <li><a href="#s-3-los-interceptos-con-los-ejes">3. Los interceptos con los ejes</a></li>
+          <li><a href="#s-4-maximo-y-minimo-en-contexto">4. Máximo y mínimo en contexto</a></li>
+          <li><a href="#s-tarea">Tarea</a></li>
+          <li><a href="#s-quiz">Quiz de la lección 8.1</a></li>
+          <li><a href="#s-rubrica">Rúbrica analítica de la lección</a></li>
+          <li><a href="#s-cierre">Cierre y enlace con la próxima lección</a></li>
+        </ol>
+      </nav>
 
       <div class="bloque">
         <p><strong>Conexión con el tema anterior.</strong> En el Tema 7 se clasificaron las funciones cuadráticas por su patrón. Ahora se estudian a fondo: su gráfica (la <strong>parábola</strong>), su punto más importante (el <strong>vértice</strong>) y cómo modelan situaciones de máximo o mínimo, como la altura de un proyectil o el beneficio de un negocio.</p>
       </div>
 
-      <h2 class="seccion">1. La parábola y su forma</h2>
+      <h2 class="seccion" id="s-1-la-parabola-y-su-forma">1. La parábola y su forma</h2>
       <div class="bloque">
         <p>La gráfica de una función cuadrática es una <strong>parábola</strong>. El signo de <strong>a</strong> decide hacia dónde abre:</p>
         <table class="reglas">
@@ -301,10 +340,10 @@
             <!-- vértice (2,-1) -->
             <circle cx="160" cy="190" r="5" fill="#b71c1c"/>
             <text x="168" y="200" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#b71c1c">vértice (2, −1)</text>
-            <!-- y-intercept (0,3) -->
+            <!-- intercepto con el eje y (0,3) -->
             <circle cx="80" cy="70" r="5" fill="#0d47a1"/>
             <text x="22" y="68" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#0d47a1">(0, 3)</text>
-            <!-- x-intercepts (1,0) y (3,0) -->
+            <!-- interceptos con el eje x (1,0) y (3,0) -->
             <circle cx="120" cy="160" r="5" fill="#0d47a1"/>
             <text x="98" y="152" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#0d47a1">(1, 0)</text>
             <circle cx="200" cy="160" r="5" fill="#0d47a1"/>
@@ -312,14 +351,12 @@
           </svg>
         </div>
       </div>
-
-      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de parábolas -->
-      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
-         aria-label="Abrir el interactivo de funciones cuadráticas y parábolas en GEDparaHispanos (se abre en una pestaña nueva)">
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l8-1.html" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo general de la Lección 8.1 (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
-          <span class="ei-titulo">Refuerza con un interactivo</span>
-          <span class="ei-sub">Mueve los coeficientes a, b y c, observa cómo cambia la parábola y localiza el vértice, el eje de simetría y las intercepts en el portal GEDparaHispanos.</span>
+          <span class="ei-titulo">Refuerza con el interactivo de la lección</span>
+          <span class="ei-sub">Explorador de los coeficientes a, b y c, cálculo del vértice y del eje de simetría paso a paso, los interceptos con la conexión al discriminante y cuatro problemas de máximo y mínimo.</span>
           <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
         </span>
       </a>
@@ -356,7 +393,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">2. El vértice y el eje de simetría</h2>
+      <h2 class="seccion" id="s-2-el-vertice-y-el-eje-de-simetria">2. El vértice y el eje de simetría</h2>
       <div class="bloque">
         <p>El <strong>vértice</strong> es el punto más alto o más bajo de la parábola. Su coordenada x se halla con la fórmula, y la y se obtiene evaluando la función. El <strong>eje de simetría</strong> es la recta vertical que pasa por el vértice.</p>
         <p class="formula">x del vértice = −b / (2a) &nbsp;·&nbsp; eje de simetría: x = −b / (2a)</p>
@@ -369,6 +406,15 @@
           <div class="paso"><span class="n">3</span> Vértice (2, −1); eje de simetría x = 2; como a &gt; 0, es un mínimo.</div>
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l8-1.html#vertice" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte del vértice (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica el vértice y el eje de simetría</span>
+          <span class="ei-sub">Seis funciones resueltas paso a paso con −b/(2a), el eje dibujado y dos puntos simétricos que muestran por qué se llama eje de simetría.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
       <div class="practica">
         <h3>Práctica interactiva 2 · Vértice y eje</h3>
@@ -405,14 +451,14 @@
         </div>
       </div>
 
-      <h2 class="seccion">3. Las intercepts con los ejes</h2>
+      <h2 class="seccion" id="s-3-los-interceptos-con-los-ejes">3. Los interceptos con los ejes</h2>
       <div class="bloque">
-        <p>Las <strong>intercepts</strong> son donde la parábola cruza los ejes:</p>
+        <p>Los <strong>interceptos</strong> son donde la parábola cruza los ejes:</p>
         <table class="reglas">
-          <caption class="sr-only">Cómo encontrar las intercepts de una parábola.</caption>
+          <caption class="sr-only">Cómo encontrar los interceptos de una parábola.</caption>
           <thead>
             <tr>
-              <th scope="col">Intercept</th>
+              <th scope="col">Intercepto</th>
               <th scope="col">Cómo se halla</th>
             </tr>
           </thead>
@@ -424,22 +470,31 @@
 
         <div class="ejemplo">
           <span class="et">Ejemplo 2</span>
-          <p>Intercepts de f(x) = x² − 4x + 3.</p>
+          <p>Interceptos de f(x) = x² − 4x + 3.</p>
           <div class="paso"><span class="n">1</span> Con y: f(0) = 3, así que (0, 3).</div>
           <div class="paso"><span class="n">2</span> Con x: x² − 4x + 3 = 0 → (x − 1)(x − 3) = 0 → x = 1 y x = 3, así que (1, 0) y (3, 0).</div>
         </div>
 
         <div class="caja-tip">
-          <strong>Conexión con el Tema 4:</strong> hallar las x-intercepts de una parábola es exactamente resolver una ecuación cuadrática. Puedes factorizar o usar la fórmula cuadrática.
+          <strong>Conexión con el Tema 4:</strong> hallar los interceptos con el eje x de una parábola es exactamente resolver una ecuación cuadrática. Puedes factorizar o usar la fórmula cuadrática.
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l8-1.html#interceptos" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de los interceptos (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica los interceptos</span>
+          <span class="ei-sub">Los interceptos hallados paso a paso, con el discriminante decidiendo si hay dos, uno o ninguno con el eje x.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
       <div class="practica">
-        <h3>Práctica interactiva 3 · Intercepts</h3>
-        <p>Encuentra las intercepts.</p>
+        <h3>Práctica interactiva 3 · Interceptos</h3>
+        <p>Encuentra los interceptos.</p>
 
         <div class="pregunta" data-correcta="a">
-          <div class="enun">1. La y-intercept de f(x) = x² − 4x + 3 es:</div>
+          <div class="enun">1. El intercepto con el eje y de f(x) = x² − 4x + 3 es:</div>
           <div class="opciones">
             <div class="opcion" data-op="a">(0, 3)</div>
             <div class="opcion" data-op="b">(3, 0)</div>
@@ -449,7 +504,7 @@
         </div>
 
         <div class="pregunta" data-correcta="b">
-          <div class="enun">2. Las x-intercepts de f(x) = (x − 1)(x − 3) son:</div>
+          <div class="enun">2. Los interceptos con el eje x de f(x) = (x − 1)(x − 3) son:</div>
           <div class="opciones">
             <div class="opcion" data-op="a">x = −1 y x = −3</div>
             <div class="opcion" data-op="b">x = 1 y x = 3</div>
@@ -459,7 +514,7 @@
         </div>
 
         <div class="pregunta" data-correcta="a">
-          <div class="enun">3. La y-intercept se halla evaluando:</div>
+          <div class="enun">3. El intercepto con el eje y se halla evaluando:</div>
           <div class="opciones">
             <div class="opcion" data-op="a">f(0)</div>
             <div class="opcion" data-op="b">f(1)</div>
@@ -469,7 +524,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">4. Máximo y mínimo en contexto</h2>
+      <h2 class="seccion" id="s-4-maximo-y-minimo-en-contexto">4. Máximo y mínimo en contexto</h2>
       <div class="bloque">
         <p>El vértice resuelve problemas reales: la <strong>altura máxima</strong> de un proyectil, el <strong>beneficio máximo</strong> de un negocio, el <strong>área máxima</strong> de un terreno. Si la parábola abre hacia abajo, el vértice es el máximo.</p>
 
@@ -488,6 +543,15 @@
           <div class="paso"><span class="n">2</span> Beneficio máximo: B(30) = −2(900) + 120(30) − 800 = −1800 + 3600 − 800 = 1000.</div>
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l8-1.html#maximo" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de máximo y mínimo (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica el máximo y el mínimo</span>
+          <span class="ei-sub">Cuatro situaciones —proyectil, jardín cercado, ingreso y costo— con el vértice marcado y un deslizador para comprobar que ningún otro valor lo supera.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
       <div class="practica">
         <h3>Práctica interactiva 4 · Máximo y mínimo</h3>
@@ -523,54 +587,19 @@
         </div>
       </div>
 
-      <h2 class="seccion">5. Práctica guiada en clase</h2>
-      <div class="bloque">
-        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas, con calculadora TI-30XS y la hoja de fórmulas del GED. Cada una se presenta en doble modalidad.</p>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 1 · El proyectil y el beneficio</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              Los estudiantes grafican h(t) = −16t² + 64t + 5, encuentran la altura máxima (vértice) y cuándo toca el suelo (x-intercepts); luego maximizan B(x) = −2x² + 120x − 800.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              Cada grupo resuelve ambos modelos en un documento compartido, mostrando el cálculo del vértice y la interpretación del máximo en el contexto.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 2 · Las cuatro características</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              Para varias funciones, los estudiantes identifican las cuatro características clave: dirección de apertura, vértice, eje de simetría e intercepts.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              En salas pequeñas, cada grupo completa una tabla compartida con las cuatro características de cada parábola asignada.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 3 · Del vértice a la respuesta</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              Los estudiantes resuelven un problema de área máxima planteando la función cuadrática, hallando el vértice e interpretando el resultado en el contexto.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              Cada estudiante modela un problema de máximo o mínimo, calcula el vértice y explica en el chat qué representa la respuesta.
-            </div>
-          </div>
-        </div>
+      <div class="caja-tarea">
+        <h2 id="s-tarea">Tarea</h2>
+        <p>Para hacer por su cuenta, con el cuaderno, papel cuadriculado, la calculadora TI-30XS y la hoja de fórmulas del GED:</p>
+        <ul>
+          <li>El proyectil y el beneficio: la altura de una pelota es h(t) = −16t² + 64t + 5 (en pies, con t en segundos). Grafíquela, halle la altura máxima con el vértice y calcule cuándo toca el suelo. Después, halle cuántas unidades x maximizan el beneficio B(x) = −2x² + 120x − 800 y cuál es ese beneficio máximo.</li>
+          <li>Las cuatro características: haga una tabla con la dirección de apertura, el vértice, el eje de simetría y los interceptos de y = x² − 4x + 3, y = −x² + 6x − 5, y = 2x² + 8x e y = x² + 2x + 5. En una de ellas no hay interceptos con el eje x; explique cómo lo sabe.</li>
+          <li>Del vértice a la respuesta: con 40 metros de cerca se quiere cercar un jardín rectangular. Plantee el área como función del ancho, halle el vértice y diga qué medidas dan el área máxima. Repita el problema si un lado del jardín queda contra una pared y no necesita cerca.</li>
+          <li><strong>Práctica en línea:</strong> <a href="https://zhemaria.github.io/algebra/n4-l8-1.html" target="_blank" rel="noopener noreferrer">interactivo de la Lección 8.1<span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Haga varios ejercicios de cada práctica, resolviéndolos primero en el cuaderno, y anote los que falle para repasarlos.</li>
+        </ul>
+        <p>Tiempo estimado: unos 70 minutos. Evalúe su trabajo con la rúbrica de esta lección.</p>
       </div>
 
-      <details class="quiz-acordeon">
+      <details class="quiz-acordeon" id="s-quiz">
         <summary>
           <span class="chevron-q" aria-hidden="true">▶</span>
           <h2>Quiz de la lección 8.1</h2>
@@ -583,18 +612,9 @@
           <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
         </div>
       </details>
-
-      <div class="caja-tarea">
-        <h2>Tarea asincrónica</h2>
-        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de parábolas y vértice:</p>
-        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
-        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza las 8 funciones cuadráticas asignadas (graficar e identificar características) en MyOpenMath antes de la próxima sesión:</p>
-        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
-      </div>
-
       <div class="rubrica">
-        <h2>Rúbrica analítica de la lección</h2>
-        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <h2 id="s-rubrica">Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño. Léala <strong>antes</strong> de empezar la tarea y úsela <strong>después</strong> para evaluar su propio trabajo con honestidad.</p>
         <table class="tabla-rubrica">
           <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
           <thead>
@@ -622,11 +642,11 @@
               <td>Conecta la apertura con la existencia de máximo o mínimo.</td>
             </tr>
             <tr>
-              <td>Encontrar las intercepts</td>
-              <td>No halla intercepts.</td>
-              <td>Halla solo una de las intercepts.</td>
-              <td>Encuentra las x-intercepts y la y-intercept.</td>
-              <td>Halla todas las intercepts y conecta con la fórmula cuadrática.</td>
+              <td>Encontrar los interceptos</td>
+              <td>No halla interceptos.</td>
+              <td>Halla solo uno de los interceptos.</td>
+              <td>Encuentra los interceptos con el eje x y el intercepto con el eje y.</td>
+              <td>Halla todos los interceptos y conecta con la fórmula cuadrática.</td>
             </tr>
             <tr>
               <td>Interpretar máx/mín en contexto</td>
@@ -640,12 +660,17 @@
       </div>
 
       <div class="cierre">
-        <h2>Cierre y enlace con la próxima lección</h2>
-        <p>En esta lección se estudiaron las <strong>funciones cuadráticas</strong>: la parábola, su dirección de apertura, el <strong>vértice</strong> y el eje de simetría, las <strong>intercepts</strong> y el uso del vértice para hallar máximos y mínimos en contexto.</p>
+        <h2 id="s-cierre">Cierre y enlace con la próxima lección</h2>
+        <p>En esta lección se estudiaron las <strong>funciones cuadráticas</strong>: la parábola, su dirección de apertura, el <strong>vértice</strong> y el eje de simetría, los <strong>interceptos</strong> y el uso del vértice para hallar máximos y mínimos en contexto.</p>
         <p>En la <strong>Lección 8.2 · Funciones exponenciales, crecimiento/decaimiento e introducción a logaritmos</strong> se estudia el otro gran modelo del GED: las funciones <strong>exponenciales</strong>, con aplicaciones como el interés compuesto y la vida media, y una primera mirada al <strong>logaritmo</strong>.</p>
       </div>
 
-      <footer>Spanish ASE Math · Nivel 4 · Lección 8.1 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+      <footer>
+        <p>GEDparaHispanos · Matemáticas · Nivel 4 · Tema 8 · Lección 8.1</p>
+        <p>José M. Fernández, ABE/ASE Math Master Teacher, Harry S. Truman College — City Colleges of Chicago</p>
+        <p>© 2026. Esta obra está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener noreferrer" target="_blank">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>.</p>
+      </footer>
+      <a class="volver-indice" href="#indice" aria-label="Volver al contenido de la lección"><span aria-hidden="true">↑</span> Índice</a>
     </div>
 
     <script>
@@ -682,7 +707,7 @@
           {enun: '3. El eje de simetría de f(x) = 2x² − 8x + 1 es:', ops: ['y = 2', 'x = −2', 'x = 2', 'x = 4'], correcta: 2},
           {enun: '4. f(x) = −3x² + x − 2 abre hacia:', ops: ['arriba', 'abajo', 'la derecha', 'la izquierda'], correcta: 1},
           {enun: '5. Una parábola con a > 0 tiene un:', ops: ['máximo', 'mínimo', 'ni máximo ni mínimo', 'dos vértices'], correcta: 1},
-          {enun: '6. La y-intercept de f(x) = x² + 2x − 6 es:', ops: ['(0, −6)', '(−6, 0)', '(0, 6)', '(2, −6)'], correcta: 0},
+          {enun: '6. El intercepto con el eje y de f(x) = x² + 2x − 6 es:', ops: ['(0, −6)', '(−6, 0)', '(0, 6)', '(2, −6)'], correcta: 0},
           {enun: '7. Proyectil h(t) = −16t² + 96t. ¿En qué tiempo alcanza la altura máxima?', ops: ['6 s', '3 s', '96 s', '16 s'], correcta: 1},
           {enun: '8. Con h(t) = −16t² + 96t, la altura máxima es:', ops: ['288 ft', '96 ft', '144 ft', '48 ft'], correcta: 2},
           {enun: '9. Beneficio B(x) = −x² + 40x − 100. ¿Qué x lo maximiza?', ops: ['40', '10', '20', '100'], correcta: 2},
@@ -783,5 +808,20 @@
         });
       })();
     </script>
+  
+<script>
+  /* Abre el quiz (acordeón) cuando se llega a él desde el índice o por la URL */
+  (function () {
+    function abrir(id) {
+      var el = id && document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    }
+    abrir(location.hash.slice(1));
+    window.addEventListener('hashchange', function () { abrir(location.hash.slice(1)); });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function () { abrir(a.getAttribute('href').slice(1)); });
+    });
+  })();
+</script>
   </body>
 </html>

@@ -1,9 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- Lección 4.1 · Matemáticas Nivel 4 · GEDparaHispanos
+     José M. Fernández · CC BY-NC-SA 4.0 -->
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lección 4.1 · Resolver ecuaciones cuadráticas por factorización</title>
+    <meta name="license" content="CC BY-NC-SA 4.0" />
+    <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" />
     <style>
       :root {
         --tema: #880e4f;
@@ -547,6 +552,27 @@
         border-top: 1px solid #ddd;
         margin-top: 20px;
       }
+    
+  /* ── ÍNDICE DE LA LECCIÓN ── */
+  .indice{ background:#fff; border:1px solid #d8dde3; border-left:6px solid var(--tema);
+    border-radius:10px; padding:16px 20px; margin:24px 0; }
+  .indice h2{ font-size:1.05rem; margin:0 0 10px; color:var(--tema-d); border:0; padding:0; background:none; }
+  .indice ol{ margin:0; padding-left:1.35em; }
+  .indice li{ margin:4px 0; }
+  .indice a{ color:var(--tema-d); text-decoration:underline; }
+  .indice a:hover{ color:var(--tema); }
+  .indice a:focus-visible,.volver-indice:focus-visible{ outline:3px solid #b05e00; outline-offset:2px; }
+  .volver-indice{ position:fixed; right:18px; bottom:18px; z-index:60;
+    background:var(--tema-d); color:#fff; border-radius:999px;
+    padding:10px 16px; font-weight:700; font-size:.92rem; text-decoration:none;
+    box-shadow:0 2px 10px rgba(0,0,0,.28); }
+  .volver-indice:hover{ background:var(--tema); color:#fff; }
+  .caja-tarea ul{ margin:8px 0; padding-left:22px; }
+  .caja-tarea li{ margin:6px 0; }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  footer p{ margin:4px 0; }
+  footer a{ color:inherit; }
+  @media print{ .indice,.volver-indice{ display:none; } }
     </style>
   </head>
   <body>
@@ -554,7 +580,7 @@
       <header class="principal">
         <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 4 · Ecuaciones cuadráticas</div>
         <h1>Lección 4.1 · Resolver ecuaciones cuadráticas por factorización</h1>
-        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+        <div class="meta">Unas 4 horas, a su ritmo · NRS 4–5</div>
       </header>
 
       <div class="caja-objetivos">
@@ -566,6 +592,19 @@
           <li>Resolver problemas aplicados y verificar ambas soluciones en la ecuación original.</li>
         </ul>
       </div>
+      <nav class="indice" id="indice" aria-labelledby="indice-titulo">
+        <h2 id="indice-titulo">Contenido de la lección</h2>
+        <ol>
+          <li><a href="#s-1-la-propiedad-del-producto-cero">1. La Propiedad del Producto Cero</a></li>
+          <li><a href="#s-2-los-cinco-pasos">2. Los cinco pasos</a></li>
+          <li><a href="#s-3-llevar-a-la-forma-estandar-primero">3. Llevar a la forma estándar primero</a></li>
+          <li><a href="#s-4-aplicacion-problemas-de-area">4. Aplicación: problemas de área</a></li>
+          <li><a href="#s-tarea">Tarea</a></li>
+          <li><a href="#s-quiz">Quiz de la lección 4.1</a></li>
+          <li><a href="#s-rubrica">Rúbrica analítica de la lección</a></li>
+          <li><a href="#s-cierre">Cierre y enlace con la próxima lección</a></li>
+        </ol>
+      </nav>
 
       <div class="bloque">
         <p>
@@ -579,7 +618,7 @@
         </p>
       </div>
 
-      <h2 class="seccion">1. La Propiedad del Producto Cero</h2>
+      <h2 class="seccion" id="s-1-la-propiedad-del-producto-cero">1. La Propiedad del Producto Cero</h2>
       <div class="bloque">
         <p>El número cero tiene una propiedad única en la multiplicación:</p>
         <p class="formula">Si A · B = 0, entonces A = 0 o B = 0.</p>
@@ -601,14 +640,12 @@
           . Por eso, antes de aplicarla, la ecuación debe estar igualada a cero (forma estándar). Si está igualada a otro número, no se puede usar todavía.
         </div>
       </div>
-
-      <!-- ENLACE AL INTERACTIVO — alojado en el repositorio algebra (GitHub Pages) -->
       <a
         class="enlace-interactivo"
-        href="https://zhemaria.github.io/algebra/4-1_resolver_por_factorizacion#cero"
+        href="https://zhemaria.github.io/algebra/4-1_resolver_por_factorizacion/#cero"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Abrir el interactivo de resolución de cuadráticas por factorización en GEDparaHispanos (se abre en una pestaña nueva)">
+        aria-label="Abrir el módulo de la propiedad del producto cero (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
           <span class="ei-titulo">Refuerza con un interactivo</span>
@@ -620,7 +657,7 @@
         </span>
       </a>
 
-      <h2 class="seccion">2. Los cinco pasos</h2>
+      <h2 class="seccion" id="s-2-los-cinco-pasos">2. Los cinco pasos</h2>
       <div class="bloque">
         <p>Para resolver una ecuación cuadrática por factorización se sigue siempre este procedimiento:</p>
         <table class="reglas">
@@ -709,13 +746,12 @@
           </p>
         </div>
       </div>
-      <!-- ENLACE AL INTERACTIVO — alojado en el repositorio algebra (GitHub Pages) -->
       <a
         class="enlace-interactivo"
-        href="https://zhemaria.github.io/algebra/4-1_resolver_por_factorizacion#pasos"
+        href="https://zhemaria.github.io/algebra/4-1_resolver_por_factorizacion/#pasos"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Abrir el interactivo de resolución de cuadráticas por factorización en GEDparaHispanos (se abre en una pestaña nueva)">
+        aria-label="Abrir el módulo de los cinco pasos (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
           <span class="ei-titulo">Refuerza con un interactivo</span>
@@ -762,7 +798,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">3. Llevar a la forma estándar primero</h2>
+      <h2 class="seccion" id="s-3-llevar-a-la-forma-estandar-primero">3. Llevar a la forma estándar primero</h2>
       <div class="bloque">
         <p>
           Muchas ecuaciones no vienen igualadas a cero. El
@@ -857,7 +893,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">4. Aplicación: problemas de área</h2>
+      <h2 class="seccion" id="s-4-aplicacion-problemas-de-area">4. Aplicación: problemas de área</h2>
       <div class="bloque">
         <p>
           Las ecuaciones cuadráticas modelan situaciones reales, especialmente de área y de movimiento. En estos problemas hay que
@@ -900,13 +936,12 @@
           real?
         </div>
       </div>
-      <!-- INTERACTIVO — alojado en el repositorio algebra (GitHub Pages) -->
       <a
         class="enlace-interactivo"
-        href="https://zhemaria.github.io/algebra/4-1_resolver_por_factorizacion#aplica"
+        href="https://zhemaria.github.io/algebra/4-1_resolver_por_factorizacion/#aplica"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Abrir el interactivo de resolución de cuadráticas por factorización en GEDparaHispanos (se abre en una pestaña nueva)">
+        aria-label="Abrir el módulo de aplicaciones de área (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
           <span class="ei-titulo">Refuerza con un interactivo</span>
@@ -918,74 +953,19 @@
         </span>
       </a>
 
-      <h2 class="seccion">5. Práctica guiada en clase</h2>
-      <div class="bloque">
-        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas. Cada una se presenta en doble modalidad.</p>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 1 · ¿Dos soluciones, una o ninguna?</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3>
-                <span aria-hidden="true">🏫</span>
-                Presencial
-              </h3>
-              Los estudiantes resuelven ocho ecuaciones por factorización, incluyendo casos que hay que reorganizar primero (x² = 9 y x² = 5x). En cada una identifican cuántas soluciones distintas
-              obtienen y por qué.
-            </div>
-            <div class="modo modo-virt">
-              <h3>
-                <span aria-hidden="true">💻</span>
-                En línea
-              </h3>
-              Cada estudiante resuelve la lista en un documento compartido, anotando los cinco pasos, y publica en el chat un caso donde una de las soluciones haya que descartarla o donde aparezca x =
-              0.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 2 · El rectángulo</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3>
-                <span aria-hidden="true">🏫</span>
-                Presencial
-              </h3>
-              En parejas, los estudiantes resuelven el problema del rectángulo cuyo largo es 3 más que el ancho y cuya área es 54, y explican por qué se descarta la solución negativa.
-            </div>
-            <div class="modo modo-virt">
-              <h3>
-                <span aria-hidden="true">💻</span>
-                En línea
-              </h3>
-              En salas pequeñas, cada grupo plantea la ecuación del problema de área, la resuelve por factorización e interpreta cuál solución corresponde a una medida real.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 3 · Siempre verifico</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3>
-                <span aria-hidden="true">🏫</span>
-                Presencial
-              </h3>
-              El docente entrega soluciones ya resueltas, algunas con errores. Los estudiantes verifican cada solución sustituyéndola en la ecuación original y corrigen las que no cumplan la igualdad.
-            </div>
-            <div class="modo modo-virt">
-              <h3>
-                <span aria-hidden="true">💻</span>
-                En línea
-              </h3>
-              Cada estudiante verifica tres soluciones sustituyéndolas en su ecuación, marca cuáles son correctas y describe en una frase el error de las incorrectas.
-            </div>
-          </div>
-        </div>
+      <div class="caja-tarea">
+        <h2 id="s-tarea">Tarea</h2>
+        <p>Para hacer por su cuenta, con el cuaderno abierto:</p>
+        <ul>
+          <li>Ocho ecuaciones resueltas por factorización, escribiendo los cinco pasos y cuántas soluciones distintas obtiene en cada una: x² + 7x + 10 = 0, x² − 3x − 18 = 0, 2x² + 5x − 3 = 0, x² + 6x + 9 = 0, x² = 9, x² = 5x, x² − 8x = −15 y 3x² = 12x. Las cuatro últimas hay que llevarlas primero a la forma estándar.</li>
+          <li>El rectángulo: su largo mide 3 unidades más que su ancho y su área es 54. Plantee la ecuación, resuélvala por factorización y explique por qué se descarta una de las soluciones. Después invente un problema parecido y resuélvalo.</li>
+          <li>Siempre verifico: sustituya cada solución en su ecuación y corrija las que no cumplan la igualdad, describiendo el error en una frase. x² − 5x + 6 = 0 → x = 2 o x = 3; x² + x − 12 = 0 → x = −3 o x = 4; x² = 4x → x = 4.</li>
+          <li><strong>ThatQuiz:</strong> <a href="https://www.thatquiz.org/es-0/?-j8h02-l6-mpnv600-nu-p0-f0" target="_blank" rel="noopener noreferrer">resolver cuadráticas por factorización<span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Resuelva cada ejercicio en papel antes de escribir la respuesta.</li>
+        </ul>
+        <p>Tiempo estimado: unos 60 minutos. Evalúe su trabajo con la rúbrica de esta lección.</p>
       </div>
 
-      <details class="quiz-acordeon">
+      <details class="quiz-acordeon" id="s-quiz">
         <summary>
           <span class="chevron-q" aria-hidden="true">▶</span>
           <h2>Quiz de la lección 4.1</h2>
@@ -998,29 +978,9 @@
           <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
         </div>
       </details>
-
-      <div class="caja-tarea">
-        <h2>Tarea asincrónica</h2>
-        <p>
-          <strong>1) Práctica previa (ThatQuiz).</strong>
-          Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de resolución por factorización:
-        </p>
-        <p>
-          <a class="btnTQ" href="PEGAR_URL_THATQUIZ" target="_blank" rel="noopener noreferrer">
-            Ir a ThatQuiz
-            <span class="ext" aria-hidden="true">&#8599;</span>
-          </a>
-        </p>
-        <p>
-          <strong>2) Tarea calificada (MyOpenMath).</strong>
-          Realiza los 10 ejercicios asignados (resolver cuadráticas por factorización) en MyOpenMath antes de la próxima sesión. El enlace de acceso está publicado en Brightspace, debajo de esta
-          lección.
-        </p>
-      </div>
-
       <div class="rubrica">
-        <h2>Rúbrica analítica de la lección</h2>
-        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <h2 id="s-rubrica">Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño. Léala <strong>antes</strong> de empezar la tarea y úsela <strong>después</strong> para evaluar su propio trabajo con honestidad.</p>
         <table class="tabla-rubrica">
           <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
           <thead>
@@ -1066,7 +1026,7 @@
       </div>
 
       <div class="cierre">
-        <h2>Cierre y enlace con la próxima lección</h2>
+        <h2 id="s-cierre">Cierre y enlace con la próxima lección</h2>
         <p>
           En esta lección se resolvieron ecuaciones cuadráticas por
           <strong>factorización</strong>
@@ -1083,7 +1043,12 @@
         </p>
       </div>
 
-      <footer>Spanish ASE Math · Nivel 4 · Lección 4.1 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+      <footer>
+        <p>GEDparaHispanos · Matemáticas · Nivel 4 · Tema 4 · Lección 4.1</p>
+        <p>José M. Fernández, ABE/ASE Math Master Teacher, Harry S. Truman College — City Colleges of Chicago</p>
+        <p>© 2026. Esta obra está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener noreferrer" target="_blank">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>.</p>
+      </footer>
+      <a class="volver-indice" href="#indice" aria-label="Volver al contenido de la lección"><span aria-hidden="true">↑</span> Índice</a>
     </div>
 
     <script>
@@ -1229,5 +1194,20 @@
         });
       })();
     </script>
+  
+<script>
+  /* Abre el quiz (acordeón) cuando se llega a él desde el índice o por la URL */
+  (function () {
+    function abrir(id) {
+      var el = id && document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    }
+    abrir(location.hash.slice(1));
+    window.addEventListener('hashchange', function () { abrir(location.hash.slice(1)); });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function () { abrir(a.getAttribute('href').slice(1)); });
+    });
+  })();
+</script>
   </body>
 </html>

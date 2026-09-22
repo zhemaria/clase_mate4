@@ -1,9 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- Lección 6.1 · Matemáticas Nivel 4 · GEDparaHispanos
+     José M. Fernández · CC BY-NC-SA 4.0 -->
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lección 6.1 · Resolver sistemas de ecuaciones por sustitución</title>
+    <meta name="license" content="CC BY-NC-SA 4.0" />
+    <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" />
     <style>
       :root {
         --tema: #4e342e;
@@ -234,6 +239,27 @@
         text-align: center; padding: 20px; color: #555; font-size: 13px;
         border-top: 1px solid #ddd; margin-top: 20px;
       }
+    
+  /* ── ÍNDICE DE LA LECCIÓN ── */
+  .indice{ background:#fff; border:1px solid #d8dde3; border-left:6px solid var(--tema);
+    border-radius:10px; padding:16px 20px; margin:24px 0; }
+  .indice h2{ font-size:1.05rem; margin:0 0 10px; color:var(--tema-d); border:0; padding:0; background:none; }
+  .indice ol{ margin:0; padding-left:1.35em; }
+  .indice li{ margin:4px 0; }
+  .indice a{ color:var(--tema-d); text-decoration:underline; }
+  .indice a:hover{ color:var(--tema); }
+  .indice a:focus-visible,.volver-indice:focus-visible{ outline:3px solid #b05e00; outline-offset:2px; }
+  .volver-indice{ position:fixed; right:18px; bottom:18px; z-index:60;
+    background:var(--tema-d); color:#fff; border-radius:999px;
+    padding:10px 16px; font-weight:700; font-size:.92rem; text-decoration:none;
+    box-shadow:0 2px 10px rgba(0,0,0,.28); }
+  .volver-indice:hover{ background:var(--tema); color:#fff; }
+  .caja-tarea ul{ margin:8px 0; padding-left:22px; }
+  .caja-tarea li{ margin:6px 0; }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  footer p{ margin:4px 0; }
+  footer a{ color:inherit; }
+  @media print{ .indice,.volver-indice{ display:none; } }
     </style>
   </head>
   <body>
@@ -241,7 +267,7 @@
       <header class="principal">
         <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 6 · Sistemas de ecuaciones lineales</div>
         <h1>Lección 6.1 · Resolver sistemas de ecuaciones por sustitución</h1>
-        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+        <div class="meta">Unas 4 horas, a su ritmo · NRS 4–5</div>
       </header>
 
       <div class="caja-objetivos">
@@ -253,12 +279,25 @@
           <li>Plantear y resolver problemas de contexto con dos incógnitas.</li>
         </ul>
       </div>
+      <nav class="indice" id="indice" aria-labelledby="indice-titulo">
+        <h2 id="indice-titulo">Contenido de la lección</h2>
+        <ol>
+          <li><a href="#s-1-que-es-un-sistema-y-que-es-su-solucion">1. ¿Qué es un sistema y qué es su solución?</a></li>
+          <li><a href="#s-2-los-cinco-pasos-de-la-sustitucion">2. Los cinco pasos de la sustitución</a></li>
+          <li><a href="#s-3-verificar-un-par-ordenado">3. Verificar un par ordenado</a></li>
+          <li><a href="#s-4-aplicacion-el-sistema-de-precios">4. Aplicación: el sistema de precios</a></li>
+          <li><a href="#s-tarea">Tarea</a></li>
+          <li><a href="#s-quiz">Quiz de la lección 6.1</a></li>
+          <li><a href="#s-rubrica">Rúbrica analítica de la lección</a></li>
+          <li><a href="#s-cierre">Cierre y enlace con la próxima lección</a></li>
+        </ol>
+      </nav>
 
       <div class="bloque">
         <p><strong>Conexión con el tema anterior.</strong> Hasta ahora se resolvía <strong>una</strong> ecuación con una incógnita. En el Tema 6 se trabaja con <strong>dos ecuaciones a la vez</strong>, cada una con dos variables (x e y). Resolver el sistema es encontrar el par (x, y) que cumple <strong>las dos ecuaciones</strong> al mismo tiempo. Gráficamente, es el punto donde se cruzan las dos rectas.</p>
       </div>
 
-      <h2 class="seccion">1. ¿Qué es un sistema y qué es su solución?</h2>
+      <h2 class="seccion" id="s-1-que-es-un-sistema-y-que-es-su-solucion">1. ¿Qué es un sistema y qué es su solución?</h2>
       <div class="bloque">
         <p>Un sistema de ecuaciones lineales es un conjunto de dos ecuaciones con las mismas dos variables. La <strong>solución</strong> es el par ordenado (x, y) que hace verdaderas ambas ecuaciones.</p>
 
@@ -271,19 +310,17 @@
           <strong>Una solución debe cumplir las dos ecuaciones:</strong> no basta con que un par satisfaga una de ellas. Por eso, al final, siempre se verifica en ambas.
         </div>
       </div>
-
-      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de sistemas por sustitución -->
-      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
-         aria-label="Abrir el interactivo de sistemas de ecuaciones por sustitución en GEDparaHispanos (se abre en una pestaña nueva)">
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l6-1.html" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo general de la Lección 6.1 (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
-          <span class="ei-titulo">Refuerza con un interactivo</span>
-          <span class="ei-sub">Resuelve sistemas por sustitución paso a paso y verifica la solución en ambas ecuaciones en el portal GEDparaHispanos.</span>
+          <span class="ei-titulo">Refuerza con el interactivo de la lección</span>
+          <span class="ei-sub">Una sola página con las tres prácticas de esta lección: los cinco pasos de la sustitución con la gráfica del sistema, el verificador de pares ordenados y el planteamiento de problemas de contexto.</span>
           <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
         </span>
       </a>
 
-      <h2 class="seccion">2. Los cinco pasos de la sustitución</h2>
+      <h2 class="seccion" id="s-2-los-cinco-pasos-de-la-sustitucion">2. Los cinco pasos de la sustitución</h2>
       <div class="bloque">
         <table class="reglas">
           <caption class="sr-only">Los cinco pasos para resolver un sistema por sustitución.</caption>
@@ -327,6 +364,15 @@
           <strong>Elige la variable más fácil de despejar:</strong> conviene despejar la variable cuyo coeficiente es 1 o −1, para evitar fracciones.
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l6-1.html#sustitucion" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de resolver por sustitución (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica la sustitución</span>
+          <span class="ei-sub">Cinco sistemas resueltos paso a paso, con las dos rectas dibujadas y el punto de cruce que aparece al verificar.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
       <div class="practica">
         <h3>Práctica interactiva 1 · Resolver por sustitución</h3>
@@ -363,7 +409,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">3. Verificar un par ordenado</h2>
+      <h2 class="seccion" id="s-3-verificar-un-par-ordenado">3. Verificar un par ordenado</h2>
       <div class="bloque">
         <p>Para comprobar si un par (x, y) es solución de un sistema, se sustituye en <strong>las dos</strong> ecuaciones. Si cumple ambas, es solución; si falla en una, no lo es.</p>
 
@@ -375,6 +421,15 @@
           <p><strong>Respuesta:</strong> sí, (4, 1) es solución.</p>
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l6-1.html#verificar" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de verificar un par ordenado (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica la verificación de pares ordenados</span>
+          <span class="ei-sub">Escribe cualquier par (x, y) y el interactivo lo sustituye en las dos ecuaciones y lo sitúa en la gráfica junto a las rectas.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
       <div class="practica">
         <h3>Práctica interactiva 2 · Verificar la solución</h3>
@@ -411,7 +466,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">4. Aplicación: el sistema de precios</h2>
+      <h2 class="seccion" id="s-4-aplicacion-el-sistema-de-precios">4. Aplicación: el sistema de precios</h2>
       <div class="bloque">
         <p>Muchos problemas reales tienen dos incógnitas y dos datos. Se asigna una variable a cada incógnita, se plantean dos ecuaciones y se resuelve el sistema.</p>
 
@@ -425,6 +480,15 @@
           <p><strong>Respuesta:</strong> el café cuesta $2 y el té, $3.</p>
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l6-1.html#contexto" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de plantear el sistema (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica el planteamiento de problemas</span>
+          <span class="ei-sub">Cinco situaciones reales armadas paso a paso: nombrar las incógnitas, traducir cada dato en una ecuación y releer la respuesta.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
       <div class="practica">
         <h3>Práctica interactiva 3 · Problemas de contexto</h3>
@@ -461,54 +525,19 @@
         </div>
       </div>
 
-      <h2 class="seccion">5. Práctica guiada en clase</h2>
-      <div class="bloque">
-        <p>Las siguientes tres actividades se realizan durante las horas sincrónicas. Cada una se presenta en doble modalidad.</p>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 1 · El sistema de precios</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              En parejas, los estudiantes resuelven seis sistemas por sustitución, incluyendo el problema de las dos tiendas con precios de café y té, y comparan resultados.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              Cada estudiante resuelve los seis sistemas en un documento compartido, mostrando los cinco pasos, y publica en el chat la solución del problema de precios.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 2 · ¿Qué variable despejo?</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              Para cuatro sistemas, los estudiantes deciden qué variable conviene despejar (la de coeficiente 1 o −1) y justifican su elección antes de resolver.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              En salas pequeñas, cada grupo marca en una hoja compartida la variable más fácil de despejar en cada sistema y explica por qué evita fracciones.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 3 · Siempre verifico en ambas</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              El docente entrega soluciones, algunas con errores. Los estudiantes verifican cada par en las dos ecuaciones y corrigen las que no cumplan ambas.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              Cada estudiante verifica tres pares ordenados en sus respectivos sistemas, marca cuáles son solución y describe en una frase el error de los que no lo son.
-            </div>
-          </div>
-        </div>
+      <div class="caja-tarea">
+        <h2 id="s-tarea">Tarea</h2>
+        <p>Para hacer por su cuenta, con el cuaderno abierto:</p>
+        <ul>
+          <li>Seis sistemas por sustitución, escribiendo los cinco pasos: y = 2x y x + y = 9; y = x + 1 y 2x + y = 10; x + y = 8 y x − y = 2; x = 3y y 2x − y = 10; 3x + y = 7 y 2x − 3y = 1. El sexto es un problema de precios: en otra cafetería, 3 cafés y 2 tés cuestan $13, y 1 café y 1 té cuestan $5. ¿Cuánto cuesta cada uno?</li>
+          <li>¿Qué variable despejo? En cada sistema, decida qué variable conviene despejar (la de coeficiente 1 o −1), explique por qué así se evitan fracciones y resuélvalo: 2x + y = 11 y 3x − 2y = 6; x − 4y = 2 y 3x + 5y = 23; 5x − y = 3 y 2x + 3y = 25; 4x + 3y = 10 y −x + 2y = 3.</li>
+          <li>Siempre verifico en ambas: compruebe cada par en las dos ecuaciones. Si no es solución, diga en qué ecuación falla y halle la solución correcta. (2, 5) en y = x + 3 y x + y = 7; (4, 1) en x − y = 3 y 2x + y = 12; (3, −2) en x + y = 1 y 2x − y = 5.</li>
+          <li><strong>ThatQuiz:</strong> <a href="https://www.thatquiz.org/es-0/?-j10g0-l4-mpnv600-nu-p0-f0" target="_blank" rel="noopener noreferrer">sistemas de ecuaciones<span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Resuelva cada ejercicio en papel antes de escribir la respuesta.</li>
+        </ul>
+        <p>Tiempo estimado: unos 60 minutos. Evalúe su trabajo con la rúbrica de esta lección.</p>
       </div>
 
-      <details class="quiz-acordeon">
+      <details class="quiz-acordeon" id="s-quiz">
         <summary>
           <span class="chevron-q" aria-hidden="true">▶</span>
           <h2>Quiz de la lección 6.1</h2>
@@ -521,18 +550,9 @@
           <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
         </div>
       </details>
-
-      <div class="caja-tarea">
-        <h2>Tarea asincrónica</h2>
-        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de sistemas por sustitución:</p>
-        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
-        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 8 sistemas asignados (resolver por sustitución) en MyOpenMath antes de la próxima sesión:</p>
-        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
-      </div>
-
       <div class="rubrica">
-        <h2>Rúbrica analítica de la lección</h2>
-        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <h2 id="s-rubrica">Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño. Léala <strong>antes</strong> de empezar la tarea y úsela <strong>después</strong> para evaluar su propio trabajo con honestidad.</p>
         <table class="tabla-rubrica">
           <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
           <thead>
@@ -578,12 +598,17 @@
       </div>
 
       <div class="cierre">
-        <h2>Cierre y enlace con la próxima lección</h2>
+        <h2 id="s-cierre">Cierre y enlace con la próxima lección</h2>
         <p>En esta lección se resolvieron sistemas de dos ecuaciones por <strong>sustitución</strong>, con un procedimiento de cinco pasos, y se verificó cada solución en las dos ecuaciones. También se plantearon problemas de contexto con dos incógnitas.</p>
         <p>En la <strong>Lección 6.2 · Resolver sistemas por eliminación y clasificar sistemas</strong> se aprenderá otro método —sumar las ecuaciones para eliminar una variable— y a clasificar los sistemas en <strong>independiente</strong> (una solución), <strong>inconsistente</strong> (ninguna) o <strong>dependiente</strong> (infinitas).</p>
       </div>
 
-      <footer>Spanish ASE Math · Nivel 4 · Lección 6.1 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+      <footer>
+        <p>GEDparaHispanos · Matemáticas · Nivel 4 · Tema 6 · Lección 6.1</p>
+        <p>José M. Fernández, ABE/ASE Math Master Teacher, Harry S. Truman College — City Colleges of Chicago</p>
+        <p>© 2026. Esta obra está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener noreferrer" target="_blank">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>.</p>
+      </footer>
+      <a class="volver-indice" href="#indice" aria-label="Volver al contenido de la lección"><span aria-hidden="true">↑</span> Índice</a>
     </div>
 
     <script>
@@ -719,5 +744,20 @@
         });
       })();
     </script>
+  
+<script>
+  /* Abre el quiz (acordeón) cuando se llega a él desde el índice o por la URL */
+  (function () {
+    function abrir(id) {
+      var el = id && document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    }
+    abrir(location.hash.slice(1));
+    window.addEventListener('hashchange', function () { abrir(location.hash.slice(1)); });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function () { abrir(a.getAttribute('href').slice(1)); });
+    });
+  })();
+</script>
   </body>
 </html>

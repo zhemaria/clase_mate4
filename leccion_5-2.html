@@ -1,9 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- Lección 5.2 · Matemáticas Nivel 4 · GEDparaHispanos
+     José M. Fernández · CC BY-NC-SA 4.0 -->
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lección 5.2 · Sumar, restar, multiplicar y dividir expresiones racionales</title>
+    <meta name="license" content="CC BY-NC-SA 4.0" />
+    <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" />
     <style>
       :root {
         --tema: #37474f;
@@ -234,6 +239,27 @@
         text-align: center; padding: 20px; color: #555; font-size: 13px;
         border-top: 1px solid #ddd; margin-top: 20px;
       }
+    
+  /* ── ÍNDICE DE LA LECCIÓN ── */
+  .indice{ background:#fff; border:1px solid #d8dde3; border-left:6px solid var(--tema);
+    border-radius:10px; padding:16px 20px; margin:24px 0; }
+  .indice h2{ font-size:1.05rem; margin:0 0 10px; color:var(--tema-d); border:0; padding:0; background:none; }
+  .indice ol{ margin:0; padding-left:1.35em; }
+  .indice li{ margin:4px 0; }
+  .indice a{ color:var(--tema-d); text-decoration:underline; }
+  .indice a:hover{ color:var(--tema); }
+  .indice a:focus-visible,.volver-indice:focus-visible{ outline:3px solid #b05e00; outline-offset:2px; }
+  .volver-indice{ position:fixed; right:18px; bottom:18px; z-index:60;
+    background:var(--tema-d); color:#fff; border-radius:999px;
+    padding:10px 16px; font-weight:700; font-size:.92rem; text-decoration:none;
+    box-shadow:0 2px 10px rgba(0,0,0,.28); }
+  .volver-indice:hover{ background:var(--tema); color:#fff; }
+  .caja-tarea ul{ margin:8px 0; padding-left:22px; }
+  .caja-tarea li{ margin:6px 0; }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  footer p{ margin:4px 0; }
+  footer a{ color:inherit; }
+  @media print{ .indice,.volver-indice{ display:none; } }
     </style>
   </head>
   <body>
@@ -241,7 +267,7 @@
       <header class="principal">
         <div class="ruta">Spanish ASE Math · Nivel 4 · Tema 5 · Expresiones racionales complejas</div>
         <h1>Lección 5.2 · Sumar, restar, multiplicar y dividir expresiones racionales</h1>
-        <div class="meta">4 horas (2 sincrónicas + 2 asincrónicas) · NRS 4–5 · Brightspace D2L</div>
+        <div class="meta">Unas 4 horas, a su ritmo · NRS 4–5</div>
       </header>
 
       <div class="caja-objetivos">
@@ -253,12 +279,25 @@
           <li>Sumar y restar con denominadores diferentes hallando el mínimo común múltiplo (MCM).</li>
         </ul>
       </div>
+      <nav class="indice" id="indice" aria-labelledby="indice-titulo">
+        <h2 id="indice-titulo">Contenido de la lección</h2>
+        <ol>
+          <li><a href="#s-1-multiplicar">1. Multiplicar</a></li>
+          <li><a href="#s-2-dividir">2. Dividir</a></li>
+          <li><a href="#s-3-sumar-y-restar-con-igual-denominador">3. Sumar y restar con igual denominador</a></li>
+          <li><a href="#s-4-sumar-y-restar-con-denominadores-diferentes">4. Sumar y restar con denominadores diferentes</a></li>
+          <li><a href="#s-tarea">Tarea</a></li>
+          <li><a href="#s-quiz">Quiz de la lección 5.2</a></li>
+          <li><a href="#s-rubrica">Rúbrica analítica de la lección</a></li>
+          <li><a href="#s-cierre">Cierre y enlace con la próxima lección</a></li>
+        </ol>
+      </nav>
 
       <div class="bloque">
         <p><strong>Conexión con la lección anterior.</strong> En la Lección 5.1 se simplificaron expresiones racionales factorizando y cancelando. Ahora se opera con ellas. La buena noticia: <strong>cada operación es idéntica a la de las fracciones numéricas</strong>. Si se sabe operar con 2/3 y 1/4, se sabe operar con fracciones de polinomios.</p>
       </div>
 
-      <h2 class="seccion">1. Multiplicar</h2>
+      <h2 class="seccion" id="s-1-multiplicar">1. Multiplicar</h2>
       <div class="bloque">
         <p>Para multiplicar fracciones se factoriza, se cancela cualquier factor común (de arriba con abajo) y se multiplican los numeradores y los denominadores. Cancelar <em>antes</em> de multiplicar ahorra mucho trabajo.</p>
 
@@ -278,14 +317,21 @@
           <p><strong>Respuesta:</strong> 2x.</p>
         </div>
       </div>
-
-      <!-- ENLACE AL INTERACTIVO — reemplazar AQUI_VA_URL por la URL de GitHub del interactivo de operaciones con racionales -->
-      <a class="enlace-interactivo" href="AQUI_VA_URL" target="_blank" rel="noopener"
-         aria-label="Abrir el interactivo de operaciones con expresiones racionales en GEDparaHispanos (se abre en una pestaña nueva)">
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-2.html" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo general de la Lección 5.2 (se abre en una pestaña nueva)">
         <span class="ei-icono" aria-hidden="true">🔗</span>
         <span class="ei-cuerpo">
-          <span class="ei-titulo">Refuerza con un interactivo</span>
-          <span class="ei-sub">Multiplica, divide, suma y resta fracciones algebraicas paso a paso, con la analogía numérica al lado, en el portal GEDparaHispanos.</span>
+          <span class="ei-titulo">Refuerza con el interactivo de la lección</span>
+          <span class="ei-sub">Una sola página con las cuatro prácticas de esta lección: multiplicar, dividir, sumar y restar con igual denominador y con denominadores diferentes.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-2.html#multiplicar" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de multiplicar (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica la multiplicación</span>
+          <span class="ei-sub">Cinco productos resueltos paso a paso, con la cancelación en cruz marcada sobre la propia fracción, y ejercicios de opción múltiple.</span>
           <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
         </span>
       </a>
@@ -325,7 +371,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">2. Dividir</h2>
+      <h2 class="seccion" id="s-2-dividir">2. Dividir</h2>
       <div class="bloque">
         <p>Dividir es <strong>multiplicar por el recíproco</strong>: se voltea la segunda fracción y se multiplica. La regla se resume como "deja, cambia, voltea".</p>
         <p class="formula">a/b ÷ c/d = a/b · d/c</p>
@@ -338,6 +384,15 @@
           <p><strong>Respuesta:</strong> 3/x.</p>
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-2.html#dividir" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de dividir (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica la división</span>
+          <span class="ei-sub">«Deja, cambia, voltea» paso a paso: se ve cómo se invierte la segunda fracción antes de cancelar, con cinco ejercicios para comprobar.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
       <div class="practica">
         <h3>Práctica interactiva 2 · Dividir</h3>
@@ -374,7 +429,7 @@
         </div>
       </div>
 
-      <h2 class="seccion">3. Sumar y restar con igual denominador</h2>
+      <h2 class="seccion" id="s-3-sumar-y-restar-con-igual-denominador">3. Sumar y restar con igual denominador</h2>
       <div class="bloque">
         <p>Cuando los denominadores son iguales, se combinan los numeradores y se conserva el denominador. Igual que 2/7 + 3/7 = 5/7.</p>
 
@@ -392,8 +447,17 @@
           <p><strong>Respuesta:</strong> (3x)/(x − 3).</p>
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-2.html#sumar-igual" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de igual denominador (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica la suma y la resta con igual denominador</span>
+          <span class="ei-sub">Incluye el botón «Ver el error frecuente», que muestra qué pasa cuando se olvida el paréntesis al restar el segundo numerador.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
-      <h2 class="seccion">4. Sumar y restar con denominadores diferentes</h2>
+      <h2 class="seccion" id="s-4-sumar-y-restar-con-denominadores-diferentes">4. Sumar y restar con denominadores diferentes</h2>
       <div class="bloque">
         <p>Cuando los denominadores son distintos, se busca el <strong>mínimo común múltiplo (MCM)</strong> de los denominadores, se reescriben las fracciones con ese denominador común y luego se combinan los numeradores. Es el mismo proceso que en 1/2 + 1/3 = 3/6 + 2/6 = 5/6.</p>
 
@@ -418,6 +482,15 @@
           <strong>Mismo método que con números:</strong> hallar el MCM, reescribir cada fracción y combinar los numeradores. Lo único nuevo es que ahora los denominadores son expresiones con variables.
         </div>
       </div>
+      <a class="enlace-interactivo" href="https://zhemaria.github.io/algebra/n4-l5-2.html#sumar-distinto" target="_blank" rel="noopener noreferrer"
+         aria-label="Abrir el interactivo en la parte de denominadores diferentes (se abre en una pestaña nueva)">
+        <span class="ei-icono" aria-hidden="true">🔗</span>
+        <span class="ei-cuerpo">
+          <span class="ei-titulo">Practica los denominadores diferentes</span>
+          <span class="ei-sub">Cinco sumas y restas resueltas paso a paso: hallar el MCM, reescribir cada fracción y combinar los numeradores.</span>
+          <span class="ei-cta">Abrir el interactivo <span aria-hidden="true">›</span></span>
+        </span>
+      </a>
 
       <div class="practica">
         <h3>Práctica interactiva 3 · Sumar y restar</h3>
@@ -454,54 +527,21 @@
         </div>
       </div>
 
-      <h2 class="seccion">5. Práctica guiada en clase</h2>
-      <div class="bloque">
-        <p>La clase rota por cuatro estaciones algebraicas. Cada estación se trabaja en doble modalidad.</p>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 1 · Estaciones de multiplicar y dividir</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              En la estación de multiplicar y en la de dividir, las parejas resuelven tres problemas en cada una, factorizando y cancelando antes de operar, y se verifican mutuamente el resultado.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              En salas pequeñas, cada grupo resuelve los problemas de multiplicación y división en una hoja compartida y publica un ejemplo donde cancelar antes de operar simplificó mucho el trabajo.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 2 · Estaciones de sumar y restar</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              En la estación de igual denominador y en la de diferente denominador, las parejas resuelven tres problemas en cada una; en la de denominador diferente, identifican primero el MCM.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              Cada grupo resuelve sumas y restas con igual y con diferente denominador, mostrando el MCM y el paso de reescritura, y comenta la analogía con una suma de fracciones numéricas.
-            </div>
-          </div>
-        </div>
-
-        <div class="actividad">
-          <div class="titulo-act">Actividad 3 · Verificación cruzada</div>
-          <div class="modalidad">
-            <div class="modo modo-pres">
-              <h3><span aria-hidden="true">🏫</span> Presencial</h3>
-              Al terminar las estaciones, cada pareja intercambia resultados con otra y verifica al menos un problema de cada operación, localizando juntos cualquier error.
-            </div>
-            <div class="modo modo-virt">
-              <h3><span aria-hidden="true">💻</span> En línea</h3>
-              Cada grupo revisa el trabajo de otro en el documento compartido, marca los aciertos y describe en una frase el error más frecuente que encontró.
-            </div>
-          </div>
-        </div>
+      <div class="caja-tarea">
+        <h2 id="s-tarea">Tarea</h2>
+        <p>Para hacer por su cuenta, con el cuaderno abierto. Trabaje las cuatro operaciones como si fueran cuatro estaciones:</p>
+        <ul>
+          <li>Multiplicar (factorice y cancele antes de operar): (x² − 9)/(x + 2) · (x + 2)/(x − 3); 2x/(x² − 1) · (x + 1)/(4x²); (x² + 3x)/(x − 5) · (x² − 25)/(x² + 8x + 15).</li>
+          <li>Dividir (multiplique por el recíproco): (x² − 4)/(3x) ÷ (x + 2)/(6x²); (x + 1)/(x² − x) ÷ (x² − 1)/x; (x² + 2x − 8)/(x² − 9) ÷ (x + 4)/(x + 3).</li>
+          <li>Sumar y restar con igual denominador: 3/x + 5/x; (2x + 1)/(x − 4) − (x − 3)/(x − 4); x²/(x + 2) − 4/(x + 2). En las restas, reparta el signo menos a todo el numerador.</li>
+          <li>Sumar y restar con denominadores diferentes (escriba primero el MCM): 2/x + 3/(x + 1); 5/(x − 2) − 1/(x + 3); x/(x² − 9) + 2/(x + 3). Resuelva al lado 1/4 + 1/6 para comparar los pasos.</li>
+          <li>Verificación: en un problema de cada estación, sustituya un valor de x que no esté excluido en la expresión original y en su resultado. Si no dan lo mismo, busque el error.</li>
+          <li><strong>Práctica en línea:</strong> <a href="https://zhemaria.github.io/algebra/n4-l5-2.html" target="_blank" rel="noopener noreferrer">interactivo de la Lección 5.2<span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Haga varios ejercicios de cada práctica, resolviéndolos primero en el cuaderno, y anote los que falle para repasarlos.</li>
+        </ul>
+        <p>Tiempo estimado: unos 70 minutos. Evalúe su trabajo con la rúbrica de esta lección.</p>
       </div>
 
-      <details class="quiz-acordeon">
+      <details class="quiz-acordeon" id="s-quiz">
         <summary>
           <span class="chevron-q" aria-hidden="true">▶</span>
           <h2>Quiz de la lección 5.2</h2>
@@ -514,18 +554,9 @@
           <button class="btn sec" id="btn-reintentar" style="display: none">Intentar de nuevo</button>
         </div>
       </details>
-
-      <div class="caja-tarea">
-        <h2>Tarea asincrónica</h2>
-        <p><strong>1) Práctica previa (ThatQuiz).</strong> Antes de la tarea calificada, repasa con estos ejercicios autocorregibles de operaciones con expresiones racionales:</p>
-        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a ThatQuiz <span class="ext" aria-hidden="true">&#8599;</span></a></p>
-        <p><strong>2) Tarea calificada (MyOpenMath).</strong> Realiza los 12 ejercicios mixtos asignados (multiplicar, dividir, sumar y restar) en MyOpenMath antes de la próxima sesión:</p>
-        <p><a class="btnTQ" href="aquí va el enlace" target="_blank" rel="noopener">Ir a MyOpenMath <span class="ext" aria-hidden="true">&#8599;</span></a></p>
-      </div>
-
       <div class="rubrica">
-        <h2>Rúbrica analítica de la lección</h2>
-        <p>Cuatro criterios evaluados en cuatro niveles de desempeño.</p>
+        <h2 id="s-rubrica">Rúbrica analítica de la lección</h2>
+        <p>Cuatro criterios evaluados en cuatro niveles de desempeño. Léala <strong>antes</strong> de empezar la tarea y úsela <strong>después</strong> para evaluar su propio trabajo con honestidad.</p>
         <table class="tabla-rubrica">
           <caption class="sr-only">Rúbrica analítica con cuatro criterios y cuatro niveles de desempeño.</caption>
           <thead>
@@ -571,12 +602,17 @@
       </div>
 
       <div class="cierre">
-        <h2>Cierre y enlace con la próxima lección</h2>
+        <h2 id="s-cierre">Cierre y enlace con la próxima lección</h2>
         <p>En esta lección se aprendió a <strong>operar</strong> con expresiones racionales: multiplicar (factorizar y cancelar), dividir (recíproco) y sumar o restar con igual y con diferente denominador usando el <strong>MCM</strong>.</p>
         <p>En la <strong>Lección 5.3 · Resolver ecuaciones con expresiones racionales y modelado</strong> se usarán estas destrezas para resolver ecuaciones con fracciones algebraicas: se multiplicará por el MCM para eliminar los denominadores, se verificarán las <strong>soluciones extrañas</strong> y se modelarán problemas reales como los de trabajo conjunto.</p>
       </div>
 
-      <footer>Spanish ASE Math · Nivel 4 · Lección 5.2 — Preparado para Prof. José M. Fernández (Truman College, CCC) · Brightspace D2L</footer>
+      <footer>
+        <p>GEDparaHispanos · Matemáticas · Nivel 4 · Tema 5 · Lección 5.2</p>
+        <p>José M. Fernández, ABE/ASE Math Master Teacher, Harry S. Truman College — City Colleges of Chicago</p>
+        <p>© 2026. Esta obra está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener noreferrer" target="_blank">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>.</p>
+      </footer>
+      <a class="volver-indice" href="#indice" aria-label="Volver al contenido de la lección"><span aria-hidden="true">↑</span> Índice</a>
     </div>
 
     <script>
@@ -716,5 +752,20 @@
         });
       })();
     </script>
+  
+<script>
+  /* Abre el quiz (acordeón) cuando se llega a él desde el índice o por la URL */
+  (function () {
+    function abrir(id) {
+      var el = id && document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    }
+    abrir(location.hash.slice(1));
+    window.addEventListener('hashchange', function () { abrir(location.hash.slice(1)); });
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function () { abrir(a.getAttribute('href').slice(1)); });
+    });
+  })();
+</script>
   </body>
 </html>
