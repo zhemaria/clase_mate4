@@ -854,41 +854,41 @@
       (function () {
         var preguntasQuiz = [
           // Bloque 1 · Geometría analítica y volumen 3D
-          {cat: 'Bloque 1 · Geometría analítica y volumen 3D', enun: '1. Distancia entre (0, 0) y (3, 4).', ops: ['7', '5', '25', '12'], correcta: 1},
-          {enun: '2. Punto medio de (2, 4) y (6, 8).', ops: ['(8, 12)', '(4, 6)', '(2, 2)', '(4, 4)'], correcta: 1},
-          {enun: '3. Pendiente entre (1, 2) y (3, 8).', ops: ['2', '1/3', '3', '4'], correcta: 2},
-          {enun: '4. Volumen de una esfera de radio 3 (V = 4/3 · π · r³).', ops: ['27π', '12π', '36π', '9π'], correcta: 2},
-          {enun: '5. Volumen de un cono con r = 3 y h = 4 (V = 1/3 · π · r² · h).', ops: ['36π', '9π', '24π', '12π'], correcta: 3},
+          {cat: 'Bloque 1 · Geometría analítica y volumen 3D', enun: 'A. Distancia entre (0, 0) y (3, 4).', ops: ['7', '25', '12', '5'], correcta: 3},
+          {enun: 'B. Punto medio de (2, 4) y (6, 8).', ops: ['(4, 6)', '(8, 12)', '(2, 2)', '(4, 4)'], correcta: 0},
+          {enun: 'C. Pendiente entre (1, 2) y (3, 8).', ops: ['2', '1/3', '3', '4'], correcta: 2},
+          {enun: 'D. Volumen de una esfera de radio 3 (V = 4/3 · π · r³).', ops: ['27π', '36π', '12π', '9π'], correcta: 1},
+          {enun: 'E. Volumen de un cono con r = 3 y h = 4 (V = 1/3 · π · r² · h).', ops: ['12π', '36π', '9π', '24π'], correcta: 0},
           // Bloque 2 · Polinomios y factorización
-          {cat: 'Bloque 2 · Polinomios y factorización', enun: '6. (x + 3)(x − 3) =', ops: ['x² + 9', 'x² − 9', 'x² − 6x + 9', 'x² − 3'], correcta: 1},
-          {enun: '7. Factoriza x² − 5x + 6.', ops: ['(x + 2)(x + 3)', '(x − 1)(x − 6)', '(x − 2)(x − 3)', '(x − 2)(x + 3)'], correcta: 2},
-          {enun: '8. (x + 4)² =', ops: ['x² + 16', 'x² + 8x + 16', 'x² + 4x + 16', 'x² + 8x + 8'], correcta: 1},
-          {enun: '9. Factor común de 6x² + 9x.', ops: ['x(6x + 9)', '3(2x² + 3x)', '3x(2x + 3)', '6x(x + 3)'], correcta: 2},
-          {enun: '10. Factoriza x² − 16.', ops: ['(x − 16)(x + 1)', '(x + 8)(x − 2)', '(x + 4)(x − 4)', '(x − 4)²'], correcta: 2},
+          {cat: 'Bloque 2 · Polinomios y factorización', enun: 'F. (x + 3)(x − 3) =', ops: ['x² + 9', 'x² − 6x + 9', 'x² − 3', 'x² − 9'], correcta: 3},
+          {enun: 'G. Factoriza x² − 5x + 6.', ops: ['(x + 2)(x + 3)', '(x − 1)(x − 6)', '(x − 2)(x − 3)', '(x − 2)(x + 3)'], correcta: 2},
+          {enun: 'H. (x + 4)² =', ops: ['x² + 16', 'x² + 8x + 16', 'x² + 4x + 16', 'x² + 8x + 8'], correcta: 1},
+          {enun: 'I. Factor común de 6x² + 9x.', ops: ['x(6x + 9)', '3(2x² + 3x)', '3x(2x + 3)', '6x(x + 3)'], correcta: 2},
+          {enun: 'J. Factoriza x² − 16.', ops: ['(x − 16)(x + 1)', '(x + 4)(x − 4)', '(x + 8)(x − 2)', '(x − 4)²'], correcta: 1},
           // Bloque 3 · Ecuaciones cuadráticas
-          {cat: 'Bloque 3 · Ecuaciones cuadráticas', enun: '11. Resuelve x² − 9 = 0.', ops: ['x = 9', 'x = 3 y x = −3', 'x = 3', 'x = ±81'], correcta: 1},
-          {enun: '12. Resuelve (x − 2)(x + 5) = 0.', ops: ['x = −2 y x = 5', 'x = 2 y x = −5', 'x = 2 y x = 5', 'x = 10'], correcta: 1},
-          {enun: '13. El discriminante de x² + 2x + 1 (b² − 4ac = 0) indica que hay:', ops: ['dos raíces reales distintas', 'ninguna raíz real', 'una raíz doble', 'tres raíces'], correcta: 2},
-          {enun: '14. Resuelve x² − 7x + 12 = 0.', ops: ['−3 y −4', '7 y 12', '3 y 4', '1 y 12'], correcta: 2},
-          {enun: '15. La fórmula cuadrática es x =', ops: ['−b / (2a)', '(−b ± √(b² − 4ac)) / (2a)', '(b ± √(b² − 4ac)) / (2a)', 'b² − 4ac'], correcta: 1},
+          {cat: 'Bloque 3 · Ecuaciones cuadráticas', enun: 'K. Resuelve x² − 9 = 0.', ops: ['x = 3 y x = −3', 'x = 9', 'x = 3', 'x = ±81'], correcta: 0},
+          {enun: 'L. Resuelve (x − 2)(x + 5) = 0.', ops: ['x = −2 y x = 5', 'x = 2 y x = 5', 'x = 10', 'x = 2 y x = −5'], correcta: 3},
+          {enun: 'M. El discriminante de x² + 2x + 1 (b² − 4ac = 0) indica que hay:', ops: ['dos raíces reales distintas', 'ninguna raíz real', 'una raíz doble', 'tres raíces'], correcta: 2},
+          {enun: 'N. Resuelve x² − 7x + 12 = 0.', ops: ['−3 y −4', '7 y 12', '3 y 4', '1 y 12'], correcta: 2},
+          {enun: 'O. La fórmula cuadrática es x =', ops: ['−b / (2a)', '(b ± √(b² − 4ac)) / (2a)', 'b² − 4ac', '(−b ± √(b² − 4ac)) / (2a)'], correcta: 3},
           // Bloque 4 · Expresiones racionales
-          {cat: 'Bloque 4 · Expresiones racionales', enun: '16. Simplifica (x² − 9) / (x − 3), con x ≠ 3.', ops: ['x − 3', 'x + 3', 'x + 9', '3'], correcta: 1},
-          {enun: '17. ¿Para qué valor NO está definida 1 / (x − 2)?', ops: ['x = 0', 'x = −2', 'x = 2', 'x = 1'], correcta: 2},
-          {enun: '18. (2/x) · (x/5) =', ops: ['2x/5', '2/5', '10/x', '2/(5x)'], correcta: 1},
-          {enun: '19. (1/x) + (2/x) =', ops: ['3/(2x)', '3/x', '2/x²', '3/x²'], correcta: 1},
-          {enun: '20. Dividir entre una fracción es multiplicar por su:', ops: ['opuesto', 'cuadrado', 'recíproco', 'raíz'], correcta: 2},
+          {cat: 'Bloque 4 · Expresiones racionales', enun: 'P. Simplifica (x² − 9) / (x − 3), con x ≠ 3.', ops: ['x − 3', 'x + 3', 'x + 9', '3'], correcta: 1},
+          {enun: 'Q. ¿Para qué valor NO está definida 1 / (x − 2)?', ops: ['x = 2', 'x = 0', 'x = −2', 'x = 1'], correcta: 0},
+          {enun: 'R. (2/x) · (x/5) =', ops: ['2x/5', '10/x', '2/(5x)', '2/5'], correcta: 3},
+          {enun: 'S. (1/x) + (2/x) =', ops: ['3/x', '3/(2x)', '2/x²', '3/x²'], correcta: 0},
+          {enun: 'T. Dividir entre una fracción es multiplicar por su:', ops: ['opuesto', 'recíproco', 'cuadrado', 'raíz'], correcta: 1},
           // Bloque 5 · Sistemas de ecuaciones
-          {cat: 'Bloque 5 · Sistemas de ecuaciones', enun: '21. Resuelve y = 2x ; x + y = 9.', ops: ['(6, 3)', '(3, 6)', '(3, 3)', '(9, 0)'], correcta: 1},
-          {enun: '22. Resuelve por eliminación x + y = 10 ; x − y = 4.', ops: ['(7, 3)', '(3, 7)', '(5, 5)', '(10, 4)'], correcta: 0},
-          {enun: '23. Al resolver un sistema se obtiene 0 = 5. El sistema:', ops: ['tiene una solución', 'no tiene solución', 'tiene infinitas soluciones', 'tiene dos soluciones'], correcta: 1},
-          {enun: '24. Dos rectas paralelas forman un sistema:', ops: ['con una solución', 'con infinitas soluciones', 'sin solución', 'dependiente'], correcta: 2},
-          {enun: '25. Dos boletos de adulto y uno de niño cuestan $25; un adulto y un niño cuestan $15. ¿Precio del adulto?', ops: ['$5', '$15', '$10', '$12'], correcta: 2},
+          {cat: 'Bloque 5 · Sistemas de ecuaciones', enun: 'U. Resuelve y = 2x ; x + y = 9.', ops: ['(6, 3)', '(3, 3)', '(3, 6)', '(9, 0)'], correcta: 2},
+          {enun: 'V. Resuelve por eliminación x + y = 10 ; x − y = 4.', ops: ['(3, 7)', '(7, 3)', '(5, 5)', '(10, 4)'], correcta: 1},
+          {enun: 'W. Al resolver un sistema se obtiene 0 = 5. El sistema:', ops: ['tiene una solución', 'tiene infinitas soluciones', 'no tiene solución', 'tiene dos soluciones'], correcta: 2},
+          {enun: 'X. Dos rectas paralelas forman un sistema:', ops: ['con una solución', 'con infinitas soluciones', 'dependiente', 'sin solución'], correcta: 3},
+          {enun: 'Y. Dos boletos de adulto y uno de niño cuestan $25; un adulto y un niño cuestan $15. ¿Precio del adulto?', ops: ['$10', '$5', '$15', '$12'], correcta: 0},
           // Bloque 6 · Funciones y modelado
-          {cat: 'Bloque 6 · Funciones y modelado', enun: '26. Si f(x) = 2x² − 3x + 1, ¿cuánto vale f(2)?', ops: ['1', '3', '0', '11'], correcta: 1},
-          {enun: '27. El vértice de f(x) = x² − 4x + 3 es:', ops: ['(−2, −1)', '(2, −1)', '(2, 1)', '(4, 3)'], correcta: 1},
-          {enun: '28. f(x) = 3ˣ es una función:', ops: ['lineal', 'cuadrática', 'exponencial', 'racional'], correcta: 2},
-          {enun: '29. Tasa de cambio promedio si f(1) = 4 y f(5) = 20.', ops: ['16', '5', '24', '4'], correcta: 3},
-          {enun: '30. Las salidas 2, 4, 8, 16 (se multiplican por 2) corresponden a una función:', ops: ['lineal', 'exponencial', 'cuadrática', 'constante'], correcta: 1}
+          {cat: 'Bloque 6 · Funciones y modelado', enun: 'Z. Si f(x) = 2x² − 3x + 1, ¿cuánto vale f(2)?', ops: ['1', '0', '11', '3'], correcta: 3},
+          {enun: 'AA. El vértice de f(x) = x² − 4x + 3 es:', ops: ['(−2, −1)', '(2, −1)', '(2, 1)', '(4, 3)'], correcta: 1},
+          {enun: 'AB. f(x) = 3ˣ es una función:', ops: ['exponencial', 'lineal', 'cuadrática', 'racional'], correcta: 0},
+          {enun: 'AC. Tasa de cambio promedio si f(1) = 4 y f(5) = 20.', ops: ['16', '5', '4', '24'], correcta: 2},
+          {enun: 'AD. Las salidas 2, 4, 8, 16 (se multiplican por 2) corresponden a una función:', ops: ['lineal', 'cuadrática', 'constante', 'exponencial'], correcta: 3}
         ];
 
         var cuerpo = document.getElementById('quiz-cuerpo');

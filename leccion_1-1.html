@@ -785,30 +785,30 @@
     <div class="practica">
       <h3>Práctica interactiva 1 · Calcular la distancia</h3>
       <p>Selecciona la distancia correcta entre cada par de puntos.</p>
-      <div class="pregunta" data-correcta="a">
-        <div class="enun">1. Entre (0, 0) y (3, 4).</div>
+      <div class="pregunta" data-correcta="b">
+        <div class="enun">A. Entre (0, 0) y (3, 4).</div>
         <div class="opciones">
-          <div class="opcion" data-op="a">5</div>
-          <div class="opcion" data-op="b">7</div>
+          <div class="opcion" data-op="a">7</div>
+          <div class="opcion" data-op="b">5</div>
           <div class="opcion" data-op="c">25</div>
         </div>
         <div class="fb"></div>
       </div>
-      <div class="pregunta" data-correcta="b">
-        <div class="enun">2. Entre (1, 1) y (1, 6).</div>
+      <div class="pregunta" data-correcta="a">
+        <div class="enun">B. Entre (1, 1) y (1, 6).</div>
         <div class="opciones">
-          <div class="opcion" data-op="a">6</div>
-          <div class="opcion" data-op="b">5</div>
+          <div class="opcion" data-op="a">5</div>
+          <div class="opcion" data-op="b">6</div>
           <div class="opcion" data-op="c">7</div>
         </div>
         <div class="fb"></div>
       </div>
-      <div class="pregunta" data-correcta="b">
-        <div class="enun">3. Entre (−1, 2) y (2, 6).</div>
+      <div class="pregunta" data-correcta="c">
+        <div class="enun">C. Entre (−1, 2) y (2, 6).</div>
         <div class="opciones">
           <div class="opcion" data-op="a">4</div>
-          <div class="opcion" data-op="b">5</div>
-          <div class="opcion" data-op="c">25</div>
+          <div class="opcion" data-op="b">25</div>
+          <div class="opcion" data-op="c">5</div>
         </div>
         <div class="fb"></div>
       </div>
@@ -865,17 +865,17 @@
     <div class="practica">
       <h3>Práctica interactiva 2 · Calcular el punto medio</h3>
       <p>Selecciona el punto medio correcto de cada segmento.</p>
-      <div class="pregunta" data-correcta="a">
-        <div class="enun">1. Entre (2, 2) y (6, 8).</div>
+      <div class="pregunta" data-correcta="b">
+        <div class="enun">A. Entre (2, 2) y (6, 8).</div>
         <div class="opciones">
-          <div class="opcion" data-op="a">(4, 5)</div>
-          <div class="opcion" data-op="b">(8, 10)</div>
+          <div class="opcion" data-op="a">(8, 10)</div>
+          <div class="opcion" data-op="b">(4, 5)</div>
           <div class="opcion" data-op="c">(4, 4)</div>
         </div>
         <div class="fb"></div>
       </div>
       <div class="pregunta" data-correcta="a">
-        <div class="enun">2. Entre (0, 0) y (10, 4).</div>
+        <div class="enun">B. Entre (0, 0) y (10, 4).</div>
         <div class="opciones">
           <div class="opcion" data-op="a">(5, 2)</div>
           <div class="opcion" data-op="b">(10, 4)</div>
@@ -883,12 +883,12 @@
         </div>
         <div class="fb"></div>
       </div>
-      <div class="pregunta" data-correcta="a">
-        <div class="enun">3. Entre (−4, 2) y (2, −6).</div>
+      <div class="pregunta" data-correcta="c">
+        <div class="enun">C. Entre (−4, 2) y (2, −6).</div>
         <div class="opciones">
-          <div class="opcion" data-op="a">(−1, −2)</div>
-          <div class="opcion" data-op="b">(−2, −4)</div>
-          <div class="opcion" data-op="c">(3, 4)</div>
+          <div class="opcion" data-op="a">(−2, −4)</div>
+          <div class="opcion" data-op="b">(3, 4)</div>
+          <div class="opcion" data-op="c">(−1, −2)</div>
         </div>
         <div class="fb"></div>
       </div>
@@ -1039,16 +1039,16 @@
 
         /* ---- Quiz ---- */
         var preguntasQuiz = [
-          { enun: '1. ¿En qué cuadrante se encuentra el punto (−3, 5)?', ops: ['Cuadrante I', 'Cuadrante II', 'Cuadrante III', 'Cuadrante IV'], correcta: 1 },
-          { enun: '2. ¿Dónde se localiza el punto (0, −4)?', ops: ['Sobre el eje x', 'Sobre el eje y', 'En el cuadrante III', 'En el origen'], correcta: 1 },
-          { enun: '3. Un punto está 2 unidades a la izquierda y 3 abajo del origen. ¿Cuáles son sus coordenadas?', ops: ['(2, 3)', '(−2, 3)', '(−2, −3)', '(2, −3)'], correcta: 2 },
-          { enun: '4. Distancia entre (1, 2) y (4, 6).', ops: ['5', '7', '12', '25'], correcta: 0 },
-          { enun: '5. Distancia entre (−2, 1) y (3, 1).', ops: ['1', '4', '5', '6'], correcta: 2 },
-          { enun: '6. Distancia entre (0, 0) y (6, 8).', ops: ['10', '14', '48', '100'], correcta: 0 },
-          { enun: '7. Punto medio del segmento de (2, 4) a (8, 10).', ops: ['(10, 14)', '(6, 6)', '(5, 7)', '(3, 3)'], correcta: 2 },
-          { enun: '8. Punto medio del segmento de (−3, 5) a (7, −1).', ops: ['(2, 2)', '(4, 4)', '(5, 3)', '(−5, 3)'], correcta: 0 },
-          { enun: '9. Un triángulo tiene vértices A(0, 0), B(3, 0) y C(0, 4). ¿Cuál es su perímetro?', ops: ['7', '10', '12', '15'], correcta: 2 },
-          { enun: '10. El punto medio de un segmento es (4, 3) y un extremo es (2, 1). ¿Cuál es el otro extremo?', ops: ['(3, 2)', '(6, 5)', '(2, 2)', '(8, 4)'], correcta: 1 }
+          { enun: 'A. ¿En qué cuadrante se encuentra el punto (−3, 5)?', ops: ['Cuadrante II', 'Cuadrante I', 'Cuadrante III', 'Cuadrante IV'], correcta: 0 },
+          { enun: 'B. ¿Dónde se localiza el punto (0, −4)?', ops: ['Sobre el eje x', 'Sobre el eje y', 'En el cuadrante III', 'En el origen'], correcta: 1 },
+          { enun: 'C. Un punto está 2 unidades a la izquierda y 3 abajo del origen. ¿Cuáles son sus coordenadas?', ops: ['(2, 3)', '(−2, 3)', '(−2, −3)', '(2, −3)'], correcta: 2 },
+          { enun: 'D. Distancia entre (1, 2) y (4, 6).', ops: ['7', '12', '25', '5'], correcta: 3 },
+          { enun: 'E. Distancia entre (−2, 1) y (3, 1).', ops: ['1', '5', '4', '6'], correcta: 1 },
+          { enun: 'F. Distancia entre (0, 0) y (6, 8).', ops: ['14', '48', '100', '10'], correcta: 3 },
+          { enun: 'G. Punto medio del segmento de (2, 4) a (8, 10).', ops: ['(10, 14)', '(6, 6)', '(5, 7)', '(3, 3)'], correcta: 2 },
+          { enun: 'H. Punto medio del segmento de (−3, 5) a (7, −1).', ops: ['(2, 2)', '(4, 4)', '(5, 3)', '(−5, 3)'], correcta: 0 },
+          { enun: 'I. Un triángulo tiene vértices A(0, 0), B(3, 0) y C(0, 4). ¿Cuál es su perímetro?', ops: ['7', '10', '12', '15'], correcta: 2 },
+          { enun: 'J. El punto medio de un segmento es (4, 3) y un extremo es (2, 1). ¿Cuál es el otro extremo?', ops: ['(3, 2)', '(2, 2)', '(8, 4)', '(6, 5)'], correcta: 3 }
         ];
 
         var cuerpo = document.getElementById('quiz-cuerpo');
