@@ -374,7 +374,7 @@
         <h3>Práctica interactiva 1 · ¿Hacia dónde abre?</h3>
         <p>Decide la dirección de apertura y el tipo de vértice.</p>
 
-        <div class="pregunta" data-correcta="a">
+        <div class="pregunta" data-correcta="a" data-explica="El coeficiente de x² es 2, que es positivo. Por eso la parábola abre hacia arriba.">
           <div class="enun">A. f(x) = 2x² − 5x + 1 abre hacia:</div>
           <div class="opciones">
             <div class="opcion" data-op="a">arriba</div>
@@ -383,7 +383,7 @@
           <div class="fb"></div>
         </div>
 
-        <div class="pregunta" data-correcta="b">
+        <div class="pregunta" data-correcta="b" data-explica="El coeficiente de x² es −1, que es negativo. Por eso la parábola abre hacia abajo.">
           <div class="enun">B. f(x) = −x² + 3x abre hacia:</div>
           <div class="opciones">
             <div class="opcion" data-op="a">arriba</div>
@@ -392,7 +392,7 @@
           <div class="fb"></div>
         </div>
 
-        <div class="pregunta" data-correcta="a">
+        <div class="pregunta" data-correcta="a" data-explica="Si la parábola abre hacia arriba, el vértice es su punto más bajo: un mínimo.">
           <div class="enun">C. Una parábola que abre hacia arriba tiene:</div>
           <div class="opciones">
             <div class="opcion" data-op="a">un mínimo</div>
@@ -566,7 +566,7 @@
         <h3>Práctica interactiva 4 · Máximo y mínimo</h3>
         <p>Aplica el vértice al contexto.</p>
 
-        <div class="pregunta" data-correcta="a">
+        <div class="pregunta" data-correcta="a" data-explica="El coeficiente de t² es −16, negativo: la parábola abre hacia abajo y el vértice es su punto más alto, un máximo (la altura mayor).">
           <div class="enun">A. En h(t) = −16t² + 64t + 5, el vértice es un:</div>
           <div class="opciones">
             <div class="opcion" data-op="a">máximo</div>
@@ -845,6 +845,7 @@
 </style>
 <script id="dos-intentos" data-trato="tu">
 /* ── Dos intentos (GEDparaHispanos · LearnGED) ──
+   Preguntas de dos opciones: la explicación se muestra de inmediato (un segundo intento no enseña nada).
    Filosofía de Lumi: ante el primer error, una pista y otro intento;
    en el segundo intento actúa el programa original de la lección,
    que muestra la respuesta correcta y su explicación. */
@@ -905,6 +906,13 @@
     if (op.classList.contains('di-mal')) { frena(ev); return; }
     var est = p.g.getAttribute('data-di');
     if (est === 'fin') return;
+    if (p.g.querySelectorAll('.opcion').length <= 2) {             /* dos opciones: se explica de inmediato */
+      setTimeout(function () {
+        var ex = p.g.getAttribute('data-explica');
+        if (ex && p.fb && p.fb.textContent.indexOf(ex) < 0) p.fb.appendChild(document.createTextNode(' ' + ex));
+      }, 0);
+      return;
+    }
     if (p.ok || est === '1') { p.g.setAttribute('data-di', 'fin'); return; }
     frena(ev);
     p.g.setAttribute('data-di', '1');
@@ -986,7 +994,8 @@
       qs.forEach(function (q) {
         var el = M.elegida(q), ok = el ? M.esCorrecta(q, el) : false;
         if (ok === null) desconocido = true;
-        if (ok) bien++; else revisar.push({ q: q, el: el });
+        if (ok) bien++;
+        else if (M.ops(q).length > 2) revisar.push({ q: q, el: el });   /* dos opciones: se explica al corregir */
       });
       if (desconocido || !revisar.length) { ronda = 3; return; }  /* todo bien al primer intento */
       frena(ev);
